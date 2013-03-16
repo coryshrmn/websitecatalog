@@ -1,4 +1,6 @@
 #!/bin/bash
 name='websitecatalog'
-./`dirname $0`/../bin/release/$name
+rel=`dirname $0`
+mkdir -p $rel/../out
+./$rel/../bin/release/$name 2>&1 | tee out/release.txt
 

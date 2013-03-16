@@ -1,4 +1,6 @@
 #!/bin/bash
 name='websitecatalog'
-valgrind --leak-check=yes `dirname $0`/../bin/debug/$name "$@"
+rel=`dirname $0`
+mkdir -p $rel/../out
+valgrind --leak-check=yes $rel/../bin/debug/$name 2>&1 | tee $rel/../out/debug.txt
 
