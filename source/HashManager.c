@@ -242,7 +242,7 @@ void hashPrintList(ListHead *pList)
     int elem;
     for(bucket = 0; bucket < pList->arySize; ++bucket)
     {
-        HashNode *bucketOffset = &pList->pHash[bucket];
+        HashNode *bucketOffset = &pList->pHash[bucket * pList->bucketSize];
         printf("bucket (%d)\n", bucket);
         for(elem = 0; elem < pList->bucketSize; ++elem)
         {
