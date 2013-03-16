@@ -1,4 +1,4 @@
 #!/bin/bash
 name='websitecatalog'
-valgrind --leak-check=yes ~/c/$name/bin/debug/$name "$@"
+valgrind --leak-check=yes `dirname $0`/../bin/debug/$name "$@"
 

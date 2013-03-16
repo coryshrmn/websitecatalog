@@ -1,4 +1,4 @@
 #!/bin/bash
 name='websitecatalog'
-~/c/$name/bin/release/$name "$@"
+./`dirname $0`/../bin/release/$name
 
