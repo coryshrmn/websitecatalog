@@ -1,0 +1,4 @@
+#!/bin/bash
+name='websitecatalog'
+valgrind --leak-check=yes ~/c/$name/bin/debug/$name "$@"
+
