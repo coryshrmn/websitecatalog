@@ -325,7 +325,7 @@ clickbank.com;ClickBank;2632;418;172;5760;
 xe.com;XE.com;2657;414;4618;5820;
 maktoob.com;Maktoob.com Inc.;2196;501;1221;4810;
 google.no;Google;2689;409;239;5890;
-ero-advertising.com;Ero-Advertising :: Advertising &amp; Publishing;3943;279;168;8640;
+ero-advertising.com;Ero-Advertising :: Advertising &amp Publishing;3943;279;168;8640;
 rapidshare.com;RapidShare;4089;269;1072;8960;
 speedtest.net;Speedtest.net;2607;422;2475;5710;
 abcnews.go.com;ABCNews.com;2576;427;505;5640;
