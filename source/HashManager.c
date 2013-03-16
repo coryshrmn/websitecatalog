@@ -105,9 +105,10 @@ bool hashInsert(ListHead *pList, Website *pWebsite)
     int i;
     int index;
 
+
     if(!hashSearch(pList, pWebsite->url))
     {
-        index = (_hashString(pWebsite->url) % pList->arySize) * pList->bucketSize;
+        index = ((unsigned int)_hashString(pWebsite->url) % (unsigned int)pList->arySize) * pList->bucketSize;
         
         for(i = 0; i < pList->bucketSize; i++)
         {
@@ -139,8 +140,7 @@ Website *hashSearch(ListHead *pList, const char *url)
 {
     int i;
     int index;
-
-    index = (_hashString(url) % pList->arySize) * pList->bucketSize;
+    index = ((unsigned int)_hashString(url) % (unsigned int)pList->arySize) * pList->bucketSize;
     for(i = 0; i < pList->bucketSize; i++)
     {
         if(pList->pHash[index + i].key && strcmp(pList->pHash[index + i].key, url))

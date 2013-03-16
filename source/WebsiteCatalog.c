@@ -31,9 +31,13 @@ int main(void)
     listInsert(&head, websiteCreate("google.com", "Google", 1000, 1, 2000, 3000));
     listInsert(&head, websiteCreate("yahoo.com", "Yahoo", 4000, 2, 5000, 6000));
 
+    printf("hashPrintList(&head)\n");
     hashPrintList(&head);
 
+    printf("\n\nbstPrintIndented(&head)\n");
     bstPrintIndented(&head);
+
+    printf("\n\nbstPrintInorder(&head)\n");
     bstPrintInorder(&head);
 
 
