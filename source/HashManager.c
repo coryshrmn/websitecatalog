@@ -122,7 +122,7 @@ bool hashInsert(ListHead *pList, Website *pWebsite)
         printf("Bucket full, unable to insert!\n");
         return false;
     }
-    printf("Website already exsits\n");
+    printf("Website \"%s\" already exsits\n", pWebsite->url);
     return false;
 }
 
