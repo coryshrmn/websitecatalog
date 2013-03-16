@@ -1,0 +1,1721 @@
+==2903== Memcheck, a memory error detector
+==2903== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==2903== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==2903== Command: ./test/../bin/debug/websitecatalog
+==2903== 
+Website "google.ru" already exsits
+Website "blogger.com" already exsits
+Website "go.com" already exsits
+Website "tmall.com" already exsits
+Website "thepiratebay.se" already exsits
+Website "cnn.com" already exsits
+Website "amazon.co.uk" already exsits
+Website "uol.com.br" already exsits
+Website "cnet.com" already exsits
+Website "mediafire.com" already exsits
+Website "4shared.com" already exsits
+Website "google.co.id" already exsits
+Website "blogfa.com" already exsits
+Website "walmart.com" already exsits
+Website "booking.com" already exsits
+Website "themeforest.net" already exsits
+Website "google.com.co" already exsits
+Website "flipkart.com" already exsits
+Website "download.com" already exsits
+Website "archive.org" already exsits
+Website "indeed.com" already exsits
+Website "google.com.ua" already exsits
+Website "scribd.com" already exsits
+Website "libero.it" already exsits
+Website "youjizz.com" already exsits
+Website "bet365.com" already exsits
+Website "google.com.ng" already exsits
+Website "profitclicking.com" already exsits
+Website "google.com.ph" already exsits
+Website "bild.de" already exsits
+Website "thefreedictionary.com" already exsits
+Website "tagged.com" already exsits
+Website "linkbucks.com" already exsits
+Website "informer.com" already exsits
+Website "twoo.com" already exsits
+Website "detik.com" already exsits
+Website "adultfriendfinder.com" already exsits
+Website "shutterstock.com" already exsits
+Website "yourlust.com" already exsits
+Website "terra.com.br" already exsits
+Website "nba.com" already exsits
+Website "akamaihd.net" already exsits
+Website "dell.com" already exsits
+Website "google.com.bd" already exsits
+Website "buzzfeed.com" already exsits
+Website "avito.ru" already exsits
+Website "empowernetwork.com" already exsits
+Website "torrentz.in" already exsits
+Website "fedex.com" already exsits
+Website "washingtonpost.com" already exsits
+Website "bannersbroker.com" already exsits
+Website "mgid.com" already exsits
+Website "hdfcbank.com" already exsits
+Website "nuvid.com" already exsits
+Website "zillow.com" already exsits
+Website "searchfunmoods.com" already exsits
+Website "naukri.com" already exsits
+Website "businessinsider.com" already exsits
+Website "google.ie" already exsits
+Website "milliyet.com.tr" already exsits
+Website "youdao.com" already exsits
+Website "xe.com" already exsits
+Website "google.no" already exsits
+Website "abcnews.go.com" already exsits
+Website "sergey-mavrodi.com" already exsits
+Website "google.dz" already exsits
+Website "elmundo.es" already exsits
+Website "microsoftonline.com" already exsits
+Website "commentcamarche.net" already exsits
+Website "hubpages.com" already exsits
+Website "888.com" already exsits
+Website "latimes.com" already exsits
+Website "typepad.com" already exsits
+Website "google.fi" already exsits
+Website "blackhatworld.com" already exsits
+Website "w3.org" already exsits
+Website "bloomberg.com" already exsits
+Website "surveymonkey.com" already exsits
+hashPrintList(&head)
+bucket (0)
+bucket (1)
+bucket (2)
+bucket (3)
+bucket (4)
+    google.com.my
+bucket (5)
+    php.net
+bucket (6)
+bucket (7)
+bucket (8)
+bucket (9)
+bucket (10)
+bucket (11)
+bucket (12)
+bucket (13)
+bucket (14)
+    wix.com
+bucket (15)
+    stackoverflow.com
+bucket (16)
+bucket (17)
+    goo.ne.jp
+bucket (18)
+bucket (19)
+bucket (20)
+bucket (21)
+    ndtv.com
+bucket (22)
+bucket (23)
+bucket (24)
+bucket (25)
+    ign.com
+bucket (26)
+    dropbox.com
+bucket (27)
+bucket (28)
+bucket (29)
+bucket (30)
+bucket (31)
+    ask.com
+bucket (32)
+bucket (33)
+bucket (34)
+bucket (35)
+    answers.com
+bucket (36)
+    match.com
+bucket (37)
+bucket (38)
+bucket (39)
+bucket (40)
+    usatoday.com
+bucket (41)
+bucket (42)
+    icicibank.com
+bucket (43)
+    msn.com
+bucket (44)
+bucket (45)
+bucket (46)
+bucket (47)
+    xnxx.com
+bucket (48)
+    google.be
+bucket (49)
+bucket (50)
+bucket (51)
+bucket (52)
+bucket (53)
+    goal.com
+bucket (54)
+    amazon.de
+bucket (55)
+bucket (56)
+    instagram.com
+bucket (57)
+bucket (58)
+bucket (59)
+bucket (60)
+    blogspot.co.uk
+bucket (61)
+bucket (62)
+bucket (63)
+bucket (64)
+bucket (65)
+bucket (66)
+bucket (67)
+bucket (68)
+    odesk.com
+bucket (69)
+bucket (70)
+bucket (71)
+bucket (72)
+bucket (73)
+bucket (74)
+bucket (75)
+    google.ca
+bucket (76)
+bucket (77)
+    yieldmanager.com
+bucket (78)
+    outlook.com
+bucket (79)
+bucket (80)
+    warriorforum.com
+bucket (81)
+    clickbank.com
+bucket (82)
+    google.ch
+bucket (83)
+    google.com.pk
+bucket (84)
+    groupon.com
+bucket (85)
+bucket (86)
+    google.cl
+bucket (87)
+bucket (88)
+    google.cn
+bucket (89)
+bucket (90)
+bucket (91)
+bucket (92)
+bucket (93)
+bucket (94)
+bucket (95)
+bucket (96)
+bucket (97)
+bucket (98)
+bucket (99)
+bucket (100)
+    abril.com.br
+bucket (101)
+bucket (102)
+    statcounter.com
+bucket (103)
+    baidu.com
+bucket (104)
+    wikihow.com
+bucket (105)
+    chase.com
+bucket (106)
+bucket (107)
+bucket (108)
+bucket (109)
+bucket (110)
+    google.de
+bucket (111)
+    hulu.com
+bucket (112)
+bucket (113)
+    youporn.com
+bucket (114)
+    exoclick.com
+bucket (115)
+    taringa.net
+bucket (116)
+bucket (117)
+bucket (118)
+bucket (119)
+    domaintools.com
+bucket (120)
+bucket (121)
+bucket (122)
+bucket (123)
+bucket (124)
+    reference.com
+bucket (125)
+    espn.go.com
+bucket (126)
+bucket (127)
+bucket (128)
+bucket (129)
+    amazon.fr
+bucket (130)
+bucket (131)
+    ikea.com
+bucket (132)
+    pengyou.com
+bucket (133)
+bucket (134)
+    irs.gov
+bucket (135)
+    hurriyet.com.tr
+bucket (136)
+bucket (137)
+bucket (138)
+bucket (139)
+    iminent.com
+bucket (140)
+bucket (141)
+    bleacherreport.com
+bucket (142)
+bucket (143)
+    theexgirlfriends.com
+bucket (144)
+bucket (145)
+    sweetim.com
+bucket (146)
+    livejournal.com
+bucket (147)
+bucket (148)
+bucket (149)
+    uploaded.net
+bucket (150)
+bucket (151)
+bucket (152)
+    soundcloud.com
+bucket (153)
+bucket (154)
+bucket (155)
+bucket (156)
+bucket (157)
+    uimserv.net
+bucket (158)
+    weather.com
+bucket (159)
+    delta-search.com
+bucket (160)
+bucket (161)
+bucket (162)
+bucket (163)
+    americanexpress.com
+bucket (164)
+    google.co.hu
+bucket (165)
+bucket (166)
+bucket (167)
+bucket (168)
+    dailymotion.com
+bucket (169)
+    softonic.com
+bucket (170)
+bucket (171)
+    ebay.co.uk
+bucket (172)
+    google.com.sg
+bucket (173)
+bucket (174)
+bucket (175)
+    squidoo.com
+bucket (176)
+    salesforce.com
+bucket (177)
+bucket (178)
+    neobux.com
+bucket (179)
+    histats.com
+bucket (180)
+bucket (181)
+    wordpress.com
+bucket (182)
+    mercadolivre.com.br
+bucket (183)
+    mixi.jp
+bucket (184)
+    repubblica.it
+bucket (185)
+    google.fr
+bucket (186)
+    speedtest.net
+bucket (187)
+bucket (188)
+    google.co.in
+bucket (189)
+bucket (190)
+bucket (191)
+bucket (192)
+bucket (193)
+bucket (194)
+    ebay.com
+bucket (195)
+bucket (196)
+    yelp.com
+bucket (197)
+bucket (198)
+bucket (199)
+    usps.com
+bucket (200)
+bucket (201)
+bucket (202)
+bucket (203)
+bucket (204)
+bucket (205)
+bucket (206)
+bucket (207)
+bucket (208)
+bucket (209)
+bucket (210)
+bucket (211)
+bucket (212)
+bucket (213)
+bucket (214)
+bucket (215)
+bucket (216)
+    google.gr
+bucket (217)
+    sourceforge.net
+bucket (218)
+    blogspot.com
+bucket (219)
+bucket (220)
+bucket (221)
+bucket (222)
+bucket (223)
+bucket (224)
+    amazon.it
+bucket (225)
+    zedo.com
+bucket (226)
+    search-results.com
+bucket (227)
+bucket (228)
+    ilivid.com
+bucket (229)
+bucket (230)
+bucket (231)
+bucket (232)
+bucket (233)
+    letitbit.net
+bucket (234)
+bucket (235)
+bucket (236)
+    orange.fr
+bucket (237)
+    goodreads.com
+bucket (238)
+    deviantart.com
+bucket (239)
+bucket (240)
+bucket (241)
+bucket (242)
+bucket (243)
+bucket (244)
+bucket (245)
+    pch.com
+bucket (246)
+    github.com
+bucket (247)
+    livedoor.com
+bucket (248)
+bucket (249)
+    foxnews.com
+bucket (250)
+bucket (251)
+bucket (252)
+bucket (253)
+bucket (254)
+bucket (255)
+bucket (256)
+bucket (257)
+bucket (258)
+    9gag.com
+bucket (259)
+    secureserver.net
+bucket (260)
+    apple.com
+bucket (261)
+    babylon.com
+bucket (262)
+bucket (263)
+bucket (264)
+bucket (265)
+    zippyshare.com
+bucket (266)
+    ku6.com
+bucket (267)
+bucket (268)
+    largeporntube.com
+bucket (269)
+bucket (270)
+bucket (271)
+bucket (272)
+    google.com.vn
+bucket (273)
+    beeg.com
+bucket (274)
+bucket (275)
+bucket (276)
+bucket (277)
+bucket (278)
+    isohunt.com
+bucket (279)
+bucket (280)
+    google.it
+bucket (281)
+bucket (282)
+    etao.com
+bucket (283)
+bucket (284)
+    optmd.com
+bucket (285)
+    xvideos.com
+bucket (286)
+bucket (287)
+    pof.com
+bucket (288)
+bucket (289)
+bucket (290)
+bucket (291)
+bucket (292)
+    googleusercontent.com
+bucket (293)
+    seznam.cz
+bucket (294)
+    yahoo.co.jp
+bucket (295)
+bucket (296)
+bucket (297)
+    depositfiles.com
+bucket (298)
+bucket (299)
+bucket (300)
+    pixiv.net
+bucket (301)
+    taobao.com
+bucket (302)
+    wellsfargo.com
+bucket (303)
+    hootsuite.com
+bucket (304)
+    wordreference.com
+bucket (305)
+    in.com
+bucket (306)
+    java.com
+bucket (307)
+    indiatimes.com
+bucket (308)
+bucket (309)
+bucket (310)
+bucket (311)
+bucket (312)
+bucket (313)
+bucket (314)
+    spiegel.de
+bucket (315)
+bucket (316)
+bucket (317)
+    webs.com
+bucket (318)
+bucket (319)
+bucket (320)
+bucket (321)
+    forbes.com
+bucket (322)
+    target.com
+bucket (323)
+    microsoft.com
+bucket (324)
+    rapidshare.com
+bucket (325)
+bucket (326)
+bucket (327)
+bucket (328)
+bucket (329)
+bucket (330)
+    amazon.co.jp
+bucket (331)
+bucket (332)
+    it168.com
+bucket (333)
+bucket (334)
+    bravotube.net
+bucket (335)
+    skype.com
+bucket (336)
+bucket (337)
+    nytimes.com
+bucket (338)
+    amazonaws.com
+bucket (339)
+    webmd.com
+bucket (340)
+bucket (341)
+bucket (342)
+bucket (343)
+bucket (344)
+bucket (345)
+bucket (346)
+bucket (347)
+bucket (348)
+    ebay.de
+bucket (349)
+bucket (350)
+    ask.fm
+bucket (351)
+bucket (352)
+bucket (353)
+bucket (354)
+bucket (355)
+bucket (356)
+bucket (357)
+bucket (358)
+bucket (359)
+    globo.com
+bucket (360)
+bucket (361)
+bucket (362)
+bucket (363)
+    quikr.com
+bucket (364)
+bucket (365)
+bucket (366)
+bucket (367)
+    ero-advertising.com
+bucket (368)
+    google.com.ar
+bucket (369)
+    wikimedia.org
+bucket (370)
+    ehow.com
+bucket (371)
+    google.com.au
+bucket (372)
+bucket (373)
+    aili.com
+bucket (374)
+    hp.com
+bucket (375)
+bucket (376)
+    vimeo.com
+bucket (377)
+bucket (378)
+bucket (379)
+bucket (380)
+    reuters.com
+bucket (381)
+    seomoz.org
+bucket (382)
+bucket (383)
+bucket (384)
+bucket (385)
+    stumbleupon.com
+bucket (386)
+bucket (387)
+bucket (388)
+    aweber.com
+bucket (389)
+bucket (390)
+bucket (391)
+bucket (392)
+    constantcontact.com
+bucket (393)
+bucket (394)
+bucket (395)
+bucket (396)
+bucket (397)
+    att.com
+bucket (398)
+    paypal.com
+bucket (399)
+    google.com.br
+bucket (400)
+bucket (401)
+bucket (402)
+    csdn.net
+bucket (403)
+    bp.blogspot.com
+bucket (404)
+bucket (405)
+bucket (406)
+    kaskus.co.id
+bucket (407)
+bucket (408)
+bucket (409)
+bucket (410)
+bucket (411)
+bucket (412)
+bucket (413)
+    ups.com
+bucket (414)
+bucket (415)
+    rutracker.org
+bucket (416)
+    flickr.com
+bucket (417)
+bucket (418)
+bucket (419)
+bucket (420)
+bucket (421)
+bucket (422)
+    facebook.com
+bucket (423)
+bucket (424)
+    cj.com
+bucket (425)
+bucket (426)
+bucket (427)
+    google.nl
+bucket (428)
+bucket (429)
+    slideshare.net
+bucket (430)
+    telegraph.co.uk
+bucket (431)
+    tumblr.com
+bucket (432)
+    conduit.com
+bucket (433)
+    yahoo.com
+bucket (434)
+    soku.com
+bucket (435)
+bucket (436)
+bucket (437)
+bucket (438)
+bucket (439)
+bucket (440)
+    gsmarena.com
+bucket (441)
+bucket (442)
+    tube8.com
+bucket (443)
+    mozilla.org
+bucket (444)
+    goodgamestudios.com
+bucket (445)
+    softpedia.com
+bucket (446)
+    searchnu.com
+bucket (447)
+bucket (448)
+    mashable.com
+bucket (449)
+    liveinternet.ru
+bucket (450)
+    netflix.com
+bucket (451)
+bucket (452)
+    ezinearticles.com
+bucket (453)
+    nifty.com
+bucket (454)
+    linkedin.com
+bucket (455)
+bucket (456)
+bucket (457)
+bucket (458)
+bucket (459)
+    comcast.net
+bucket (460)
+    putlocker.com
+bucket (461)
+bucket (462)
+bucket (463)
+bucket (464)
+bucket (465)
+    jobrapido.com
+bucket (466)
+bucket (467)
+bucket (468)
+bucket (469)
+    alipay.com
+bucket (470)
+bucket (471)
+    clicksor.com
+bucket (472)
+bucket (473)
+bucket (474)
+    blogspot.in
+bucket (475)
+bucket (476)
+bucket (477)
+bucket (478)
+bucket (479)
+bucket (480)
+bucket (481)
+    google.com.eg
+bucket (482)
+bucket (483)
+bucket (484)
+    cam4.com
+bucket (485)
+    yoka.com
+bucket (486)
+    hao123.com
+bucket (487)
+bucket (488)
+bucket (489)
+    weebly.com
+bucket (490)
+bucket (491)
+bucket (492)
+    joomla.org
+bucket (493)
+    amazon.com
+bucket (494)
+    examiner.com
+bucket (495)
+    redtube.com
+bucket (496)
+bucket (497)
+    google.pt
+bucket (498)
+bucket (499)
+    pornhub.com
+bucket (500)
+    4dsply.com
+bucket (501)
+    ebay.com.au
+bucket (502)
+    aliexpress.com
+bucket (503)
+    aol.com
+bucket (504)
+bucket (505)
+    torrentz.eu
+bucket (506)
+    doublepimp.com
+bucket (507)
+bucket (508)
+bucket (509)
+bucket (510)
+    badoo.com
+bucket (511)
+    avg.com
+bucket (512)
+    ebay.in
+bucket (513)
+    alibaba.com
+bucket (514)
+bucket (515)
+bucket (516)
+bucket (517)
+bucket (518)
+    ebay.it
+bucket (519)
+bucket (520)
+    adnxs.com
+bucket (521)
+bucket (522)
+    meetup.com
+bucket (523)
+    youtube.com
+bucket (524)
+    blogspot.com.br
+bucket (525)
+bucket (526)
+    fbcdn.net
+bucket (527)
+    wikipedia.org
+bucket (528)
+bucket (529)
+bucket (530)
+    adobe.com
+bucket (531)
+bucket (532)
+    bankofamerica.com
+bucket (533)
+bucket (534)
+bucket (535)
+    directrev.com
+bucket (536)
+    atwiki.jp
+bucket (537)
+    123rf.com
+bucket (538)
+bucket (539)
+bucket (540)
+bucket (541)
+    chip.de
+bucket (542)
+bucket (543)
+bucket (544)
+bucket (545)
+bucket (546)
+bucket (547)
+bucket (548)
+    kat.ph
+bucket (549)
+bucket (550)
+bucket (551)
+bucket (552)
+bucket (553)
+bucket (554)
+    google.ro
+bucket (555)
+    movie2k.to
+bucket (556)
+    olx.in
+bucket (557)
+    google.co.uk
+bucket (558)
+    popads.net
+bucket (559)
+bucket (560)
+    live.com
+bucket (561)
+bucket (562)
+    clixsense.com
+bucket (563)
+bucket (564)
+bucket (565)
+bucket (566)
+bucket (567)
+    tripadvisor.com
+bucket (568)
+bucket (569)
+bucket (570)
+bucket (571)
+    rediff.com
+bucket (572)
+bucket (573)
+    pinterest.com
+bucket (574)
+bucket (575)
+    google.se
+bucket (576)
+    biglobe.ne.jp
+bucket (577)
+bucket (578)
+bucket (579)
+bucket (580)
+bucket (581)
+bucket (582)
+    google.co.ve
+bucket (583)
+bucket (584)
+bucket (585)
+bucket (586)
+bucket (587)
+    hardsextube.com
+bucket (588)
+bucket (589)
+bucket (590)
+bucket (591)
+    xhamster.com
+bucket (592)
+    accuweather.com
+bucket (593)
+bucket (594)
+bucket (595)
+bucket (596)
+bucket (597)
+bucket (598)
+    pandora.com
+bucket (599)
+    livedoor.biz
+bucket (600)
+bucket (601)
+bucket (602)
+    stackexchange.com
+bucket (603)
+bucket (604)
+    myfreecams.com
+bucket (605)
+bucket (606)
+bucket (607)
+    naver.jp
+bucket (608)
+bucket (609)
+    t-online.de
+bucket (610)
+bucket (611)
+    incredibar.com
+bucket (612)
+bucket (613)
+    adf.ly
+bucket (614)
+bucket (615)
+bucket (616)
+bucket (617)
+bucket (618)
+    blogspot.com.es
+bucket (619)
+    twitter.com
+bucket (620)
+    outbrain.com
+bucket (621)
+bucket (622)
+    espncricinfo.com
+bucket (623)
+    marca.com
+bucket (624)
+    dailymail.co.uk
+bucket (625)
+bucket (626)
+bucket (627)
+bucket (628)
+bucket (629)
+bucket (630)
+bucket (631)
+    bestbuy.com
+bucket (632)
+    leboncoin.fr
+bucket (633)
+    w3schools.com
+bucket (634)
+bucket (635)
+bucket (636)
+bucket (637)
+bucket (638)
+bucket (639)
+    samsung.com
+bucket (640)
+    xtendmedia.com
+bucket (641)
+    extratorrent.com
+bucket (642)
+    wsj.com
+bucket (643)
+bucket (644)
+bucket (645)
+bucket (646)
+    engadget.com
+bucket (647)
+bucket (648)
+bucket (649)
+bucket (650)
+bucket (651)
+    imdb.com
+bucket (652)
+bucket (653)
+bucket (654)
+    rapidgator.net
+bucket (655)
+    wordpress.org
+bucket (656)
+bucket (657)
+bucket (658)
+    addthis.com
+bucket (659)
+bucket (660)
+bucket (661)
+bucket (662)
+    livejasmin.com
+bucket (663)
+bucket (664)
+    drtuber.com
+bucket (665)
+bucket (666)
+    bing.com
+bucket (667)
+    gmx.net
+bucket (668)
+bucket (669)
+    godaddy.com
+bucket (670)
+bucket (671)
+bucket (672)
+    google.com
+bucket (673)
+bucket (674)
+bucket (675)
+    reddit.com
+bucket (676)
+    myspace.com
+bucket (677)
+bucket (678)
+bucket (679)
+    mywebsearch.com
+bucket (680)
+bucket (681)
+    imgur.com
+bucket (682)
+bucket (683)
+bucket (684)
+    mailchimp.com
+bucket (685)
+bucket (686)
+    huffingtonpost.com
+bucket (687)
+bucket (688)
+    capitalone.com
+bucket (689)
+bucket (690)
+    fiverr.com
+bucket (691)
+bucket (692)
+bucket (693)
+bucket (694)
+bucket (695)
+bucket (696)
+    nih.gov
+bucket (697)
+bucket (698)
+bucket (699)
+bucket (700)
+bucket (701)
+    1channel.ch
+bucket (702)
+    google.co.za
+bucket (703)
+bucket (704)
+bucket (705)
+    bbc.co.uk
+bucket (706)
+bucket (707)
+    qq.com
+bucket (708)
+bucket (709)
+bucket (710)
+    linkwithin.com
+bucket (711)
+bucket (712)
+    doubleclick.com
+bucket (713)
+bucket (714)
+bucket (715)
+bucket (716)
+bucket (717)
+bucket (718)
+bucket (719)
+    maktoob.com
+bucket (720)
+bucket (721)
+bucket (722)
+    intuit.com
+bucket (723)
+bucket (724)
+    etsy.com
+bucket (725)
+bucket (726)
+    claro-search.com
+bucket (727)
+    nbcnews.com
+bucket (728)
+bucket (729)
+    guardian.co.uk
+bucket (730)
+bucket (731)
+    51job.com
+bucket (732)
+bucket (733)
+bucket (734)
+bucket (735)
+bucket (736)
+bucket (737)
+bucket (738)
+bucket (739)
+bucket (740)
+bucket (741)
+bucket (742)
+    turbobit.net
+
+
+bstPrintIndented(&head)
+            zippyshare.com
+        zedo.com
+    youtube.com
+            youporn.com
+                    yoka.com
+                yieldmanager.com
+                    yelp.com
+        yahoo.com
+                yahoo.co.jp
+                        xvideos.com
+                                    xtendmedia.com
+                                xnxx.com
+                            xhamster.com
+                                        wsj.com
+                                    wordreference.com
+                                wordpress.org
+                    wordpress.com
+                        wix.com
+            wikipedia.org
+                                wikimedia.org
+                                        wikihow.com
+                                    wellsfargo.com
+                                        weebly.com
+                                            webs.com
+                                                webmd.com
+                            weather.com
+                                    warriorforum.com
+                                        w3schools.com
+                                vimeo.com
+                                            usps.com
+                                                usatoday.com
+                                        ups.com
+                                    uploaded.net
+                                        uimserv.net
+                        twitter.com
+                                    turbobit.net
+                                tumblr.com
+                                    tube8.com
+                                                tripadvisor.com
+                                            torrentz.eu
+                                        theexgirlfriends.com
+                                                telegraph.co.uk
+                                            taringa.net
+                                                target.com
+                            taobao.com
+                                        t-online.de
+                                    sweetim.com
+                                        stumbleupon.com
+                                            statcounter.com
+                                stackoverflow.com
+                                                        stackexchange.com
+                                                    squidoo.com
+                                                        spiegel.de
+                                                            speedtest.net
+                                                sourceforge.net
+                                                    soundcloud.com
+                                                        soku.com
+                                                            softpedia.com
+                                            softonic.com
+                                        slideshare.net
+                                                skype.com
+                                                            seznam.cz
+                                                        seomoz.org
+                                                    secureserver.net
+                                            searchnu.com
+                                                    search-results.com
+                                                            samsung.com
+                                                                salesforce.com
+                                                        rutracker.org
+                                                            reuters.com
+                                                                repubblica.it
+                                                reference.com
+                                    redtube.com
+                                            rediff.com
+                                        reddit.com
+                                                rapidshare.com
+                                            rapidgator.net
+                                                quikr.com
+                    qq.com
+                                    putlocker.com
+                                pornhub.com
+                                        popads.net
+                                    pof.com
+                                        pixiv.net
+                            pinterest.com
+                                        php.net
+                                    pengyou.com
+                                        pch.com
+                                paypal.com
+                                                    pandora.com
+                                                        outlook.com
+                                                outbrain.com
+                                                    orange.fr
+                                                        optmd.com
+                                                            olx.in
+                                                                odesk.com
+                                            nytimes.com
+                                                nih.gov
+                                                    nifty.com
+                                        netflix.com
+                                            neobux.com
+                                                    ndtv.com
+                                                nbcnews.com
+                                                    naver.jp
+                                    mywebsearch.com
+                                        myspace.com
+                                            myfreecams.com
+                        msn.com
+                                mozilla.org
+                                    movie2k.to
+                                        mixi.jp
+                            microsoft.com
+                                        mercadolivre.com.br
+                                                        meetup.com
+                                                    match.com
+                                                mashable.com
+                                            marca.com
+                                                maktoob.com
+                                                    mailchimp.com
+                                    livejournal.com
+                                livejasmin.com
+                                        liveinternet.ru
+                                    livedoor.com
+                                        livedoor.biz
+                live.com
+                        linkwithin.com
+                    linkedin.com
+                                                        letitbit.net
+                                                    leboncoin.fr
+                                                            largeporntube.com
+                                                        ku6.com
+                                                kat.ph
+                                                        kaskus.co.id
+                                                                    joomla.org
+                                                                jobrapido.com
+                                                            java.com
+                                                    it168.com
+                                                        isohunt.com
+                                                                irs.gov
+                                                            intuit.com
+                                            instagram.com
+                                                        indiatimes.com
+                                                    incredibar.com
+                                                            in.com
+                                                        iminent.com
+                                                imgur.com
+                                        imdb.com
+                                                ilivid.com
+                                                        ikea.com
+                                                            ign.com
+                                                                    icicibank.com
+                                                                hurriyet.com.tr
+                                                    hulu.com
+                                            huffingtonpost.com
+                                                    hp.com
+                                                hootsuite.com
+                                                        histats.com
+                                                    hardsextube.com
+                                    hao123.com
+                                        guardian.co.uk
+                                            gsmarena.com
+                                                groupon.com
+                                googleusercontent.com
+                                                google.se
+                                            google.ro
+                                                google.pt
+                                        google.nl
+                                    google.it
+                                        google.gr
+                            google.fr
+                        google.de
+                                        google.com.vn
+                                            google.com.sg
+                                    google.com.pk
+                                        google.com.my
+                                google.com.eg
+                            google.com.br
+                                google.com.au
+                                    google.com.ar
+google.com
+                google.co.za
+                    google.co.ve
+            google.co.uk
+        google.co.in
+                    google.co.hu
+                google.cn
+                        google.cl
+                    google.ch
+            google.ca
+                                google.be
+                                        goodreads.com
+                                    goodgamestudios.com
+                            goo.ne.jp
+                        godaddy.com
+                                goal.com
+                            gmx.net
+                    globo.com
+                            github.com
+                        foxnews.com
+                            forbes.com
+                flickr.com
+                        fiverr.com
+                    fbcdn.net
+    facebook.com
+                                    ezinearticles.com
+                                extratorrent.com
+                                    exoclick.com
+                                        examiner.com
+                            etsy.com
+                                    etao.com
+                                espncricinfo.com
+                        espn.go.com
+                                ero-advertising.com
+                                    engadget.com
+                            ehow.com
+                                    ebay.it
+                                ebay.in
+                    ebay.de
+                        ebay.com.au
+                ebay.com
+                            ebay.co.uk
+                                        drtuber.com
+                                    dropbox.com
+                                        doublepimp.com
+                                                doubleclick.com
+                                            domaintools.com
+                                directrev.com
+                                    deviantart.com
+                                            depositfiles.com
+                                        delta-search.com
+                        dailymotion.com
+                            dailymail.co.uk
+                                csdn.net
+                                    constantcontact.com
+                    conduit.com
+                                    comcast.net
+                                            clixsense.com
+                                        clicksor.com
+                                                clickbank.com
+                                                    claro-search.com
+                                                        cj.com
+                                            chip.de
+                                chase.com
+                                        capitalone.com
+                                    cam4.com
+                                        bravotube.net
+                            bp.blogspot.com
+                        blogspot.in
+                                blogspot.com.es
+                            blogspot.com.br
+            blogspot.com
+                        blogspot.co.uk
+                    bleacherreport.com
+                bing.com
+                            biglobe.ne.jp
+                        bestbuy.com
+                            beeg.com
+                    bbc.co.uk
+                        bankofamerica.com
+        baidu.com
+                    badoo.com
+                babylon.com
+                            aweber.com
+                        avg.com
+                                    atwiki.jp
+                                att.com
+                            ask.fm
+                    ask.com
+                        apple.com
+                                aol.com
+                                        answers.com
+                                            americanexpress.com
+                                    amazonaws.com
+                                            amazon.it
+                                        amazon.fr
+                            amazon.de
+            amazon.com
+                amazon.co.jp
+                            alipay.com
+                                aliexpress.com
+                        alibaba.com
+                            aili.com
+                    adobe.com
+                            adnxs.com
+                        adf.ly
+                            addthis.com
+                                            accuweather.com
+                                        abril.com.br
+                                    9gag.com
+                                            51job.com
+                                        4dsply.com
+                                1channel.ch
+                                    123rf.com
+
+
+bstPrintInorder(&head)
+123rf.com
+1channel.ch
+4dsply.com
+51job.com
+9gag.com
+abril.com.br
+accuweather.com
+addthis.com
+adf.ly
+adnxs.com
+adobe.com
+aili.com
+alibaba.com
+aliexpress.com
+alipay.com
+amazon.co.jp
+amazon.com
+amazon.de
+amazon.fr
+amazon.it
+amazonaws.com
+americanexpress.com
+answers.com
+aol.com
+apple.com
+ask.com
+ask.fm
+att.com
+atwiki.jp
+avg.com
+aweber.com
+babylon.com
+badoo.com
+baidu.com
+bankofamerica.com
+bbc.co.uk
+beeg.com
+bestbuy.com
+biglobe.ne.jp
+bing.com
+bleacherreport.com
+blogspot.co.uk
+blogspot.com
+blogspot.com.br
+blogspot.com.es
+blogspot.in
+bp.blogspot.com
+bravotube.net
+cam4.com
+capitalone.com
+chase.com
+chip.de
+cj.com
+claro-search.com
+clickbank.com
+clicksor.com
+clixsense.com
+comcast.net
+conduit.com
+constantcontact.com
+csdn.net
+dailymail.co.uk
+dailymotion.com
+delta-search.com
+depositfiles.com
+deviantart.com
+directrev.com
+domaintools.com
+doubleclick.com
+doublepimp.com
+dropbox.com
+drtuber.com
+ebay.co.uk
+ebay.com
+ebay.com.au
+ebay.de
+ebay.in
+ebay.it
+ehow.com
+engadget.com
+ero-advertising.com
+espn.go.com
+espncricinfo.com
+etao.com
+etsy.com
+examiner.com
+exoclick.com
+extratorrent.com
+ezinearticles.com
+facebook.com
+fbcdn.net
+fiverr.com
+flickr.com
+forbes.com
+foxnews.com
+github.com
+globo.com
+gmx.net
+goal.com
+godaddy.com
+goo.ne.jp
+goodgamestudios.com
+goodreads.com
+google.be
+google.ca
+google.ch
+google.cl
+google.cn
+google.co.hu
+google.co.in
+google.co.uk
+google.co.ve
+google.co.za
+google.com
+google.com.ar
+google.com.au
+google.com.br
+google.com.eg
+google.com.my
+google.com.pk
+google.com.sg
+google.com.vn
+google.de
+google.fr
+google.gr
+google.it
+google.nl
+google.pt
+google.ro
+google.se
+googleusercontent.com
+groupon.com
+gsmarena.com
+guardian.co.uk
+hao123.com
+hardsextube.com
+histats.com
+hootsuite.com
+hp.com
+huffingtonpost.com
+hulu.com
+hurriyet.com.tr
+icicibank.com
+ign.com
+ikea.com
+ilivid.com
+imdb.com
+imgur.com
+iminent.com
+in.com
+incredibar.com
+indiatimes.com
+instagram.com
+intuit.com
+irs.gov
+isohunt.com
+it168.com
+java.com
+jobrapido.com
+joomla.org
+kaskus.co.id
+kat.ph
+ku6.com
+largeporntube.com
+leboncoin.fr
+letitbit.net
+linkedin.com
+linkwithin.com
+live.com
+livedoor.biz
+livedoor.com
+liveinternet.ru
+livejasmin.com
+livejournal.com
+mailchimp.com
+maktoob.com
+marca.com
+mashable.com
+match.com
+meetup.com
+mercadolivre.com.br
+microsoft.com
+mixi.jp
+movie2k.to
+mozilla.org
+msn.com
+myfreecams.com
+myspace.com
+mywebsearch.com
+naver.jp
+nbcnews.com
+ndtv.com
+neobux.com
+netflix.com
+nifty.com
+nih.gov
+nytimes.com
+odesk.com
+olx.in
+optmd.com
+orange.fr
+outbrain.com
+outlook.com
+pandora.com
+paypal.com
+pch.com
+pengyou.com
+php.net
+pinterest.com
+pixiv.net
+pof.com
+popads.net
+pornhub.com
+putlocker.com
+qq.com
+quikr.com
+rapidgator.net
+rapidshare.com
+reddit.com
+rediff.com
+redtube.com
+reference.com
+repubblica.it
+reuters.com
+rutracker.org
+salesforce.com
+samsung.com
+search-results.com
+searchnu.com
+secureserver.net
+seomoz.org
+seznam.cz
+skype.com
+slideshare.net
+softonic.com
+softpedia.com
+soku.com
+soundcloud.com
+sourceforge.net
+speedtest.net
+spiegel.de
+squidoo.com
+stackexchange.com
+stackoverflow.com
+statcounter.com
+stumbleupon.com
+sweetim.com
+t-online.de
+taobao.com
+target.com
+taringa.net
+telegraph.co.uk
+theexgirlfriends.com
+torrentz.eu
+tripadvisor.com
+tube8.com
+tumblr.com
+turbobit.net
+twitter.com
+uimserv.net
+uploaded.net
+ups.com
+usatoday.com
+usps.com
+vimeo.com
+w3schools.com
+warriorforum.com
+weather.com
+webmd.com
+webs.com
+weebly.com
+wellsfargo.com
+wikihow.com
+wikimedia.org
+wikipedia.org
+wix.com
+wordpress.com
+wordpress.org
+wordreference.com
+wsj.com
+xhamster.com
+xnxx.com
+xtendmedia.com
+xvideos.com
+yahoo.co.jp
+yahoo.com
+yelp.com
+yieldmanager.com
+yoka.com
+youporn.com
+youtube.com
+zedo.com
+zippyshare.com
+==2903== 
+==2903== HEAP SUMMARY:
+==2903==     in use at exit: 0 bytes in 0 blocks
+==2903==   total heap usage: 1,407 allocs, 1,407 frees, 66,592 bytes allocated
+==2903== 
+==2903== All heap blocks were freed -- no leaks are possible
+==2903== 
+==2903== For counts of detected and suppressed errors, rerun with: -v
+==2903== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
