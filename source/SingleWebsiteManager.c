@@ -5,6 +5,7 @@
  * Developer:       Gon Kim (imgonkim@gmail.com)
  * Initial Commit:  03162013_215304
  * Last Updated:    03162013_215304
+ *
  */
 #include "../header/WebsiteCatalog.h"
 #include "../header/constants.h"

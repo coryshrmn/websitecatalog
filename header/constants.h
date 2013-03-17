@@ -52,6 +52,7 @@ const char* menu_msg[] = { /* captions for each menu option */
 
 // project.constants.DEFINED
 #define FILEMODE_READONLY                       "r"
+#define FILEMODE_WRITE                          "w"
 #define HR  "================================================\n"
 #define BR  "\n"
 #define MSG_EXIT_SELECTION "Enter \"I\" to ignore once, \"A\" to ignore all, or \"Q\" to quit program\n"

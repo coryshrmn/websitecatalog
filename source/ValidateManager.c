@@ -20,7 +20,6 @@
  *                   && doesn't contain newline character)
  *
  *  POST:   validate user input with given input type
- 
  *
  *  RETURN:  INPUT_VALUE_INVALID (if user input is invalid)
  *          INPUT_VALUE_VALID (if user input is valid)
