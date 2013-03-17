@@ -26,7 +26,7 @@ FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr) {
 				free(usFileName);
 			}
 		} while (!fPtr);
-	} else {
+	} else {    /* reopens file with different mode */
 		freopen(name, mode, fPtr);
 		if (!fPtr) { /* if reopened successfully */
 			printf(VERB_FILE_REOPEN(name, mode));
@@ -40,13 +40,16 @@ FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr) {
 
 /*
  *  LastSessionManager
- *  LastSessionManager
+ *  LastSessionManager discovers backup file if exits
+ *  and prompts user if he/she wishes to keep
  *
- *  PRE:
+ *  PRE:        none
  *
- *  POST:
+ *  POST:       retrieves desired user name from user
+ *              && prompts user whether he/she wishes to discard or not
  *
- *  RETURN:
+ *  RETURN:     fPtr (backup file pointer if backup file exists and user wishes to keep
+ *                  || NULL if couldn't open the backup file)
  *
  */
 FILE* LastSessionManager(void) {
@@ -109,10 +112,22 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
 	return fPtr;
 }
 
+/*
+ *  _addFileExtension 
+ *  _addFileExtension adds file extension 
+ *  immediately after the originally given file name from user
+ *
+ *  PRE:        name (user-entered file name)
+ *              extension (extension to be added after the file name)
+ *
+ *  POST:       adds file extension to the original file name
+ *
+ *  RETURN:     sName (validted modified file name with extension) 
+ *
+ */
 static char* _addFileExtension(char *name, const char *extension) {
-	FILE* fPtr = NULL;
-	char *sName; // safe name
-	char *sUserInput;
+	char *sName;        // safe name
+	char *sUserInput;   // safe user input
 	int validKey;
     
 	MALLOC(sName);
@@ -124,11 +139,23 @@ static char* _addFileExtension(char *name, const char *extension) {
 	return sName;
 }
 
+/*
+ *  _retrieveFileName
+ *  _retrieveFileName gets file name from user's stdio
+ *
+ *  PRE:    msg (prompt message at the time of retreiving user file name)
+ *
+ *  POST:   retrieves file name from the user
+ *          && validate the input
+ *
+ *  RETURN: sInput (validated user-entered filename)
+ *
+ */
 static char* _retrieveFileName(const char *msg) {
-	char usInput[MAX_LENGTH_INPUT]; // unsafe user input string
-	input_value valueKey = INPUT_VALUE_INVALID;
-	const input_type type = INPUT_TYPE_FILENAME;
-	char *sInput;
+	char usInput[MAX_LENGTH_INPUT];                 // unsafe user input string
+	input_value valueKey = INPUT_VALUE_INVALID;     // input value key
+	const input_type type = INPUT_TYPE_FILENAME;    // input type
+	char *sInput;                                   // safe user input string
     
 	MALLOC(sInput);
 	do {
@@ -151,6 +178,19 @@ static char* _retrieveFileName(const char *msg) {
 	return sInput;
 }
 
+/*
+ *  _openFile 
+ *  _openFile opens the file with given filename and mode 
+ *
+ *  PRE:        name (file name)
+ *              mode (file mode)
+ *
+ *  POST:       opens file with given filename and mode
+ *
+ *  RETURN:     fPtr (NULL if couldn't open the file
+ *                    valid file stream if opened successfully)
+ *
+ */
 static FILE* _openFile(const char *name, const char *mode) {
 	FILE* fPtr; // file pointer
 	char *usFileName = NULL; // unsafe filename
