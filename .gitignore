@@ -20,3 +20,13 @@
 */out/*
 source/inputManager/*
 *.BAK
+
+# START
+# Author:   Gon Kim (imgonkim@gmail.com)
+# Date:     03162013_214330 
+# vim
+.*.sw*
+*.*~
+# Xcode
+*.1
+# END
