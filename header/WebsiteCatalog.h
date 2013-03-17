@@ -6,7 +6,10 @@
   * Gon Kim
   * Chris Huang
   */
-
+#include <stdio.h>
+#include <limits.h>
+#include <strings.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include "queueADT.h"
 
@@ -350,3 +353,5 @@ void websitePrint(Website *pSite);
  ******************************************************************************/
 void websitePrintFull(Website *pSite);
 
+//TODO: complete documentation
+FILE* CurrentSessionManager(const char* mode);
