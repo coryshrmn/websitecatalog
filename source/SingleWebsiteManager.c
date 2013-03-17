@@ -9,10 +9,9 @@
  */
 #include "../header/WebsiteCatalog.h"
 #include "../header/constants.h"
+#include "../header/SingleWebsiteManager.h"
 
-//project.main.SingleWebsiteManager.PRIVATE_FUNCTION_DECLARATIONS
-static char* _readOneLine(FILE* fPtr);
-static void* _readSingleField(input_type type, char **line);
+
 
 Website* SingleWebsiteManager(FILE* fPtr) {
 	Website* curWebsite = NULL;            // current `struct Website`
