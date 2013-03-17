@@ -10,13 +10,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//TODO: delete after debugging
+#define Logd(str, val) printf(str "_%d_\n", val)
+
 int main(int argc, const char * argv[]) {
     Website *curWebsite;
+    menu_type menu;
     FILE *fPtr;
     
     printf("Hello, World!\n");
     
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>LOOP
     fPtr = initFileStream();
+    curWebsite = getSingleWebsite(fPtr);
+    
+    
+    
+    
+    
+    
+    //TODO: delete after debugging
+    // print `curWebsite`
+	printf(HR);
+	printf("`curWebsite` fields:\n");
+	printf("%s\n%s\n%d\n%d\n%d\n%d\n", curWebsite->url, curWebsite->company,
+           curWebsite->dailyPageViewThousands, curWebsite->rankTraffic,
+           curWebsite->backLinkThousands, curWebsite->websiteWorthThousands);
+	printf(HR);
+    //ENDTODO
+    
+    
+    
+    
+    
+    
+    
+    
+    //FIXME: websitePrintFull doesn't return the correct result
+    websitePrintFull(curWebsite);
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<END LOOP
+    
+    
+    
+    
+    //TODO: delete after debugging
+    menu = getMenuSelection();
+    Logd("menu", menu - 1);
+    //ENDTODO
+    
+    
+    
+    
     
     return 0;
 

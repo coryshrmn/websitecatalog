@@ -66,7 +66,9 @@ Website* getSingleWebsite(FILE* fPtr) {
 		curWebsite->rankTraffic = atoi(sRankTraffic);
 		curWebsite->backLinkThousands = atoi(sBackLink);
 		curWebsite->websiteWorthThousands = atoi(sWebsiteWorth);
-		free(sDailyPageView);
+		
+        // TODO: create free function for entire Website struct
+        free(sDailyPageView);
 		free(sRankTraffic);
 		free(sBackLink);
 		free(sWebsiteWorth);
@@ -74,14 +76,7 @@ Website* getSingleWebsite(FILE* fPtr) {
 	}
     
 	free(sLine);
-    
-	// debug: print `curWebsite`
-	printf(HR);
-	printf("`curWebsite` fields:\n");
-	printf("%s\n%s\n%d\n%d\n%d\n%d\n", curWebsite->url, curWebsite->company,
-           curWebsite->dailyPageViewThousands, curWebsite->rankTraffic,
-           curWebsite->backLinkThousands, curWebsite->websiteWorthThousands);
-	printf(HR);
+
 	return curWebsite;
 }
 

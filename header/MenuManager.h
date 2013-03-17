@@ -19,8 +19,9 @@ const char* menu_msg[] = { /* captions for each menu option */
     /* 4 */"Print: List of Websites in hash table sequence",
     /* 5 */"Print: List of Websites in key sequence (sorted)",
     /* 6 */"Print: List of Websites in indented tree",
-    /* 7 */"Save: Modified Website info to a file"
-    /* 8 */"Print: Efficiency statistics"
+    /* 7 */"Save: Modified Website info to a file",
+    /* 8 */"Print: Efficiency statistics",
+    /* 9 */"Save and Quit Program"
 };
 
 // project.main.MenuManager.PRIVATE_FUNCTION_DELCARATIONS

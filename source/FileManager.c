@@ -53,6 +53,7 @@ FILE* initFileStream(void) {
 			}
 		}
 	} while (!fPtr);
+    return fPtr;
 }
 
 /*
