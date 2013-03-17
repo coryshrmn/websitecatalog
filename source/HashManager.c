@@ -6,7 +6,7 @@
  * Cory Sherman
  */
 
-#include "WebsiteCatalog.h"
+#include "../header/WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
 

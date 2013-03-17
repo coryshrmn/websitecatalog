@@ -5,10 +5,11 @@
  * Cory Sherman
  */
 
-#include "WebsiteCatalog.h"
+#include "../header/WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 
 /*******************************************************************************
  * WebsiteCatalog Private Prototypes

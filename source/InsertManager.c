@@ -5,7 +5,7 @@
  * Cory Sherman
  */
 
-#include "WebsiteCatalog.h"
+#include "../header/WebsiteCatalog.h"
 
 /*******************************************************************************
  * Insert Manager Private Prototypes
