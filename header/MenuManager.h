@@ -7,7 +7,10 @@
  * Last Major Update:   03162013_055555
  *
  */
-// project.constants.MSG
+// project.main.MenuManager.CONSTANT_DEFINED
+#define MSG_PROMPT_MENU_SELECTION               "Choose menu (1-9): "
+
+// project.main.MenuManager.CONSTANT_STRING
 const char* menu_msg[] = { /* captions for each menu option */
     /* 0 */"DUMMY MENU MESSAGE", // TODO: explain why dummy menu exists (for UI)
     /* 1 */"Add: new Website",
@@ -20,5 +23,6 @@ const char* menu_msg[] = { /* captions for each menu option */
     /* 8 */"Print: Efficiency statistics"
 };
 
+// project.main.MenuManager.PRIVATE_FUNCTION_DELCARATIONS
 static void _printMenu();
 static menu_type _chooseMenu(void);

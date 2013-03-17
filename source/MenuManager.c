@@ -11,6 +11,19 @@
 #include "../header/WebsiteCatalog.h"
 #include "../header/MenuManager.h"
 
+/*
+ *  getMenuSelection
+ *  gets menu selection from user and returns
+ *  validated menu type.
+ *
+ *  PRE:        none
+ *
+ *  POST:       prints menu
+ *              && get menu option
+ *
+ *  RETURN:     sMenuSelection
+ *
+ */
 menu_type getMenuSelection(void) {
 	menu_type sMenuSelection; // safe menu selection
 	
@@ -20,14 +33,17 @@ menu_type getMenuSelection(void) {
 }
 
 /*
- * printMenu: This function prints menu options.
+ *  _printMenu
+ *  prints menu options.
  *
- *  PRE:    none
- *  POST:   prints menu options
- *  RETURN: none
+ *  PRE:        none
+ *
+ *  POST:       prints menu options
+ *
+ *  RETURN:     none
  *
  */
-static void _printMenu() {
+static void _printMenu(void) {
 	int i;
     
 	printf(HR);
@@ -39,12 +55,16 @@ static void _printMenu() {
 	return;
 }
 
-/*  chooseMenu: This function prompts user to input menu selection
- *              from his or her keyboard and returns validated .
+/*
+ *  _chooseMenu
+ *  prompts user to enter menu selection from stdio
+ *  and returns validated menu type.
  *
- *  PRE:    none
- *  POST:   prompts user to input menu selection
- *  RETURN: sInput // safe user-input for menu selection
+ *  PRE:        none
+ *
+ *  POST:       prompts user to get menu option
+ *
+ *  RETURN:     sInput (menu type; validated)
  *
  */
 static menu_type _chooseMenu(void) {
