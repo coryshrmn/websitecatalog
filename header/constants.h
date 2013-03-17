@@ -1,13 +1,13 @@
 /*
  * constants.h
- * constants.h contains enum, msg, and defined constants
+ * constants.h contains enum and defined constants
  *
  * Developer:           Gon Kim (imgonkim@gmail.com)
  * Initial Commit:      03162013_190139
  * Last Major Update:   03172013_015442
  *
  */
-// project.constants.ENUM
+// project.main.CONSTANT_ENUM
 typedef enum {
     INPUT_VALUE_INVALID = -1,           /* -1 */
     INPUT_VALUE_NO,                     /*  0 */
@@ -46,7 +46,7 @@ typedef enum {
     MENU_TYPE_SAVE_AND_QUIT             /* 9 */
 } menu_type;
 
-// project.constants.DEFINED
+// project.main.CONSTANT_DEFINED
 #define FILEMODE_READONLY                       "r"
 #define FILEMODE_WRITE                          "w"
 #define HR  "================================================\n"

@@ -11,10 +11,22 @@
 #include "../header/WebsiteCatalog.h"
 #include "../header/FileManager.h"
 
-FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr) {
+/*
+ *  openCurrentFileStream
+ *  handles file I/O for current session.
+ *
+ *  PRE:        name (file name)
+ *              mode (file mode)
+ *              fPtr (file pointer)
+ *
+ *  POST:       
+ *
+ *  RETURN:     fPtr (backup file pointer if backup file exists and user wishes to keep
+ *                  || NULL if couldn't open the backup file)
+ *
+ */
+FILE* openCurrentFileStream(const char* name, const char* mode, FILE* fPtr) {
 	char *usFileName;   // unsafe filename
-	char *sFileName;    // safe filename
-	input_value valueKey = INPUT_VALUE_INVALID; // key for input value
     
 	if (NULL != fPtr) {
 		do {
@@ -38,7 +50,7 @@ FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr) {
 }
 
 /*
- *  LastSessionManager
+ *  openLastSessionFileStream
  *  LastSessionManager discovers backup file if exits
  *  and prompts user if he/she wishes to keep
  *
@@ -51,12 +63,10 @@ FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr) {
  *                  || NULL if couldn't open the backup file)
  *
  */
-FILE* LastSessionManager(void) {
+FILE* openLastSessionFileStream(void) {
 	FILE* fPtr;             // file pointer for input stream
 	char *usFileName;       // unsafe file name
 	char *usBacFileName;    // unsafe backup filename
-	char *sbacFileName;     // safe backup filename
-	input_value valueKey = INPUT_VALUE_INVALID; // key for input value
     
 	usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
 	usBacFileName = _addFileExtension(usFileName, BACKUP_FILENAME_EXTENSION);
@@ -126,8 +136,6 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
  */
 static char* _addFileExtension(char *name, const char *extension) {
 	char *sName;        // safe name
-	char *sUserInput;   // safe user input
-	int validKey;
     
 	MALLOC(sName);
 	// get: backup filename
@@ -165,7 +173,7 @@ static char* _retrieveFileName(const char *msg) {
 		usInput[strlen(usInput) - 1] = '\0';
         
 		// validate: user input
-		valueKey = ValidateManager(type, usInput);
+		valueKey = validateInput(type, usInput);
 		if (INPUT_VALUE_VALID == valueKey) {
 			strcpy(sInput, usInput);
 			return sInput;

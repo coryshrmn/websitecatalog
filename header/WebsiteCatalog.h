@@ -359,12 +359,12 @@ void strcpyToLower(char *dest, const char *source);
 
 
 //TODO: complete documentation
-FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr);
-FILE* LastSessionManager(void);
+FILE* openCurrentFileStream(const char* name, const char* mode, FILE* fPtr);
+FILE* openLastSessionFileStream(void);
 
-menu_type menuManager(void);
-input_value ValidateManager(input_type type, char* usInput);
-Website* SingleWebsiteManager(FILE* fPtr);
+menu_type getMenuSelection(void);
+input_value validateInput(input_type type, char* usInput);
+Website* getSingleWebsite(FILE* fPtr);
 
 input_value getUserSelection(input_type type, const char *msg);
 void exitOnUserRequest (const int exitCode);

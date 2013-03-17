@@ -114,7 +114,7 @@ input_value getUserSelection(input_type type, const char *msg) {
 		usInput[strlen(usInput) - 1] = '\0';
         
 		// validate: user input
-		value = ValidateManager(type, usInput);
+		value = validateInput(type, usInput);
 		if (INPUT_VALUE_QUIT == value) {
 			exit(EXIT_ON_USER_REQUEST);
 		}
