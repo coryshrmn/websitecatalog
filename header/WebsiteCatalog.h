@@ -359,9 +359,11 @@ void strcpyToLower(char *dest, const char *source);
 
 
 //TODO: complete documentation
-FILE* openCurrentFileStream(const char* name, const char* mode, FILE* fPtr);
-FILE* openLastSessionFileStream(void);
+FILE* initFileStream(void);
 
+
+    
+    
 menu_type getMenuSelection(void);
 input_value validateInput(input_type type, char* usInput);
 Website* getSingleWebsite(FILE* fPtr);

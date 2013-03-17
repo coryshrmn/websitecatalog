@@ -17,6 +17,8 @@
 #define BACKUP_FILENAME_EXTENSION              ".bac"
 
 // project.main.FileManager.PRIVATE_FUNCTION_DECLARATIONS
+static FILE* _openCurrentFileStream(char* usFileName, const char* mode, FILE* fPtr);
+static FILE* _openLastSessionFileStream(const char* usFileName);
 static char* _retrieveFileName(const char *msg);
 static char* _addFileExtension(char *name, const char *extension);
 static FILE* _openFile(const char *name, const char *mode);
