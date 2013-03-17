@@ -6,7 +6,7 @@
  * Chris Huang
  */
 
-#include "../header/WebsiteCatalog.h"
+#include "WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
