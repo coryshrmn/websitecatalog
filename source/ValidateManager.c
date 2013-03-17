@@ -13,7 +13,7 @@
 #include "../header/ValidateManager.h"
 
 /*
- * ValidateManager
+ * validateInput
  *
  *  PRE:    type (input type)
  *          usInput (unsafe user-input to be validated
@@ -25,7 +25,7 @@
  *          INPUT_VALUE_VALID (if user input is valid)
  *
  */
-input_value ValidateManager(input_type type, char* usInput) {
+input_value validateInput(input_type type, char* usInput) {
 	char usInputBuffer[MAX_LENGTH_INPUT];
 	int (*validate)(char *usBuffer, const int len);
 	int len = 0; // input length
