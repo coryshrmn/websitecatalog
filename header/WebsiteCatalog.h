@@ -11,8 +11,8 @@
 #include <strings.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "queueADT.h"
 #include "../header/constants.h"
+#include "../header/queueADT.h"
 
 typedef struct
 {

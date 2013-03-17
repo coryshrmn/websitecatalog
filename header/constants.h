@@ -46,19 +46,6 @@ typedef enum {
     MENU_TYPE_SAVE_AND_QUIT             /* 9 */
 } menu_type;
 
-// project.constants.MSG
-const char* menu_msg[] = { /* captions for each menu option */
-    /* 0 */"DUMMY MENU MESSAGE", // TODO: explain why dummy menu exists (for UI)
-    /* 1 */"Add: new Website",
-    /* 2 */"Delete: Website",
-    /* 3 */"Search and Print: Website using its URL",
-    /* 4 */"Print: List of Websites in hash table sequence",
-    /* 5 */"Print: List of Websites in key sequence (sorted)",
-    /* 6 */"Print: List of Websites in indented tree",
-    /* 7 */"Save: Modified Website info to a file"
-    /* 8 */"Print: Efficiency statistics"
-};
-
 // project.constants.DEFINED
 #define FILEMODE_READONLY                       "r"
 #define FILEMODE_WRITE                          "w"
