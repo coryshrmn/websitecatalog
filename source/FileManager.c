@@ -1,15 +1,14 @@
 /*
  * FileManager.c
- * FileManager.c contains necesary information with
+ * contains necesary information with
  * current and last session management
  *
- * Developer:       Gon Kim (imgonkim@gmail.com)
- * Initial Commit:  03162013_221816
- * Last Updated:    03162013_221816
+ * Developer:           Gon Kim (imgonkim@gmail.com)
+ * Initial Commit:      03162013_221816
+ * Last Major Update:   03162013_221816
  *
  */
 #include "../header/WebsiteCatalog.h"
-#include "../header/constants.h"
 #include "../header/FileManager.h"
 
 FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr) {
@@ -171,7 +170,7 @@ static char* _retrieveFileName(const char *msg) {
 			strcpy(sInput, usInput);
 			return sInput;
 		} else if (INPUT_VALUE_QUIT == valueKey) {
-			exitOnUserRequest(EXIT_ON_REQUEST);
+			exitOnUserRequest(EXIT_ON_USER_REQUEST);
 		}
 	} while (INPUT_VALUE_INVALID == valueKey);
     

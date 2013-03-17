@@ -1,9 +1,14 @@
 /*
  * ValidateManager.c
  * ValidateManager contains ValidateManager and validates:
- *      (1) file input sand (2) user input from stdio.
+ *      (1) file input
+ *      (2) user input from stdio.
+ *
+ * Developer:           Gon Kim (imgonkim@gmail.com)
+ * Initial Commit:      03162013_190139
+ * Last Major Update:   03172013_015535
+ *
  */
-
 // project.main.ValidateManager.CONSTANT_DEFINED.delimiter
 #define DELIMITER_URL "./"
 #define DELIMITER_DOT '.'

@@ -3,9 +3,9 @@
  * FileManager.c contains necesary information regarding the file I/O
  * and last-session manager
  *
- * Developer:       Gon Kim (imgonkim@gmail.com)
- * Initial Commit:  03162013_221816
- * Last Updated:    03162013_221816
+ * Developer:           Gon Kim (imgonkim@gmail.com)
+ * Initial Commit:      03162013_221816
+ * Last Major Update:   03162013_221816
  *
  */
 // project.main.fileManager.CONSTANT_DEFINED

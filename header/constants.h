@@ -1,3 +1,12 @@
+/*
+ * constants.h
+ * constants.h contains enum, msg, and defined constants
+ *
+ * Developer:           Gon Kim (imgonkim@gmail.com)
+ * Initial Commit:      03162013_190139
+ * Last Major Update:   03172013_015442
+ *
+ */
 // project.constants.ENUM
 typedef enum {
     INPUT_VALUE_INVALID = -1,           /* -1 */

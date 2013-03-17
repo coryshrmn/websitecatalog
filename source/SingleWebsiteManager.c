@@ -1,14 +1,14 @@
 /*
  * SingleWebsiteManager.c
- * SingleWebsiteManager.c contins necessary files to parse information from the file pointer
+ * contains functions to
+ * parse information from the file pointer
  *
- * Developer:       Gon Kim (imgonkim@gmail.com)
- * Initial Commit:  03162013_215304
- * Last Updated:    03162013_215304
+ * Developer:           Gon Kim (imgonkim@gmail.com)
+ * Initial Commit:      03162013_215304
+ * Last Major Update:   03162013_215304
  *
  */
 #include "../header/WebsiteCatalog.h"
-#include "../header/constants.h"
 #include "../header/SingleWebsiteManager.h"
 
 /*
@@ -40,7 +40,7 @@ Website* SingleWebsiteManager(FILE* fPtr) {
 	char *sLine = NULL;              // safe single line read
     
 	MALLOC(curWebsite);
-	usLine = readOneLine(fPtr);
+	usLine = _readOneLine(fPtr);
     
 	if (NULL == usLine) { /* reached: EOF of input file */
 		return NULL;
@@ -49,12 +49,12 @@ Website* SingleWebsiteManager(FILE* fPtr) {
 	}
     
 	// set: fields in `curWebsite`
-	sUrl = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sCompany = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sDailyPageView = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sRankTraffic = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sBackLink = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sWebsiteWorth = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
+	sUrl = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
+	sCompany = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
+	sDailyPageView = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
+	sRankTraffic = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
+	sBackLink = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
+	sWebsiteWorth = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
     
 	while (bContinue && NULL != sUrl && NULL != sCompany
            && NULL != sDailyPageView && NULL != sRankTraffic
@@ -129,7 +129,7 @@ static char* _readOneLine(FILE* fPtr) {
 
 /*
  *  _readSingleField
- *  _readSingleField reads one field from the line per given input type. Then,
+ *  reads one field from the line per given input type. Then,
  *  returns the validated field
  *
  *  PRE:    type (input type)

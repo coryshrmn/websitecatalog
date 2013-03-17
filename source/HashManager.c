@@ -6,7 +6,7 @@
  * Cory Sherman
  */
 
-#include "WebsiteCatalog.h"
+#include "../header/WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -37,7 +37,7 @@ void hashCreate(ListHead *pList, int numLines)
 {
     pList->arySize = _primeAtLeast(numLines * 2);
     pList->bucketSize = DEFAULT_BUCKET_SIZE;
-    pList->pHash = validate(calloc(pList->arySize * pList->bucketSize, sizeof(HashNode)));
+    pList->pHash = checkMem(calloc(pList->arySize * pList->bucketSize, sizeof(HashNode)));
 }
 
 

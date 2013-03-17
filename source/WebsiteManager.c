@@ -5,7 +5,7 @@
  * Cory Sherman
  */
 
-#include "WebsiteCatalog.h"
+#include "../header/WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -28,9 +28,9 @@
  ******************************************************************************/
 Website *websiteCreate(const char *url, const char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands)
 {
-    Website *output = validate(malloc(sizeof(Website)));
-    output->url = validate(malloc(strlen(url) + 1));
-    output->company = validate(malloc(strlen(company) + 1));
+    Website *output = checkMem(malloc(sizeof(Website)));
+    output->url = checkMem(malloc(strlen(url) + 1));
+    output->company = checkMem(malloc(strlen(company) + 1));
     strcpyToLower(output->url, url);
     strcpy(output->company, company);
     output->dailyPageViewThousands = dailyPageViewThousands;

@@ -12,6 +12,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include "queueADT.h"
+#include "../header/constants.h"
 
 typedef struct
 {
@@ -62,7 +63,7 @@ typedef enum {false, true} bool;
  *
  * Return: alloc
  ******************************************************************************/
-void *validate(void *alloc);
+void *checkMem(void *alloc);
 
 /*******************************************************************************
  * Prints an integer with commas every 3 digits. Not padded.
@@ -353,5 +354,17 @@ void websitePrint(Website *pSite);
  ******************************************************************************/
 void websitePrintFull(Website *pSite);
 
+void strcpyToLower(char *dest, const char *source);
+
+
+
 //TODO: complete documentation
-FILE* CurrentSessionManager(const char* mode);
+FILE* CurrentSessionManager(const char* name, const char* mode, FILE* fPtr);
+FILE* LastSessionManager(void);
+
+menu_type menuManager(void);
+input_value ValidateManager(input_type type, char* usInput);
+Website* SingleWebsiteManager(FILE* fPtr);
+
+input_value getUserSelection(input_type type, const char *msg);
+void exitOnUserRequest (const int exitCode);

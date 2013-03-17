@@ -5,7 +5,7 @@
  * Cory Sherman
  */
 
-#include "WebsiteCatalog.h"
+#include "../header/WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -78,7 +78,7 @@ static bool _bstInsert(BstNode **node, Website *pWebsite)
 
 static BstNode *_createNode(Website *pWebsite)
 {
-    BstNode *output = validate(malloc(sizeof(BstNode)));
+    BstNode *output = checkMem(malloc(sizeof(BstNode)));
     output->left = NULL;
     output->right = NULL;
     output->key = pWebsite->url;
