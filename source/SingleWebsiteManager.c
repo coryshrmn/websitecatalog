@@ -12,8 +12,8 @@
 #include "../header/SingleWebsiteManager.h"
 
 /*
- * SingleWebsiteManager
- * SingleWebisteManager parses information from the file pointer:
+ * getSingleWebsite
+ * parses information from the file pointer:
  *
  *  PRE:    fPtr (file pointer; readonly; from input file stream)
  *
@@ -22,7 +22,7 @@
  *  RETURN:  Website (fields are completedly parsed)
  *
  */
-Website* SingleWebsiteManager(FILE* fPtr) {
+Website* getSingleWebsite(FILE* fPtr) {
 	Website* curWebsite = NULL; // current `struct Website`
 	char *sUrl;                 // safe url           
 	char *sCompany;             // safe company name
@@ -87,7 +87,7 @@ Website* SingleWebsiteManager(FILE* fPtr) {
 
 /*
  *  _readOneLine  
- *  _readOneLine reads one line from the input file stream.
+ *  reads one line from the input file stream.
  *
  *  PRE:    fPtr (file pointer; readonly; from input file stream)
  *
@@ -159,7 +159,7 @@ static void* _readSingleField(input_type type, char **line) {
     *line = loc + 1;
     
     // validate: single field from the line
-    if (INPUT_VALUE_VALID == ValidateManager(type, usField)) {
+    if (INPUT_VALUE_VALID == validateInput(type, usField)) {
         return usField;
     } else {
         // free: invalid field read
