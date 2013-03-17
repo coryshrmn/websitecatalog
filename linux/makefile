@@ -4,16 +4,20 @@ EXECUTABLE = websitecatalog
 
 ################################################################################
 # All source files
-SRC = ../source/WebsiteCatalog.c \
-../source/BstManager.c \
-../source/HashManager.c \
-../source/InsertManager.c \
-../source/queueADT.c \
-../source/Utility.c \
-../source/WebsiteManager.c
+SRC = $(wildcard ../source/*.c)
 
-HEAD = ../header/WebsiteCatalog.h \
-../header/queueADT.h
+#../source/WebsiteCatalog.c \
+#../source/BstManager.c \
+#../source/HashManager.c \
+#../source/InsertManager.c \
+#../source/queueADT.c \
+#../source/Utility.c \
+#../source/WebsiteManager.c \
+
+HEAD = $(wildcard ../header/*.h)
+
+#../header/WebsiteCatalog.h \
+#../header/queueADT.h
 
 ################################################################################
 # Target compile and link main executable
