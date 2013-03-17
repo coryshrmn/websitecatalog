@@ -1,17 +1,17 @@
 /*
  * ValidateManager.c
- * ValidateManager contains ValidateManager and validates:
+ * contains ValidateManager and validates:
  *      (1) file input
  *      (2) user input from stdio.
  *     
- * Developer:       Gon Kim (imgonkim@gmail.com)
- * Initial Commit:  03162013_190139
- * Last Updated:    03162013_190139
+ * Developer:           Gon Kim (imgonkim@gmail.com)
+ * Initial Commit:      03162013_190139
+ * Last Major Update:   03162013_190139
  * 
  */
 #include "../header/WebsiteCatalog.h"
 #include "../header/ValidateManager.h"
-#include "../header/constants.h"
+
 /*
  * ValidateManager
  *
