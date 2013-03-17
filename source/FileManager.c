@@ -11,7 +11,6 @@
 #include "../header/WebsiteCatalog.h"
 #include "../header/FileManager.h"
 
-
 /*
  *  initFileStream
  *  intializes file stream to get ready for the program.
@@ -20,7 +19,7 @@
  *              fPtr (file pointer)
  *
  *  POST:       get last session status
- *              && opens current session 
+ *              && opens current session
  *                   (either from user-chosen file or from its backup file)
  *
  *  RETURN:     fPtr (file pointer for current session
@@ -28,72 +27,74 @@
  *
  */
 FILE* initFileStream(void) {
-    FILE *fPtr = NULL;          // file pointer
-    char *usFileName = NULL;    // unsafe file name
-    char *sFileName = NULL;     // safe file name
-
-    do {
-        // open: last session
-        usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
-        fPtr = _openLastSessionFileStream(usFileName);
+	FILE *fPtr = NULL;          // file pointer
+	char *usFileName = NULL;    // unsafe file name
+	char *sFileName = NULL;     // safe file name
+    
+	do {
+		// open: last session
+		usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
+		fPtr = _openLastSessionFileStream(usFileName);
         
-        if (!fPtr) { /* backup file does not exists */
-            fPtr = _openCurrentFileStream(fPtr, FILEMODE_READONLY, fPtr);
-            if (!fPtr) { /* file does not exists or couldn't be opened */
-                printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
-            } else { /* current session successfully opened */
-                printf(VERB_FILEOPEN(usFileName, FILEMODE_READONLY));
-                sFileName = usFileName; /* file name is now safe */
-            }
-        } else { /* backup file exists */
-            fPtr = _promptDiscardLastSession(fPtr);
-            if (!fPtr) { // backup file discarded
-                printf(VERB_LAST_SESSION_DISCARDED);
-            } else { // backup file kept
-                return fPtr;
-            }
-        }
-    } while (!fPtr);
+		if (!fPtr) { /* error in opening backup file */
+			fPtr = fopen(usFileName, FILEMODE_READONLY);
+			if (!fPtr) { /* error in opening file */
+				printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
+			} else { /* current session successfully opened */
+				printf(VERB_FILEOPEN(usFileName, FILEMODE_READONLY));
+				sFileName = usFileName; /* file name is now safe */
+			}
+		} else { /* backup file exists */
+			fPtr = _promptDiscardLastSession(fPtr);
+			if (!fPtr) { // backup file discarded
+				printf(VERB_LAST_SESSION_DISCARDED);
+			} else { // backup file kept
+				return fPtr;
+			}
+		}
+	} while (!fPtr);
 }
 
-
 /*
- *  _openCurrentFileStream
+ *  _reopenCurrentFileStream
  *  handles file I/O for current session.
  *
  *  PRE:        name (file name)
  *              mode (file mode)
- *              fPtr (file pointer)
  *
- *  POST:       
+ *  POST:
  *
- *  RETURN:     fPtr (backup file pointer if backup file exists and user wishes to keep
- *                  || NULL if couldn't open the backup file)
+ *  RETURN:     fPtr (open given file name with given mode)
+ *                  || NULL if couldn't open the file)
  *
  */
-static FILE* _openCurrentFileStream(char* usFileName, const char* mode, FILE* fPtr) {
-	if (NULL != fPtr) {
-		do {
-			fPtr = _openFile(usFileName, mode);
-			if (!fPtr) {
-				printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
-				free(usFileName);
-			}
-		} while (!fPtr);
-	} else {    /* reopens file with different mode */
-		freopen(usFileName, mode, fPtr);
-		if (!fPtr) { /* if reopened successfully */
-			printf(VERB_FILE_REOPEN(usFileName, mode));
-		} else {
-			printf(ERR_COULD_NOT_REOPEN_FILE(usFileName));
+static FILE* _reopenCurrentFileStream(char* usFileName, const char* mode,
+                                      FILE* fPtr) {
+    if (!fPtr) { /* reopens file with different mode */
+        
+        freopen(usFileName, mode, fPtr);
+        if (!fPtr) { /* if reopened successfully */
+            printf(VERB_FILE_REOPEN(usFileName, mode));
+        } else {
+            printf(ERR_COULD_NOT_REOPEN_FILE(usFileName));
             exit(EXIT_FILE_NOT_OPENED);
         }
-	}
-	return fPtr;
+        
+    } else {
+        
+        do {
+            fPtr = fopen(usFileName, mode);
+            if (!fPtr) {
+                printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
+                free(usFileName);
+            }
+        } while (!fPtr);
+    }
+    return fPtr;
 }
 
 /*
- *  _openLastSessionFileStream
+ *  _reopenLastSessionFileStream
  *  LastSessionManager discovers backup file if exits
  *  and prompts user if he/she wishes to keep
  *
@@ -107,17 +108,16 @@ static FILE* _openCurrentFileStream(char* usFileName, const char* mode, FILE* fP
  *
  */
 static FILE* _openLastSessionFileStream(const char* usFileName) {
-	FILE* fPtr;             // file pointer for input stream
-	char *usBacFileName;    // unsafe backup filename
+    FILE* fPtr;             // file pointer for input stream
+    char *usBacFileName;    // unsafe backup filename
     
-	usBacFileName = _addFileExtension(usFileName, BACKUP_FILENAME_EXTENSION);
-	fPtr = _openFile(usBacFileName, FILEMODE_READONLY);
-	if (!fPtr) { /* if file does not exist */
-		printf(ERR_COULD_NOT_OPEN_FILE(usBacFileName));
-	} else {
-		fPtr = _promptDiscardLastSession(fPtr);
-	}
-	return fPtr;
+    usBacFileName = _addFileExtension(usFileName, BACKUP_FILENAME_EXTENSION);
+    fPtr = fopen(usBacFileName, FILEMODE_READONLY);
+    if (NULL != fPtr) { /* if backup file opened */
+        printf(VERB_LAST_SESSION_FOUND);
+        fPtr = _promptDiscardLastSession(fPtr);
+    }
+    return fPtr;
 }
 
 /*
@@ -134,12 +134,12 @@ static FILE* _openLastSessionFileStream(const char* usFileName) {
  *
  */
 static FILE* _promptDiscardLastSession(FILE* fPtr) {
-	input_value valueKey = INPUT_VALUE_INVALID;
+    input_value valueKey = INPUT_VALUE_INVALID;
     
-	// prompt: do you wish to discard?
-	valueKey = getUserSelection(INPUT_TYPE_FILENAME, MSG_PROMPT_FILENAME);
+    // prompt: do you wish to discard?
+    valueKey = getUserSelection(INPUT_TYPE_FILENAME, MSG_PROMPT_FILENAME);
     
-	switch (valueKey) {
+    switch (valueKey) {
         case INPUT_VALUE_QUIT:
             exitOnUserRequest(EXIT_ON_USER_REQUEST);
             break;
@@ -156,14 +156,14 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
         default:
             return NULL;
             break;
-	}
+    }
     
-	return fPtr;
+    return fPtr;
 }
 
 /*
- *  _addFileExtension 
- *  _addFileExtension adds file extension 
+ *  _addFileExtension
+ *  _addFileExtension adds file extension
  *  immediately after the originally given file name from user
  *
  *  PRE:        name (user-entered file name)
@@ -171,19 +171,19 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
  *
  *  POST:       adds file extension to the original file name
  *
- *  RETURN:     sName (validted modified file name with extension) 
+ *  RETURN:     sName (validted modified file name with extension)
  *
  */
 static char* _addFileExtension(char *name, const char *extension) {
-	char *sName;        // safe name
+    char *sName;        // safe name
     
-	MALLOC(sName);
-	// get: backup filename
-	strcpy(sName, name);
-	free(name); // free safe input file name
-	strcat(sName, BACKUP_FILENAME_EXTENSION);
+    MALLOC(sName);
+    // get: backup filename
+    strcpy(sName, name);
+    free(name); // free safe input file name
+    strcat(sName, BACKUP_FILENAME_EXTENSION);
     
-	return sName;
+    return sName;
 }
 
 /*
@@ -199,55 +199,28 @@ static char* _addFileExtension(char *name, const char *extension) {
  *
  */
 static char* _retrieveFileName(const char *msg) {
-	char usInput[MAX_LENGTH_INPUT];                 // unsafe user input string
-	input_value valueKey = INPUT_VALUE_INVALID;     // input value key
-	const input_type type = INPUT_TYPE_FILENAME;    // input type
-	char *sInput;                                   // safe user input string
+    char usInput[MAX_LENGTH_INPUT];                 // unsafe user input string
+    input_value valueKey = INPUT_VALUE_INVALID;     // input value key
+    const input_type type = INPUT_TYPE_FILENAME;    // input type
+    char *sInput;                                   // safe user input string
     
-	MALLOC(sInput);
-	do {
-		printf("%s", msg); // prompt message
-		fgets(usInput, MAX_LENGTH_INPUT, stdin);
+    MALLOC(sInput);
+    do {
+        printf("%s", msg); // prompt message
+        fgets(usInput, MAX_LENGTH_INPUT, stdin);
         
-		// trim: '\n'
-		usInput[strlen(usInput) - 1] = '\0';
+        // trim: '\n'
+        usInput[strlen(usInput) - 1] = '\0';
         
-		// validate: user input
-		valueKey = validateInput(type, usInput);
-		if (INPUT_VALUE_VALID == valueKey) {
-			strcpy(sInput, usInput);
-			return sInput;
-		} else if (INPUT_VALUE_QUIT == valueKey) {
-			exitOnUserRequest(EXIT_ON_USER_REQUEST);
-		}
-	} while (INPUT_VALUE_INVALID == valueKey);
+        // validate: user input
+        valueKey = validateInput(type, usInput);
+        if (INPUT_VALUE_VALID == valueKey) {
+            strcpy(sInput, usInput);
+            return sInput;
+        } else if (INPUT_VALUE_QUIT == valueKey) {
+            exitOnUserRequest(EXIT_ON_USER_REQUEST);
+        }
+    } while (INPUT_VALUE_INVALID == valueKey);
     
-	return sInput;
+    return sInput;
 }
-
-/*
- *  _openFile 
- *  _openFile opens the file with given filename and mode 
- *
- *  PRE:        name (file name)
- *              mode (file mode)
- *
- *  POST:       opens file with given filename and mode
- *
- *  RETURN:     fPtr (NULL if couldn't open the file
- *                    valid file stream if opened successfully)
- *
- */
-static FILE* _openFile(const char *name, const char *mode) {
-	FILE* fPtr; // file pointer
-	char *usFileName = NULL; // unsafe filename
-    
-	// fileopen: user-chosen input file's backup
-	fPtr = fopen(name, mode);
-	if (!fPtr) { /* if file does not exist */
-		free(usFileName); // free: useless filename
-	}
-    
-	return fPtr;
-}
-
