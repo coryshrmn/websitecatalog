@@ -50,8 +50,10 @@ typedef enum {
 #define FILEMODE_READONLY                       "r"
 #define FILEMODE_WRITE                          "w"
 #define HR  "================================================\n"
-#define BR  "\n"
-#define MSG_EXIT_SELECTION "Enter \"I\" to ignore once, \"A\" to ignore all, or \"Q\" to quit program\n"
+#define BR                                      "\n"
+#define MSG_EXIT_SELECTION                      "Enter \"I\" to ignore once, \
+                                                \"A\" to ignore all,         \
+                                                or \"Q\" to quit program\n"
 #define FLUSH while (getchar() != '\n');
 
 #define MAX_LENGTH_INPUT                        255
@@ -63,23 +65,15 @@ typedef enum {
 #define EXIT_FILE_NOT_CLOSED                    103
 #define EXIT_ON_USER_REQUEST                    104
 
-#define ERR_NOT_ENOUGH_MEMORY                  ">>>ERROR : Not enough memory.\n"
-#define ERR_FILE_NOT_OPENED                    ">>>ERROR : File could not be opened.\n"
-#define ERR_FILE_NOT_CLOSED                    ">>>ERROR : File could not be closed.\n"
-#define ERR_INVALID_INPUT                      ">>>ERROR : Invalid input. Please try again.\n"
+#define ERR_NOT_ENOUGH_MEMORY                   ">>>ERROR : Not enough memory.\n"
+
+#define ERR_INVALID_INPUT                       ">>>ERROR : Invalid input. \
+                                                Please try again.\n"
 #define WARN_ID_NOT_FOUND(type)                 ">>WARNING: %s is not found.\n", type
-#define WARN_DUPLICATE_HOBBY(name)              ">>WARNING: Unable to add duplicated hobby \"%s\".\n", name
-#define WARN_DUPLICATE_ID(name)                 ">>WARNING: Unable to add duplicated id \"%s\".\n", name
-#define WARN_HOBBY_NOT_FOUND(hobby)             ">>WARNING: \"%s\" is not found from hobby list.\n", hobby
-#define VERB_LAST_SESSION_FOUND                 ">VERBOSE:  Last session was not saved.\n"
-#define VERB_LAST_SESSION_DISCARDED             ">VERBOSE:  Last session was discarded.\n"
 
 
-#define MSG_PROMPT_EXIT_ON_INVALID_FIELD        "Invalid field has been read. Enter your selection\n"
-#define MSG_PROMPT_DISCARD                      "Discard last session(Y/N)? Enter \"Y\" to discard or \"N\" to load last session.\n"
+
 #define MSG_PROMPT_RECONFIRM                    "Are you sure?\n"
-#define MSG_PROMPT_MENU_SELECTION               "Choose menu (1-9): "
-
 
 #define USERINPUT_QUIT                          "QUIT"
 #define DELIMITER_SPACE                         ' '
