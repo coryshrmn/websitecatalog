@@ -78,7 +78,7 @@ static bool _bstInsert(BstNode **node, Website *pWebsite)
 
 static BstNode *_createNode(Website *pWebsite)
 {
-    BstNode *output = checkMem(malloc(sizeof(BstNode)));
+    BstNode *output = validate(malloc(sizeof(BstNode)));
     output->left = NULL;
     output->right = NULL;
     output->key = pWebsite->url;

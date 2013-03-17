@@ -63,7 +63,7 @@ typedef enum {false, true} bool;
  *
  * Return: alloc
  ******************************************************************************/
-void *checkMem(void *alloc);
+void *validate(void *alloc);
 
 /*******************************************************************************
  * Prints an integer with commas every 3 digits. Not padded.
