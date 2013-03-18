@@ -92,32 +92,5 @@ void exitOnUserRequest (const int exitCode) {
     exit(exitCode);
 }
 
-/*******************************************************************************
- * Copies a string as lower case.
- *
- *    Pre: source is the original string
- *         dest is long enough to hold the original string
- *
- *   Post: dest is the lowercase version of source, with '\0' terminator.
- *
- * Return: --
- ******************************************************************************/
-input_value getUserSelection(input_type type, const char *msg) {
-	char usInput[MAX_LENGTH_INPUT];
-	input_value value = INPUT_VALUE_INVALID;
-    
-	do {
-		printf("%s", msg);
-		fgets(usInput, MAX_LENGTH_INPUT, stdin);
-        
-		// trim: '\n'
-		usInput[strlen(usInput) - 1] = '\0';
-        
-		// validate: user input
-		value = validateInput(type, usInput);
-		if (INPUT_VALUE_QUIT == value) {
-			exit(EXIT_ON_USER_REQUEST);
-		}
-	} while (INPUT_VALUE_INVALID == value);
-	return value;
-}
+
+

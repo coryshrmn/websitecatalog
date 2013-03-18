@@ -28,6 +28,9 @@
 #define INPUT_LENGTH_MENU                   1
 #define INPUT_LENGTH_EXIT_ON_INVALID_FIELD  1
 #define INPUT_LENGTH_YES_OR_NO              1
+#define INPUT_LENGTH_SAVE                   1
+#define INPUT_LENGTH_SAVE_AS                MAX_LENGTH_INPUT
+#define INPUT_LENGTH_QUIT                   1
 // project.main.ValidateManager.CONSTANT_DEFINED.inputValue
 #define INPUT_VALUE_QUIT_RAW                'Q'
 #define INPUT_VALUE_IGNORE_RAW              'I'

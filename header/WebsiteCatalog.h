@@ -319,7 +319,7 @@ void bstPrintInorder(ListHead *pList);
  *
  * Return: A pointer to the new Website.
  ******************************************************************************/
-Website *websiteCreate(const char *url, const char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands);
+Website *websiteCreate(char *url, char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands);
 
 /*******************************************************************************
  * Frees a Website, including its dynamically allocated url and company name.
@@ -372,20 +372,7 @@ void strcpyToLower(char *dest, const char *source);
  *
  */
 FILE* initFileStream(char **sFileName, int *nLines);
-/*
- *  getMenuSelection
- *  gets menu selection from user and returns
- *  validated menu type.
- *
- *  PRE:        none
- *
- *  POST:       prints menu
- *              && get menu option
- *
- *  RETURN:     sMenuSelection
- *
- */
-menu_type getMenuSelection(void);
+
 /*
  * validateInput
  * validates input (either file input or user input)
@@ -424,7 +411,7 @@ Website* getSingleWebsite(FILE* fPtr);
  *
  * Return: --
  ******************************************************************************/
-input_value getUserSelection(input_type type, const char *msg);
+input_value promptUserSelection(input_type type, const char *msg);
 
 /*******************************************************************************
  * Exits program with the given user request.
@@ -436,3 +423,16 @@ input_value getUserSelection(input_type type, const char *msg);
  * Return: --
  ******************************************************************************/
 void exitOnUserRequest (const int exitCode);
+
+
+
+FILE* reopenCurrentFileStream(char* sFileName, const char* mode,
+                              FILE* fPtr);
+
+bool closeFile(FILE* fPtr, char *name);
+FILE* openFile(char* name, const char* mode);
+
+void* promptSingleField(input_type type, const char *msg);
+char* readOneLine(FILE* fPtr);
+void* readSingleField(input_type type, char **line);
+char* promptFileName(const char *msg);

@@ -15,13 +15,13 @@
 #define ERR printf("ERROR\n");
 
 int main(int argc, const char * argv[]) {
+    ListHead *head; // head of the list
     Website *curWebsite; // website struct
     menu_type menu; // menu type
     FILE *fPtr = NULL; // file pointer
     char *fname = NULL; // file name
     int nLines = 0; // number of input line
-    
-    printf("Hello, World!\n");
+    bool isDataModified = false;        // is data modified?
     
     
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>LOOP
@@ -31,6 +31,7 @@ int main(int argc, const char * argv[]) {
     
     
     
+
     
     
     //TODO: delete after debugging
@@ -46,7 +47,7 @@ int main(int argc, const char * argv[]) {
     
     
     
-    
+    MenuManager(head);
     
     
     
@@ -56,11 +57,6 @@ int main(int argc, const char * argv[]) {
     
     
     
-    
-    //TODO: delete after debugging
-    menu = getMenuSelection();
-    Logd("menu", menu - 1);
-    //ENDTODO
     
     
     
