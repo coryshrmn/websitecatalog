@@ -121,12 +121,12 @@ static menu_type _chooseMenu(void) {
 // TODO: merge with SingleWebsiteManager.getSingleWebiste
 static bool _addDataFromMenu(ListHead *head) {
     Website* curWebsite = NULL; // current `struct Website`
-    char *sUrl = NULL;              // safe url
-	char *sCompany = NULL;          // safe company name
+    char *sUrl = NULL;          // safe url
+	char *sCompany = NULL;      // safe company name
 	int sDailyPageView = 0;     // safe daily page view
-	int sRankTraffic = 0;      // safe traffic rank
-	int sBackLink = 0;         // safe backlink
-	int sWebsiteWorth = 0;     // safe website worth
+	int sRankTraffic = 0;       // safe traffic rank
+	int sBackLink = 0;          // safe backlink
+	int sWebsiteWorth = 0;      // safe website worth
     /*
 	 * `char *sInt;`
 	 * safe int value
@@ -144,15 +144,11 @@ static bool _addDataFromMenu(ListHead *head) {
 	sBackLink = atoi(sInt);
 	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_MENU_WEBSITE_WORTH);
 	sWebsiteWorth = atoi(sInt);
-    // convert: string to int
-
-
-
-
     
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
     
-    return NULL != curWebsite ? true : false;
+    
+    return listInsert(head, curWebsite) ? true : false;
 }
 
 static bool _deleteDataFromMenu(ListHead *head) {
