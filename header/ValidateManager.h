@@ -9,6 +9,7 @@
  * Last Major Update:   03172013_015535
  *
  */
+#include <ctype.h>
 // project.main.ValidateManager.CONSTANT_DEFINED.delimiter
 #define DELIMITER_URL "./"
 #define DELIMITER_DOT '.'

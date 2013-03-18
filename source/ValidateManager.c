@@ -126,7 +126,7 @@ static input_value _valUrl(char *usInput, const int len) {
 static input_value _valCompany(char *usInput, const int len) {
 	int i = 0;
     
-	while ((isnumber(usInput[i]) || isspecial(usInput[i])) && len > i) {
+	while ((isdigit(usInput[i]) || isspecial(usInput[i])) && len > i) {
 		i++;
 	}
     
@@ -147,7 +147,7 @@ static input_value _valCompany(char *usInput, const int len) {
 static input_value _valLongLongInt(char *usInput, const int len) {
 	int i = 0;
     
-	while (0 <= usInput[i] && isnumber(usInput[i]) && len > i) {
+	while (0 <= usInput[i] && isdigit(usInput[i]) && len > i) {
 		i++;
 	}
     
