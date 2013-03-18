@@ -164,13 +164,25 @@ Website *hashSearch(ListHead *pList, const char *url)
 Website *hashRemove(ListHead *pList, const char *url)
 {
 	Website *target;
+	int index;
+	int i = 0;
+	int j = pList->bucketSize-1;
 
     target = hashSearch(pList, url);
 	if(target)
 	{
-		free(target->url);
-		free(target->company);
-		free(target);
+		index = ((unsigned int)_hashString(url) % (unsigned int)pList->arySize) * pList->bucketSize;
+		while(strcmp(pList->pHash[index+i].key, url));
+			i++;
+		pList->pHash[index+i].key = NULL;
+		pList->pHash[index+i].site = NULL;
+		if(i != j)
+		{
+			while(!pList->pHash[index+j].key)
+				j--;
+			pList->pHash[index+i].key = pList->pHash[index+j].key;
+			pList->pHash[index+i].site = pList->pHash[index+j].site;
+		}
 
 		return target;
 	}
@@ -214,15 +226,30 @@ void printEfficiency(ListHead *pList)
 	double loadFactor;
 	double arySize;
 	int i;
+	int j;
+	int collision = 0;
+	int longestBucket = 0;
 
 	for(i = 0; i < (pList->arySize * pList->bucketSize); i+=pList->bucketSize)
 	{
 		if(pList->pHash[i].key)
+		{
 			nodesFilled++;
+			for(j = 1; j < pList->bucketSize; j++)
+			{
+				if(pList->pHash[i+j].key)
+					collision++;
+			}
+			if(longestBucket < j)
+				longestBucket = j;
+		}
 	}
+	longestBucket++;
 	arySize = pList->arySize;
 	loadFactor = (nodesFilled / arySize) * 100;
 	printf("The load factor is %.2f%%\n", loadFactor);
+	printf("Number of collisions: %d\n", collision);
+	printf("Longest Bucket: %d\n", longestBucket);
 
 	return;
 }
@@ -264,5 +291,7 @@ static int _hashString(const char *key)
     {
         h = 31*h + *w;
     }
+
     return h;
 }
+
