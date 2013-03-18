@@ -40,6 +40,18 @@ static void _printMenu();
 static menu_type _chooseMenu(void);
 static menu_type _getMenuSelection(void);
 
+/*
+ *  _addDataFromMenu
+ *  prompts user to add Website info.
+ *
+ *  PRE:        head (list header)
+ *
+ *  POST:       prompt user to add Website info.
+ *
+ *  RETURN:     true if successfully inserted
+ *              false if failed.
+ *
+ */
 static bool _addDataFromMenu(ListHead *head);
 static bool _deleteDataFromMenu(ListHead *head);
 static bool _findKeyFromMenu(ListHead *head);

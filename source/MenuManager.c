@@ -118,7 +118,18 @@ static menu_type _chooseMenu(void) {
 }
 
 
-// TODO: merge with SingleWebsiteManager.getSingleWebiste
+/*
+ *  _addDataFromMenu
+ *  prompts user to add Website info.
+ *
+ *  PRE:        head (list header)
+ *
+ *  POST:       prompt user to add Website info.
+ *
+ *  RETURN:     true if successfully inserted
+ *              false if failed.
+ *
+ */
 static bool _addDataFromMenu(ListHead *head) {
     Website* curWebsite = NULL; // current `struct Website`
     char *sUrl = NULL;          // safe url
@@ -147,8 +158,7 @@ static bool _addDataFromMenu(ListHead *head) {
     
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
     
-    
-    return listInsert(head, curWebsite) ? true : false;
+    return listInsert(head, curWebsite);
 }
 
 static bool _deleteDataFromMenu(ListHead *head) {
