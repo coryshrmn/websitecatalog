@@ -16,6 +16,7 @@ input_value promptUserSelection(input_type type, const char *msg) {
     
 	do {
 		printf("%s", msg);
+        fflush(stdout);
 		fgets(usInput, MAX_LENGTH_INPUT, stdin);
         
 		// trim: '\n'
@@ -52,6 +53,7 @@ void* promptSingleField(input_type type, const char *msg) {
     MALLOC(usField);
     do {
         printf("%s", msg);
+        fflush(stdout);
         fgets(usField, MAX_LENGTH_INPUT, stdin);
         
 		// trim: '\n'
@@ -182,6 +184,7 @@ char* promptFileName(const char *msg) {
     MALLOC(sInput);
     do {
         printf("%s", msg); // prompt message
+        fflush(stdout);
         fgets(usInput, MAX_LENGTH_INPUT, stdin);
         
         // trim: '\n'
