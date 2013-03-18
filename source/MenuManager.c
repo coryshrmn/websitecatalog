@@ -147,21 +147,33 @@ static bool _addDataFromMenu(ListHead *head) {
 	// set: fields in `curWebsite`
 	sUrl = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_URL);
 	sCompany = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_COMPANY);
-	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_DAILY_PAGE_VIEW);
+	
+    sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_DAILY_PAGE_VIEW);
     sDailyPageView = atoi(sInt);
-	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_RANK_TRAFFIC);
+	free(sInt);
+    
+    sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_RANK_TRAFFIC);
 	sRankTraffic = atoi(sInt);
-	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_MENU_BACK_LINK);
+	free(sInt);
+    
+    sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_MENU_BACK_LINK);
 	sBackLink = atoi(sInt);
-	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_MENU_WEBSITE_WORTH);
+	free(sInt);
+    
+    sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_MENU_WEBSITE_WORTH);
 	sWebsiteWorth = atoi(sInt);
+    free(sInt);
     
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
+    
+    free(sUrl);
+    free(sCompany);
     
     return listInsert(head, curWebsite);
 }
 
 static bool _deleteDataFromMenu(ListHead *head) {
+    
 }
 
 static bool _findKeyFromMenu(ListHead *head) {
