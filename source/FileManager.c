@@ -16,44 +16,39 @@
  *  intializes file stream to get ready for the program.
  *
  *  PRE:        none
- *              fPtr (file pointer)
  *
- *  POST:       get last session status
- *              && opens current session
- *                   (either from user-chosen file or from its backup file)
+ *  POST:       fPtr (updated file pointer)
+ *              sFileName (safe file name)
  *
- *  RETURN:     fPtr (file pointer for current session
- *                  || NULL if failed to initialize)
+ *  RETURN:     none
  *
  */
-FILE* initFileStream(void) {
-	FILE *fPtr = NULL;          // file pointer
+void initFileStream(FILE **fPtr, char **sFileName) {
 	char *usFileName = NULL;    // unsafe file name
-	char *sFileName = NULL;     // safe file name
     
 	do {
 		// open: last session
 		usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
-		fPtr = _openLastSessionFileStream(usFileName);
+		*fPtr = _openLastSessionFileStream(usFileName);
         
-		if (!fPtr) { /* error in opening backup file */
-			fPtr = fopen(usFileName, FILEMODE_READONLY);
-			if (!fPtr) { /* error in opening file */
+		if (!*fPtr) { /* error in opening backup file */
+			*fPtr = fopen(usFileName, FILEMODE_READONLY);
+			if (!*fPtr) { /* error in opening file */
 				printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
 			} else { /* current session successfully opened */
 				printf(VERB_FILEOPEN(usFileName, FILEMODE_READONLY));
-				sFileName = usFileName; /* file name is now safe */
+				*sFileName = usFileName; /* file name is now safe */
 			}
 		} else { /* backup file exists */
-			fPtr = _promptDiscardLastSession(fPtr);
-			if (!fPtr) { // backup file discarded
+			*fPtr = _promptDiscardLastSession(*fPtr);
+			if (!*fPtr) { // backup file discarded
 				printf(VERB_LAST_SESSION_DISCARDED);
 			} else { // backup file kept
-				return fPtr;
+				return;
 			}
 		}
-	} while (!fPtr);
-    return fPtr;
+	} while (!*fPtr);
+  return;
 }
 
 /*
@@ -224,4 +219,31 @@ static char* _retrieveFileName(const char *msg) {
     } while (INPUT_VALUE_INVALID == valueKey);
     
     return sInput;
+}
+
+
+/*
+ *  _getNumberOfLines
+ *  counts number of lines from the input file
+ *
+ *  PRE:    fPtr (input file pointer)
+ *
+ *  POST:   counts number of lines from the input file
+ *
+ *  RETURN: i (number of lines)
+ *
+ */
+
+static int _getNumberOfLines(FILE* fPtr) {
+	int i = 0;
+    
+	printf(VERB_GET_NUMBER_OF_LINES);
+    
+	while (EOF != fgetc(fPtr)) {
+		while (fgetc(fPtr) != '\n')
+			;
+		i++;
+	}
+    
+    return i;
 }

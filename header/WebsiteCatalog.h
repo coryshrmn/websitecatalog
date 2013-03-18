@@ -358,15 +358,80 @@ void strcpyToLower(char *dest, const char *source);
 
 
 
-//TODO: complete documentation
-FILE* initFileStream(void);
-
-
-    
-    
+/*
+ *  initFileStream
+ *  intializes file stream to get ready for the program.
+ *
+ *  PRE:        none
+ *
+ *  POST:       fPtr (updated file pointer)
+ *              sFileName (safe file name)
+ *
+ *  RETURN:     none
+ *
+ */
+void initFileStream(FILE **fPtr, char **sFileName);
+/*
+ *  getMenuSelection
+ *  gets menu selection from user and returns
+ *  validated menu type.
+ *
+ *  PRE:        none
+ *
+ *  POST:       prints menu
+ *              && get menu option
+ *
+ *  RETURN:     sMenuSelection
+ *
+ */
 menu_type getMenuSelection(void);
-input_value validateInput(input_type type, char* usInput);
-Website* getSingleWebsite(FILE* fPtr);
+/*
+ * validateInput
+ * validates input (either file input or user input)
+ *
+ *  PRE:    type (input type)
+ *          usInput (unsafe user-input to be validated
+ *                   && doesn't contain newline character)
+ *
+ *  POST:   validate user input with given input type
+ *
+ *  RETURN:  INPUT_VALUE_INVALID (if user input is invalid)
+ *          INPUT_VALUE_VALID (if user input is valid)
+ *
+ */
 
+input_value validateInput(input_type type, char* usInput);
+/*
+ * getSingleWebsite
+ * parses information from the file pointer:
+ *
+ *  PRE:    fPtr (file pointer; readonly; from input file stream)
+ *
+ *  POST:   All fields are completedly parsed from the input file stream
+ *
+ *  RETURN:  Website (fields are completedly parsed)
+ *
+ */
+Website* getSingleWebsite(FILE* fPtr);
+/*******************************************************************************
+ * Copies a string as lower case.
+ *
+ *    Pre: source is the original string
+ *         dest is long enough to hold the original string
+ *
+ *   Post: dest is the lowercase version of source, with '\0' terminator.
+ *
+ * Return: --
+ ******************************************************************************/
 input_value getUserSelection(input_type type, const char *msg);
+
+/*******************************************************************************
+ * Exits program with the given user request.
+ *
+ *    Pre: exitCode is the exit code returned with program exit
+ *
+ *   Post: exits program
+ *
+ * Return: --
+ ******************************************************************************/
 void exitOnUserRequest (const int exitCode);
