@@ -24,9 +24,10 @@ source/inputManager/*
 # START
 # Author:   Gon Kim (imgonkim@gmail.com)
 # Date:     03162013_214330 
+# Modified: 03182013_134341
 # vim
 .*.sw*
 *.*~
 # Xcode
-*.1
+#*.1
 # END
