@@ -10,8 +10,6 @@
  */
 #include "../header/WebsiteCatalog.h"
 #include "../header/FileManager.h"
-
-#define D(str, val) printf(str, val);
 /*
  *  initFileStream
  *  intializes file stream to get ready for the program.
@@ -35,7 +33,6 @@ FILE* initFileStream(char **sFileName, int *nLines) {
 	do {
 		// open: last session
 		usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
-        D("_%s_", usFileName);
 		fPtr = _openLastSessionFileStream(usFileName);
         
 		if (!fPtr) { /* error in opening backup file */
@@ -53,7 +50,10 @@ FILE* initFileStream(char **sFileName, int *nLines) {
 		}
 	} while (!fPtr);
     
+    
+    // FIXME:
     *sFileName = usFileName; /* file name is now safe */
+    
     *nLines = _getNumberOfLines(fPtr);
     
   return fPtr;
