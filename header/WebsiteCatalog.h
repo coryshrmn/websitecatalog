@@ -364,13 +364,14 @@ void strcpyToLower(char *dest, const char *source);
  *
  *  PRE:        none
  *
- *  POST:       fPtr (updated file pointer)
+ *  POST:       none
  *              sFileName (safe file name)
+ *              nLines (number of lines from input file)
  *
- *  RETURN:     none
+ *  RETURN:     fPtr (updated file pointer)
  *
  */
-void initFileStream(FILE **fPtr, char **sFileName);
+FILE* initFileStream(char **sFileName, int *nLines);
 /*
  *  getMenuSelection
  *  gets menu selection from user and returns

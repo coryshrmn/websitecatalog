@@ -26,7 +26,7 @@
 
 // project.main.FileManager.PRIVATE_FUNCTION_DECLARATIONS
 static FILE* _reopenLastSessionFileStream(const char* usFileName);
-static FILE* _openLastSessionFileStream(const char* usFileName);
+static FILE* _openLastSessionFileStream(char* usFileName);
 static char* _retrieveFileName(const char *msg);
 static char* _addFileExtension(char *name, const char *extension);
 static FILE* _promptDiscardLastSession (FILE* fPtr);

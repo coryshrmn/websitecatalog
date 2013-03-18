@@ -11,44 +11,52 @@
 #include "../header/WebsiteCatalog.h"
 #include "../header/FileManager.h"
 
+#define D(str, val) printf(str, val);
 /*
  *  initFileStream
  *  intializes file stream to get ready for the program.
  *
  *  PRE:        none
  *
- *  POST:       fPtr (updated file pointer)
- *              sFileName (safe file name)
+ *  POST:       sFileName (safe file name)
+ *              nLines (number of lines from input file)
  *
- *  RETURN:     none
+ *  RETURN:     fPtr (updated file pointer)
  *
  */
-void initFileStream(FILE **fPtr, char **sFileName) {
-	char *usFileName = NULL;    // unsafe file name
+FILE* initFileStream(char **sFileName, int *nLines) {
+	FILE *fPtr = NULL; // file pointer
+    char *usFileName = NULL;    // unsafe file name
     
+    *sFileName = NULL;
+    sFileName = NULL;
+    
+    // open filestream either from backup file or original
 	do {
 		// open: last session
 		usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
-		*fPtr = _openLastSessionFileStream(usFileName);
+        D("_%s_", usFileName);
+		fPtr = _openLastSessionFileStream(usFileName);
         
-		if (!*fPtr) { /* error in opening backup file */
-			*fPtr = fopen(usFileName, FILEMODE_READONLY);
-			if (!*fPtr) { /* error in opening file */
+		if (!fPtr) { /* error in opening backup file */
+			fPtr = fopen(usFileName, FILEMODE_READONLY);
+			if (!fPtr) { /* error in opening file */
 				printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
 			} else { /* current session successfully opened */
 				printf(VERB_FILEOPEN(usFileName, FILEMODE_READONLY));
-				*sFileName = usFileName; /* file name is now safe */
 			}
 		} else { /* backup file exists */
-			*fPtr = _promptDiscardLastSession(*fPtr);
-			if (!*fPtr) { // backup file discarded
+			fPtr = _promptDiscardLastSession(fPtr);
+			if (!fPtr) { // backup file discarded
 				printf(VERB_LAST_SESSION_DISCARDED);
-			} else { // backup file kept
-				return;
 			}
 		}
-	} while (!*fPtr);
-  return;
+	} while (!fPtr);
+    
+    *sFileName = usFileName; /* file name is now safe */
+    *nLines = _getNumberOfLines(fPtr);
+    
+  return fPtr;
 }
 
 /*
@@ -103,7 +111,7 @@ static FILE* _reopenCurrentFileStream(char* usFileName, const char* mode,
  *                  || NULL if couldn't open the backup file)
  *
  */
-static FILE* _openLastSessionFileStream(const char* usFileName) {
+static FILE* _openLastSessionFileStream(char* usFileName) {
     FILE* fPtr;             // file pointer for input stream
     char *usBacFileName;    // unsafe backup filename
     
