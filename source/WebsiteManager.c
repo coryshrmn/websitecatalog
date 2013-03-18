@@ -26,7 +26,7 @@
  *
  * Return: A pointer to the new Website.
  ******************************************************************************/
-Website *websiteCreate(const char *url, const char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands)
+Website *websiteCreate(char *url, char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands)
 {
     Website *output = validate(malloc(sizeof(Website)));
     output->url = validate(malloc(strlen(url) + 1));

@@ -9,10 +9,12 @@
  */
 // project.main.MenuManager.CONSTANT_DEFINED
 #define MSG_PROMPT_MENU_SELECTION               "Choose menu (1-9): "
+#define ERR_INVALID_MENU                       ">>>ERROR : Invalid Menu. \
+Please try again.\n"
 
 // project.main.MenuManager.CONSTANT_STRING
 const char* menu_msg[] = { /* captions for each menu option */
-    /* 0 */"DUMMY MENU MESSAGE", // TODO: explain why dummy menu exists (for UI)
+    /* 0 */"INVALID MENU TYPE",
     /* 1 */"Add: new Website",
     /* 2 */"Delete: Website",
     /* 3 */"Search and Print: Website using its URL",
@@ -27,3 +29,15 @@ const char* menu_msg[] = { /* captions for each menu option */
 // project.main.MenuManager.PRIVATE_FUNCTION_DELCARATIONS
 static void _printMenu();
 static menu_type _chooseMenu(void);
+static menu_type _getMenuSelection(void);
+
+static bool _addDataFromMenu(ListHead *head);
+static bool _deleteDataFromMenu(ListHead *head);
+static bool _findKeyFromMenu(ListHead *head);
+static bool _printHashFromMenu(ListHead *head);
+static bool _printSortedSequenceFromMenu(ListHead *head);
+static bool _printIndentedTreeFromMenu(ListHead *head);
+static bool _saveSessionFromMenu(ListHead *head, FILE *fPtr);
+static bool _printEfficiencyFromMenu(ListHead *head);
+static bool _saveAndQuitFromMenu(FILE *fPtr);
+

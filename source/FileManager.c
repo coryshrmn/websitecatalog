@@ -51,7 +51,6 @@ FILE* initFileStream(char **sFileName, int *nLines) {
 	} while (!fPtr);
     
     
-    // FIXME:
     *sFileName = usFileName; /* file name is now safe */
     
     *nLines = _getNumberOfLines(fPtr);
@@ -188,45 +187,6 @@ static char* _addFileExtension(char *name, const char *extension) {
     strcat(sName, BACKUP_FILENAME_EXTENSION);
     
     return sName;
-}
-
-/*
- *  _retrieveFileName
- *  _retrieveFileName gets file name from user's stdio
- *
- *  PRE:    msg (prompt message at the time of retreiving user file name)
- *
- *  POST:   retrieves file name from the user
- *          && validate the input
- *
- *  RETURN: sInput (validated user-entered filename)
- *
- */
-static char* _retrieveFileName(const char *msg) {
-    char usInput[MAX_LENGTH_INPUT];                 // unsafe user input string
-    input_value valueKey = INPUT_VALUE_INVALID;     // input value key
-    const input_type type = INPUT_TYPE_FILENAME;    // input type
-    char *sInput;                                   // safe user input string
-    
-    MALLOC(sInput);
-    do {
-        printf("%s", msg); // prompt message
-        fgets(usInput, MAX_LENGTH_INPUT, stdin);
-        
-        // trim: '\n'
-        usInput[strlen(usInput) - 1] = '\0';
-        
-        // validate: user input
-        valueKey = validateInput(type, usInput);
-        if (INPUT_VALUE_VALID == valueKey) {
-            strcpy(sInput, usInput);
-            return sInput;
-        } else if (INPUT_VALUE_QUIT == valueKey) {
-            exitOnUserRequest(EXIT_ON_USER_REQUEST);
-        }
-    } while (INPUT_VALUE_INVALID == valueKey);
-    
-    return sInput;
 }
 
 

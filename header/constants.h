@@ -35,7 +35,8 @@ typedef enum {
 } input_type;
 
 typedef enum {
-    MENU_TYPE_ADD_DATA = 1,             /* 1 */
+    MENU_TYPE_INVALID,                  /* 0 */
+    MENU_TYPE_ADD_DATA,                 /* 1 */
     MENU_TYPE_DELETE_DATA,              /* 2 */
     MENU_TYPE_FIND_KEY,                 /* 3 */
     MENU_TYPE_PRINT_HASH,               /* 4 */

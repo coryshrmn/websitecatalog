@@ -12,5 +12,3 @@
 #define MSG_PROMPT_EXIT_ON_INVALID_FIELD        "Invalid field has been read. Enter your selection\n"
 
 // project.main.SingleWebsiteManager.PRIVATE_FUNCTION_DECLARATIONS
-static char* _readOneLine(FILE* fPtr);
-static void* _readSingleField(input_type type, char **line);

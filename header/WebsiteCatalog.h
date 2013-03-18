@@ -319,7 +319,7 @@ void bstPrintInorder(ListHead *pList);
  *
  * Return: A pointer to the new Website.
  ******************************************************************************/
-Website *websiteCreate(const char *url, const char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands);
+Website *websiteCreate(char *url, char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands);
 
 /*******************************************************************************
  * Frees a Website, including its dynamically allocated url and company name.
@@ -372,20 +372,7 @@ void strcpyToLower(char *dest, const char *source);
  *
  */
 FILE* initFileStream(char **sFileName, int *nLines);
-/*
- *  getMenuSelection
- *  gets menu selection from user and returns
- *  validated menu type.
- *
- *  PRE:        none
- *
- *  POST:       prints menu
- *              && get menu option
- *
- *  RETURN:     sMenuSelection
- *
- */
-menu_type getMenuSelection(void);
+
 /*
  * validateInput
  * validates input (either file input or user input)
@@ -436,3 +423,9 @@ input_value getUserSelection(input_type type, const char *msg);
  * Return: --
  ******************************************************************************/
 void exitOnUserRequest (const int exitCode);
+
+
+
+
+
+void* promptSingleField(input_type type, const char *msg);
