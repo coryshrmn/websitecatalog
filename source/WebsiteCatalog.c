@@ -12,16 +12,20 @@
 
 //TODO: delete after debugging
 #define Logd(str, val) printf(str "_%d_\n", val)
+#define ERR printf("ERROR\n");
 
 int main(int argc, const char * argv[]) {
-    Website *curWebsite;
-    menu_type menu;
-    FILE *fPtr;
+    Website *curWebsite; // website struct
+    menu_type menu; // menu type
+    FILE *fPtr = NULL; // file pointer
+    char *fname = NULL; // file name
+    int nLines = 0; // number of input line
     
     printf("Hello, World!\n");
     
+    
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>LOOP
-    fPtr = initFileStream();
+    fPtr = initFileStream(&fname, &nLines);    
     curWebsite = getSingleWebsite(fPtr);
     
     

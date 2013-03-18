@@ -14,6 +14,7 @@
 
 /*
  * validateInput
+ * validates input (either file input or user input)
  *
  *  PRE:    type (input type)
  *          usInput (unsafe user-input to be validated

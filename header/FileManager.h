@@ -13,6 +13,7 @@
 #define VERB_FILE_REOPEN(name, mode)            ">VERBOSE:  File \"%s\" is re-opening for mode \"%s\"", name, mode
 #define VERB_LAST_SESSION_FOUND                 ">VERBOSE:  Last session was not saved.\n"
 #define VERB_LAST_SESSION_DISCARDED             ">VERBOSE:  Last session was discarded.\n"
+#define VERB_GET_NUMBER_OF_LINES                ">VERBOSE:  Counting number of lines.\n"
 
 #define ERR_COULD_NOT_OPEN_FILE(filename)       ">>>ERROR : Could not open file, \"%s\".\n", filename
 #define ERR_COULD_NOT_REOPEN_FILE(filename)     ">>>ERROR : Could not re-open file with different mode, \"%s\".\n", filename
@@ -25,7 +26,8 @@
 
 // project.main.FileManager.PRIVATE_FUNCTION_DECLARATIONS
 static FILE* _reopenLastSessionFileStream(const char* usFileName);
-static FILE* _openLastSessionFileStream(const char* usFileName);
+static FILE* _openLastSessionFileStream(char* usFileName);
 static char* _retrieveFileName(const char *msg);
 static char* _addFileExtension(char *name, const char *extension);
 static FILE* _promptDiscardLastSession (FILE* fPtr);
+static int _getNumberOfLines(FILE* fPtr);

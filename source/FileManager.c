@@ -10,27 +10,26 @@
  */
 #include "../header/WebsiteCatalog.h"
 #include "../header/FileManager.h"
-
 /*
  *  initFileStream
  *  intializes file stream to get ready for the program.
  *
  *  PRE:        none
- *              fPtr (file pointer)
  *
- *  POST:       get last session status
- *              && opens current session
- *                   (either from user-chosen file or from its backup file)
+ *  POST:       sFileName (safe file name)
+ *              nLines (number of lines from input file)
  *
- *  RETURN:     fPtr (file pointer for current session
- *                  || NULL if failed to initialize)
+ *  RETURN:     fPtr (updated file pointer)
  *
  */
-FILE* initFileStream(void) {
-	FILE *fPtr = NULL;          // file pointer
-	char *usFileName = NULL;    // unsafe file name
-	char *sFileName = NULL;     // safe file name
+FILE* initFileStream(char **sFileName, int *nLines) {
+	FILE *fPtr = NULL; // file pointer
+    char *usFileName = NULL;    // unsafe file name
     
+    *sFileName = NULL;
+    sFileName = NULL;
+    
+    // open filestream either from backup file or original
 	do {
 		// open: last session
 		usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
@@ -42,18 +41,22 @@ FILE* initFileStream(void) {
 				printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
 			} else { /* current session successfully opened */
 				printf(VERB_FILEOPEN(usFileName, FILEMODE_READONLY));
-				sFileName = usFileName; /* file name is now safe */
 			}
 		} else { /* backup file exists */
 			fPtr = _promptDiscardLastSession(fPtr);
 			if (!fPtr) { // backup file discarded
 				printf(VERB_LAST_SESSION_DISCARDED);
-			} else { // backup file kept
-				return fPtr;
 			}
 		}
 	} while (!fPtr);
-    return fPtr;
+    
+    
+    // FIXME:
+    *sFileName = usFileName; /* file name is now safe */
+    
+    *nLines = _getNumberOfLines(fPtr);
+    
+  return fPtr;
 }
 
 /*
@@ -108,7 +111,7 @@ static FILE* _reopenCurrentFileStream(char* usFileName, const char* mode,
  *                  || NULL if couldn't open the backup file)
  *
  */
-static FILE* _openLastSessionFileStream(const char* usFileName) {
+static FILE* _openLastSessionFileStream(char* usFileName) {
     FILE* fPtr;             // file pointer for input stream
     char *usBacFileName;    // unsafe backup filename
     
@@ -224,4 +227,31 @@ static char* _retrieveFileName(const char *msg) {
     } while (INPUT_VALUE_INVALID == valueKey);
     
     return sInput;
+}
+
+
+/*
+ *  _getNumberOfLines
+ *  counts number of lines from the input file
+ *
+ *  PRE:    fPtr (input file pointer)
+ *
+ *  POST:   counts number of lines from the input file
+ *
+ *  RETURN: i (number of lines)
+ *
+ */
+
+static int _getNumberOfLines(FILE* fPtr) {
+	int i = 0;
+    
+	printf(VERB_GET_NUMBER_OF_LINES);
+    
+	while (EOF != fgetc(fPtr)) {
+		while (fgetc(fPtr) != '\n')
+			;
+		i++;
+	}
+    
+    return i;
 }
