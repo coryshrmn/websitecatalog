@@ -429,3 +429,14 @@ void exitOnUserRequest (const int exitCode);
 
 
 void* promptSingleField(input_type type, const char *msg);
+
+
+
+
+
+
+input_value getUserSelection(input_type type, const char *msg);
+void* promptSingleField(input_type type, const char *msg);
+char* readOneLine(FILE* fPtr);
+void* readSingleField(input_type type, char **line);
+char* retrieveFileName(const char *msg);

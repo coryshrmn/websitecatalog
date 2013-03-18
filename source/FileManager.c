@@ -97,7 +97,7 @@ static FILE* _reopenCurrentFileStream(char* usFileName, const char* mode,
 }
 
 /*
- *  _reopenLastSessionFileStream
+ *  _openLastSessionFileStream
  *  LastSessionManager discovers backup file if exits
  *  and prompts user if he/she wishes to keep
  *

@@ -9,7 +9,3 @@
  *
  */
 
-#include <stdio.h>
-char* retrieveFileName(const char *msg);
-char* readOneLine(FILE* fPtr);
-void* readSingleField(input_type type, char **line);

@@ -123,29 +123,36 @@ static bool _addDataFromMenu(ListHead *head) {
     Website* curWebsite = NULL; // current `struct Website`
     char *sUrl = NULL;              // safe url
 	char *sCompany = NULL;          // safe company name
-    char *sDailyPageView = NULL;    // safe daily page view
-	char *sRankTraffic = NULL;      // safe traffic rank
-	char *sBackLink = NULL;         // safe backlink
-	char *sWebsiteWorth = NULL;     // safe website worth
-	/*
-	 * `char *usLine;`
-	 * unsafe single line read
-	 * (may not represent original value)
+	int sDailyPageView = 0;     // safe daily page view
+	int sRankTraffic = 0;      // safe traffic rank
+	int sBackLink = 0;         // safe backlink
+	int sWebsiteWorth = 0;     // safe website worth
+    /*
+	 * `char *sInt;`
+	 * safe int value
 	 */
-	char *usLine = NULL;
-	char *sLine = NULL;              // safe single line read
+    char *sInt = NULL;
 
 	// set: fields in `curWebsite`
-	sUrl = (char*) promptSingleField(INPUT_TYPE_URL, &usLine);
-	sCompany = (char*) promptSingleField(INPUT_TYPE_URL, &usLine);
-	sDailyPageView = (char*) promptSingleField(INPUT_TYPE_URL, &usLine);
-	sRankTraffic = (char*) getSingleField(INPUT_TYPE_URL, &usLine);
-	sBackLink = (char*) getSingleField(INPUT_TYPE_URL, &usLine);
-	sWebsiteWorth = (char*) getSingleField(INPUT_TYPE_URL, &usLine);
+	sUrl = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_URL);
+	sCompany = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_COMPANY);
+	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_DAILY_PAGE_VIEW);
+    sDailyPageView = atoi(sInt);
+	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_RANK_TRAFFIC);
+	sRankTraffic = atoi(sInt);
+	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_MENU_BACK_LINK);
+	sBackLink = atoi(sInt);
+	sInt = (char*) promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_MENU_WEBSITE_WORTH);
+	sWebsiteWorth = atoi(sInt);
+    // convert: string to int
+
+
+
+
     
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
     
-    
+    return NULL != curWebsite ? true : false;
 }
 
 static bool _deleteDataFromMenu(ListHead *head) {

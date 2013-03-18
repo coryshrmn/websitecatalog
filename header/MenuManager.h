@@ -9,6 +9,15 @@
  */
 // project.main.MenuManager.CONSTANT_DEFINED
 #define MSG_PROMPT_MENU_SELECTION               "Choose menu (1-9): "
+#define MSG_PROMPT_MENU_SELECTION               "Choose menu (1-9): "
+
+#define MSG_PROMPT_URL                          "Enter Url: "
+#define MSG_PROMPT_COMPANY                      "Enter Company Name: "             
+#define MSG_PROMPT_DAILY_PAGE_VIEW              "Enter Daily Page View: "
+#define MSG_PROMPT_RANK_TRAFFIC                 "Enter Traffic Rank: "
+#define MSG_PROMPT_MENU_BACK_LINK               "Enter Back Links: "
+#define MSG_PROMPT_MENU_WEBSITE_WORTH           "Enter Website Worth in USD: "
+
 #define ERR_INVALID_MENU                       ">>>ERROR : Invalid Menu. \
 Please try again.\n"
 

@@ -85,7 +85,7 @@ void* promptSingleField(input_type type, const char *msg) {
 
 
 /*
- *  _readOneLine
+ *  readOneLine
  *  reads one line from the input file stream.
  *
  *  PRE:    fPtr (file pointer; readonly; from input file stream)
@@ -96,7 +96,7 @@ void* promptSingleField(input_type type, const char *msg) {
  *  RETURN: sBuffer (buffer line read from the input file stream)
  *
  */
-char* _readOneLine(FILE* fPtr) {
+char* readOneLine(FILE* fPtr) {
 	int numCharRead = 0;                    // number of characters read
 	char usBuffer[MAX_LENGTH_INPUT];        // unsafe buffer  string
 	char *sBuffer;                           // safe buffer string
@@ -127,7 +127,7 @@ char* _readOneLine(FILE* fPtr) {
 }
 
 /*
- *  _readSingleField
+ *  readSingleField
  *  reads one field from the line per given input type. Then,
  *  returns the validated field
  *
@@ -141,7 +141,7 @@ char* _readOneLine(FILE* fPtr) {
  *  RETURN: usField (string type of parsed & validated field)
  *
  */
-void* _readSingleField(input_type type, char **line) {
+void* readSingleField(input_type type, char **line) {
     char *usField;          // unsafe field string (processed from `line`)
     char *loc;              // location of the delimiter
     int i;                  // iterating variable

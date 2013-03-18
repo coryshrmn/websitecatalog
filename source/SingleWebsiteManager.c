@@ -48,11 +48,11 @@ Website* getSingleWebsite(FILE* fPtr) {
     
 	// set: fields in `curWebsite`
 	sUrl = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sCompany = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
-	sDailyPageView = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
-	sRankTraffic = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
-	sBackLink = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
-	sWebsiteWorth = (char*) _readSingleField(INPUT_TYPE_URL, &usLine);
+	sCompany = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
+	sDailyPageView = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
+	sRankTraffic = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
+	sBackLink = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
+	sWebsiteWorth = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
 
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
     
