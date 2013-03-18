@@ -2,5 +2,6 @@
 name='websitecatalog'
 rel=`dirname $0`
 mkdir -p $rel/../out
-valgrind --leak-check=yes $rel/../bin/debug/$name 2>&1 | tee $rel/../out/debug.txt
+cd $rel/../bin/debug
+valgrind --leak-check=yes ./$name 2>&1 | tee $rel/../out/debug.txt
 

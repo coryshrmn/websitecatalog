@@ -2,5 +2,6 @@
 name='websitecatalog'
 rel=`dirname $0`
 mkdir -p $rel/../out
-./$rel/../bin/release/$name 2>&1 | tee $rel/../out/release.txt
+cd $rel/../bin/release
+./$name 2>&1 | tee $rel/../out/release.txt
 
