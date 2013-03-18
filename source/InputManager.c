@@ -27,6 +27,7 @@ input_value promptUserSelection(input_type type, const char *msg) {
 			exit(EXIT_ON_USER_REQUEST);
 		}
 	} while (INPUT_VALUE_INVALID == value);
+    
 	return value;
 }
 
@@ -46,7 +47,7 @@ input_value promptUserSelection(input_type type, const char *msg) {
  */
 void* promptSingleField(input_type type, const char *msg) {
     char *usField;          // unsafe field string (processed from `line`)
-    input_value validKey;    // input value validity
+    input_value key;    // input value validity
     
     MALLOC(usField);
     do {
@@ -57,8 +58,8 @@ void* promptSingleField(input_type type, const char *msg) {
 		usField[strlen(usField) - 1] = '\0';
         
         // validate: single field from the line
-        validKey = validateInput(type, usField);
-        switch (validKey) {
+        key = validateInput(type, usField);
+        switch (key) {
             case INPUT_VALUE_QUIT:
                 exitOnUserRequest(EXIT_ON_USER_REQUEST);
                 break;
@@ -66,13 +67,16 @@ void* promptSingleField(input_type type, const char *msg) {
                 // free: invalid field read
                 free(usField);
             case INPUT_VALUE_VALID:
+            case INPUT_VALUE_YES:
+            case INPUT_VALUE_NO:
+            case INPUT_VALUE_IGNORE:
+            case INPUT_VALUE_IGNORE_ALL:
                 break;
         }
-    } while (INPUT_VALUE_INVALID == validKey);
+    } while (INPUT_VALUE_INVALID == key);
     
     return usField;
 }
-
 
 /*
  *  readOneLine

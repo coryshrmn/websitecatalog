@@ -21,6 +21,7 @@ int main(int argc, const char * argv[]) {
     FILE *fPtr = NULL; // file pointer
     char *fname = NULL; // file name
     int nLines = 0; // number of input line
+    bool isDataModified = false;        // is data modified?
     
     
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>LOOP

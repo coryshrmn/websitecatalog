@@ -24,12 +24,12 @@
  */
 FILE* initFileStream(char **sFileName, int *nLines) {
 	FILE *fPtr = NULL; // file pointer
-    char *usFileName = NULL;    // unsafe file name
+	char *usFileName = NULL;    // unsafe file name
     
-    *sFileName = NULL;
-    sFileName = NULL;
+	*sFileName = NULL;
+	sFileName = NULL;
     
-    // open filestream either from backup file or original
+	// open filestream either from backup file or original
 	do {
 		// open: last session
 		usFileName = promptFileName(MSG_PROMPT_FILENAME);
@@ -50,19 +50,33 @@ FILE* initFileStream(char **sFileName, int *nLines) {
 		}
 	} while (!fPtr);
     
+	*sFileName = usFileName; /* file name is now safe */
     
-    *sFileName = usFileName; /* file name is now safe */
+	*nLines = _getNumberOfLines(fPtr);
     
-    *nLines = _getNumberOfLines(fPtr);
-    
-  return fPtr;
+	return fPtr;
 }
 
+// TODO:
+void writeToFile(ListHead *head, FILE* fPtr) {
+    
+}
+
+bool closeFile(FILE* fPtr, char *name) {
+    if ((fclose(fPtr))) { // close failed
+        return false;
+    };
+    if (name) {
+        free(name);
+    }
+
+    return true;
+}
 /*
  *  reopenCurrentFileStream
  *  handles file I/O for current session.
  *
- *  PRE:        name (file name)
+ *  PRE:        sFileName (file name)
  *              mode (file mode)
  *
  *  POST:
@@ -71,27 +85,18 @@ FILE* initFileStream(char **sFileName, int *nLines) {
  *                  || NULL if couldn't open the file)
  *
  */
-FILE* reopenCurrentFileStream(char* usFileName, const char* mode,
-                              FILE* fPtr) {
-    if (!fPtr) { /* reopens file with different mode */
-        
-        freopen(usFileName, mode, fPtr);
-        if (!fPtr) { /* if reopened successfully */
-            // printf(VERB_FILE_REOPEN(usFileName, mode));
-        } else {
-            printf(ERR_COULD_NOT_REOPEN_FILE(usFileName));
-            exit(EXIT_FILE_NOT_OPENED);
-        }
-    } else {
-        do {
-            fPtr = fopen(usFileName, mode);
-            if (!fPtr) {
-                printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
-                free(usFileName);
-            }
-        } while (!fPtr);
-    }
-    return fPtr;
+FILE* reopenCurrentFileStream(char* sFileName, const char* mode, FILE* fPtr) {
+	if (fPtr) { // close file if previous session opened opened?
+		
+	}
+    
+	// open file with given filemode
+	fPtr = fopen(sFileName, mode);
+	if (!fPtr) {
+		printf(ERR_COULD_NOT_REOPEN_FILE(sFileName, mode));
+	}
+    
+	return fPtr;
 }
 
 /*
@@ -109,16 +114,16 @@ FILE* reopenCurrentFileStream(char* usFileName, const char* mode,
  *
  */
 static FILE* _openLastSessionFileStream(char* usFileName) {
-    FILE* fPtr;             // file pointer for input stream
-    char *usBacFileName;    // unsafe backup filename
+	FILE* fPtr;             // file pointer for input stream
+	char *usBacFileName;    // unsafe backup filename
     
-    usBacFileName = _addFileExtension(usFileName, BACKUP_FILENAME_EXTENSION);
-    fPtr = fopen(usBacFileName, FILEMODE_READONLY);
-    if (NULL != fPtr) { /* if backup file opened */
-        printf(VERB_LAST_SESSION_FOUND);
-        fPtr = _promptDiscardLastSession(fPtr);
-    }
-    return fPtr;
+	usBacFileName = _addFileExtension(usFileName, BACKUP_FILENAME_EXTENSION);
+	fPtr = fopen(usBacFileName, FILEMODE_READONLY);
+	if (NULL != fPtr) { /* if backup file opened */
+		printf(VERB_LAST_SESSION_FOUND);
+		fPtr = _promptDiscardLastSession(fPtr);
+	}
+	return fPtr;
 }
 
 /*
@@ -135,12 +140,12 @@ static FILE* _openLastSessionFileStream(char* usFileName) {
  *
  */
 static FILE* _promptDiscardLastSession(FILE* fPtr) {
-    input_value valueKey = INPUT_VALUE_INVALID;
+	input_value valueKey = INPUT_VALUE_INVALID;
     
-    // prompt: do you wish to discard?
-    valueKey = promptUserSelection(INPUT_TYPE_FILENAME, MSG_PROMPT_FILENAME);
+	// prompt: do you wish to discard?
+	valueKey = promptUserSelection(INPUT_TYPE_FILENAME, MSG_PROMPT_FILENAME);
     
-    switch (valueKey) {
+	switch (valueKey) {
         case INPUT_VALUE_QUIT:
             exitOnUserRequest(EXIT_ON_USER_REQUEST);
             break;
@@ -157,9 +162,9 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
         default:
             return NULL;
             break;
-    }
+	}
     
-    return fPtr;
+	return fPtr;
 }
 
 /*
@@ -176,17 +181,16 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
  *
  */
 static char* _addFileExtension(char *name, const char *extension) {
-    char *sName;        // safe name
+	char *sName;        // safe name
     
-    MALLOC(sName);
-    // get: backup filename
-    strcpy(sName, name);
-    free(name); // free safe input file name
-    strcat(sName, BACKUP_FILENAME_EXTENSION);
+	MALLOC(sName);
+	// get: backup filename
+	strcpy(sName, name);
+	free(name); // free safe input file name
+	strcat(sName, BACKUP_FILENAME_EXTENSION);
     
-    return sName;
+	return sName;
 }
-
 
 /*
  *  _getNumberOfLines
@@ -211,5 +215,5 @@ static int _getNumberOfLines(FILE* fPtr) {
 		i++;
 	}
     
-    return i;
+	return i;
 }

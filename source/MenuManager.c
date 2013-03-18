@@ -4,15 +4,29 @@
  *
  * Developer:       Gon Kim (imgonkim@gmail.com)
  * Initial Commit:  03172013_032604
- * Last Updated:    03172013_055555
+ * Last Updated:    03182013_101952
  *
  */
 
 #include "../header/WebsiteCatalog.h"
 #include "../header/MenuManager.h"
 
-void MenuManager(ListHead *head, FILE* fPtr, char* sFileName) {
-    
+/*
+ *  MenuManager
+ *  drives menu options
+ *
+ *  PRE:        head (list head)
+ *              fPtr (file pointer)
+ *              sFileName (safe file name)
+ *
+ *  POST:       prompts user menu
+ *              && get menu option
+ *
+ *  RETURN:     none
+ *
+ */
+void MenuManager(ListHead *head, FILE* fPtr, char* sFileName,
+                 bool *isDataModified) {
 	menu_type menu = MENU_TYPE_INVALID; // init: menu type
     
 	menu = _getMenuSelection();
@@ -22,9 +36,11 @@ void MenuManager(ListHead *head, FILE* fPtr, char* sFileName) {
             break;
         case MENU_TYPE_ADD_DATA:
             _addDataFromMenu(head);
+            *isDataModified = true;
             break;
         case MENU_TYPE_DELETE_DATA:
             _deleteDataFromMenu(head);
+            *isDataModified = true;
             break;
         case MENU_TYPE_FIND_KEY:
             _findKeyFromMenu(head);
@@ -42,24 +58,20 @@ void MenuManager(ListHead *head, FILE* fPtr, char* sFileName) {
             _printEfficiencyFromMenu(head);
             break;
         case MENU_TYPE_SAVE:
-            _saveFromMenu(head, fPtr, sFileName);
+            fPtr = _saveFromMenu(head, fPtr, sFileName, *isDataModified);
+            if (!fPtr) {
+                printf(ERR_COULD_NOT_REOPEN_FILE(sFileName, FILEMODE_OVERWRITE));
+            }
             break;
         case MENU_TYPE_SAVE_AS:
-            _saveAsFromMenu(head);
+            _saveAsFromMenu(head, &fPtr, &sFileName);
             break;
-        case MENU_TYPE_SAVE_AND_QUIT:
-            fclose(fPtr);
-            if (_quitFromMenu(head)) {
+        case MENU_TYPE_QUIT:
+            if (_quitFromMenu(head, fPtr, sFileName, *isDataModified)) {
                 printf(VERB_QUIT_FROM_MENU);
-            } else {
-                printf(ERR_UNABLE_TO_QUIT_FROM_MENU);
-                exitOnUserRequest(EXIT_ON_USER_REQUEST);
             }
-            
             break;
 	}
-    
-    return;
 }
 
 /*
@@ -79,7 +91,7 @@ static menu_type _getMenuSelection(void) {
 	menu_type sMenuSelection; // safe menu selection
     
 	_printMenu();
-	sMenuSelection = _chooseMenu();
+	sMenuSelection = _promptMenu();
 	return sMenuSelection;
 }
 
@@ -98,7 +110,7 @@ static void _printMenu(void) {
 	int i;
     
 	printf(HR);
-	for (i = MENU_TYPE_ADD_DATA; i <= MENU_TYPE_SAVE_AND_QUIT; i++) {
+	for (i = MENU_TYPE_ADD_DATA; i <= MENU_TYPE_QUIT; i++) {
 		printf("%d.  %s\n", i, menu_msg[i]);
 	}
 	printf(HR);
@@ -107,7 +119,7 @@ static void _printMenu(void) {
 }
 
 /*
- *  _chooseMenu
+ *  _promptMenu
  *  prompts user to enter menu selection from stdio
  *  and returns validated menu type.
  *
@@ -118,12 +130,14 @@ static void _printMenu(void) {
  *  RETURN:     sInput (menu type; validated)
  *
  */
-static menu_type _chooseMenu(void) {
+static menu_type _promptMenu(void) {
 	int sInput; // safe user-input
     
 	do {
-		sInput = promptUserSelection(INPUT_TYPE_MENU, MSG_PROMPT_MENU_SELECTION);
+		sInput = promptUserSelection(INPUT_TYPE_MENU,
+                                     MSG_PROMPT_MENU_SELECTION);
 	} while (INPUT_VALUE_INVALID == sInput ? printf(ERR_INVALID_INPUT) : 0);
+    
 	return sInput;
 }
 
@@ -187,21 +201,30 @@ static bool _addDataFromMenu(ListHead *head) {
 	return listInsert(head, curWebsite);
 }
 static bool _deleteDataFromMenu(ListHead *head) {
-	char *url;
-	url = promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_URL);
-	printf(listRemove(head, url) ? "Delete\n" : "Not found\n");
-	free(url);
+	char *sUrl; // safe Url
+	bool isDeleted = false; // is Url successfully deleted from the list
+    
+	sUrl = promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_URL);
+	isDeleted = listRemove(head, sUrl);
+	isDeleted ?
+    printf(VERB_LIST_DELETE(sUrl)) : printf(WARN_KEY_NOT_FOUND(sUrl));
+	free(sUrl);
+    
+	return isDeleted;
 }
 
 static bool _findKeyFromMenu(ListHead *head) {
-	char *url;
-	Website *pFound;
-	url = promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_URL);
-	if (pFound = hashSearch(head, url))
+	char *sUrl; // safe url
+	Website *pFound = NULL;
+    
+	sUrl = promptSingleField(INPUT_TYPE_URL, MSG_PROMPT_URL);
+	if ((pFound = hashSearch(head, sUrl))) {
 		websitePrintFull(pFound);
-	else
-		printf("Not found\n");
-	free(url);
+	}
+	pFound ? printf(VERB_LIST_FOUND(sUrl)) : printf(WARN_KEY_NOT_FOUND(sUrl));
+	free(sUrl);
+    
+	return pFound ? true : false;
 }
 
 static void _printHashFromMenu(ListHead *head) {
@@ -216,51 +239,76 @@ static void _printIndentedTreeFromMenu(ListHead *head) {
 	bstPrintIndented(head);
 }
 
-
 static void _printEfficiencyFromMenu(ListHead *head) {
 	printEfficiency(head);
 }
 
-
-static FILE* _saveFromMenu(ListHead *head, FILE *fPtr, char* sFileName) {
-    input_value saveYesOrNo = INPUT_VALUE_INVALID; // save yes or no
-
-    saveYesOrNo = promptUserSelection(INPUT_TYPE_SAVE, MSG_PROMPT_TO_SAVE);
-    fPtr = reopenCurrentFileStream(sFileName, FILEMODE_OVERWRITE, fPtr);
+static FILE* _saveFromMenu(ListHead *head, FILE *fPtr, char* sFileName,
+                           bool isDataModified) {
+	input_value saveOrNot = INPUT_VALUE_INVALID; // save option toggle
     
+	if (isDataModified) {
+		saveOrNot = promptUserSelection(INPUT_TYPE_SAVE, MSG_PROMPT_TO_SAVE);
+		if (INPUT_VALUE_YES == saveOrNot) {
+			fPtr = reopenCurrentFileStream(sFileName, FILEMODE_OVERWRITE, fPtr);
+		}
+        
+		// TODO:
+		// write: data to file
+        
+	} else {
+		printf(VERB_DATA_NOT_MODIFIED(sFileName));
+	}
+    
+	return fPtr;
 }
 
-static FILE *_saveAsFromMenu(ListHead *head) {
-    FILE* fPtr = NULL; // file pointer
-    char *sFileName = NULL; // safe file name
+static void _saveAsFromMenu(ListHead *head, FILE** fPtr, char **sFileName) {
     
-    sFileName = promptFileName(MSG_PROMPT_TO_SAVE_AS);
-    fPtr = fopen(sFileName, FILEMODE_OVERWRITE);
-    if(!fPtr) {
-        printf(ERR_NOT_SAVED);
-        exit(EXIT_FILE_NOT_WRITTEN);
-    }
+	// fclose: if current session exists
+	if (*fPtr) {
+		if (!(closeFile(*fPtr, *sFileName))) { // if failed to close file
+			printf(ERR_COULD_NOT_CLOSE_FILE(*sFileName));
+			free(*sFileName);
+			exit(EXIT_FILE_NOT_CLOSED);
+		}
+	}
     
-    return fPtr;
+	// fopen: new session in overwrite mode
+	*sFileName = promptFileName(MSG_PROMPT_TO_SAVE_AS);
+	*fPtr = fopen(*sFileName, FILEMODE_OVERWRITE);
+	if (!(*fPtr)) {
+		printf(ERR_COULD_NOT_OPEN_FILE(*sFileName));
+		free(*sFileName);
+		exit(EXIT_FILE_NOT_WRITTEN);
+	}
+    
+	// TODO:
+	// write: data to file
 }
 
-
-static bool _quitFromMenu(ListHead *head) {
-    input_value saveYesOrNo = INPUT_VALUE_INVALID; // save yes or no
-    FILE *fPtr = NULL; // file pointer
-    char *sFileName = NULL; // safe file name
+static bool _quitFromMenu(ListHead *head, FILE* fPtr, char *sFileName,
+                          bool isDataModified) {
+	input_value quitOrNot = INPUT_VALUE_INVALID;  // save option toggle
     
-    // save session?
-    saveYesOrNo = promptUserSelection(INPUT_TYPE_SAVE, MSG_PROMPT_TO_SAVE);
-    if (INPUT_VALUE_YES == saveYesOrNo) {
-        sFileName = promptFileName(MSG_PROMPT_TO_SAVE_AS);
-        fPtr = fopen(sFileName, FILEMODE_OVERWRITE);
-        if (!fPtr) {
-            printf(ERR_NOT_SAVED);
-            exit(EXIT_FILE_NOT_WRITTEN);
-        }
-        fclose(fPtr);
-    }
-    
-    
+	// wish to quit program?
+	if (INPUT_VALUE_YES
+        == promptUserSelection(INPUT_VALUE_QUIT, MSG_PROMPT_QUIT)) {
+		quitOrNot = INPUT_VALUE_YES;
+        
+		if (isDataModified) {
+			// save session?
+			if (INPUT_VALUE_YES == promptUserSelection(INPUT_TYPE_SAVE_AS,
+                                       MSG_PROMPT_TO_SAVE_AS)) {
+                    _saveAsFromMenu(head, &fPtr, &sFileName);
+                }
+			// TODO:
+			// write: data to file
+		} else {
+			printf(VERB_DATA_NOT_MODIFIED(sFileName));
+		}
+	} else {
+		quitOrNot = INPUT_VALUE_NO;
+	}
+	return INPUT_VALUE_YES == quitOrNot ? true : false;
 }

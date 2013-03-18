@@ -426,8 +426,11 @@ void exitOnUserRequest (const int exitCode);
 
 
 
-FILE* reopenCurrentFileStream(char* usFileName, const char* mode,
+FILE* reopenCurrentFileStream(char* sFileName, const char* mode,
                               FILE* fPtr);
+
+bool closeFile(FILE* fPtr, char *name);
+FILE* openFile(char* name, const char* mode);
 
 void* promptSingleField(input_type type, const char *msg);
 char* readOneLine(FILE* fPtr);

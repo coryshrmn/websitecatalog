@@ -32,6 +32,7 @@ typedef enum {
     INPUT_TYPE_DISCARD,                 /* 3004 */
     INPUT_TYPE_SAVE,                    /* 3005 */
     INPUT_TYPE_SAVE_AS,                 /* 3006 */
+    INPUT_TYPE_QUIT,                    /* 3007 */
     
     INPUT_TYPE_MENU = 4001              /* 4001 */
 } input_type;
@@ -47,7 +48,7 @@ typedef enum {
     MENU_TYPE_PRINT_EFFICIENCY,         /* 7 */
     MENU_TYPE_SAVE,                     /* 8 */
     MENU_TYPE_SAVE_AS,                  /* 9 */
-    MENU_TYPE_SAVE_AND_QUIT             /*10 */
+    MENU_TYPE_QUIT             /*10 */
 } menu_type;
 
 // project.main.CONSTANT_DEFINED
@@ -72,6 +73,9 @@ typedef enum {
 #define EXIT_ON_USER_REQUEST                    105
 
 
+#define ERR_COULD_NOT_CLOSE_FILE(name)          ">>>ERROR : Could not close file \"%s\".\n", name
+#define ERR_COULD_NOT_OPEN_FILE(name)           ">>>ERROR : Could not open file, \"%s\".\n", name
+#define ERR_COULD_NOT_REOPEN_FILE(name, mode)   ">>>ERROR : Could not re-open file \"%s\" with \"%s\" mode.\n", name, mode
 #define ERR_NOT_ENOUGH_MEMORY                   ">>>ERROR : Not enough memory.\n"
 #define ERR_INVALID_INPUT                       ">>>ERROR : Invalid input. \
                                                 Please try again.\n"

@@ -99,7 +99,7 @@ input_value validateInput(input_type type, char* usInput) {
             
         
         
-                
+        // 'Y', 'y', 'N', 'n', 'Q', 'q'
         case INPUT_TYPE_RECONFIRM:
             isLengthValid = (INPUT_LENGTH_RECONFIRM == len);
             validate = _valYesOrNo;
@@ -112,6 +112,9 @@ input_value validateInput(input_type type, char* usInput) {
             isLengthValid = (INPUT_LENGTH_SAVE == len);
             validate = _valYesOrNo;
             break;
+        case INPUT_TYPE_QUIT:
+            isLengthValid = (INPUT_LENGTH_QUIT == len);
+            validate = _valYesOrNo;
 
             
             
@@ -295,7 +298,7 @@ static input_value _valMenuOption(char *usInput, const int len) {
         case MENU_TYPE_PRINT_INDENTED_TREE:
         case MENU_TYPE_SAVE:
         case MENU_TYPE_PRINT_EFFICIENCY:
-        case MENU_TYPE_SAVE_AND_QUIT:
+        case MENU_TYPE_QUIT:
             return INPUT_VALUE_VALID;
             break;
         default:
