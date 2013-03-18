@@ -411,7 +411,7 @@ Website* getSingleWebsite(FILE* fPtr);
  *
  * Return: --
  ******************************************************************************/
-input_value getUserSelection(input_type type, const char *msg);
+input_value promptUserSelection(input_type type, const char *msg);
 
 /*******************************************************************************
  * Exits program with the given user request.
@@ -426,17 +426,10 @@ void exitOnUserRequest (const int exitCode);
 
 
 
+FILE* reopenCurrentFileStream(char* usFileName, const char* mode,
+                              FILE* fPtr);
 
-
-void* promptSingleField(input_type type, const char *msg);
-
-
-
-
-
-
-input_value getUserSelection(input_type type, const char *msg);
 void* promptSingleField(input_type type, const char *msg);
 char* readOneLine(FILE* fPtr);
 void* readSingleField(input_type type, char **line);
-char* retrieveFileName(const char *msg);
+char* promptFileName(const char *msg);

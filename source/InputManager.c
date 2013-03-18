@@ -10,17 +10,7 @@
 #include "InputManager.h"
 
 
-/*******************************************************************************
- * Copies a string as lower case.
- *
- *    Pre: source is the original string
- *         dest is long enough to hold the original string
- *
- *   Post: dest is the lowercase version of source, with '\0' terminator.
- *
- * Return: --
- ******************************************************************************/
-input_value getUserSelection(input_type type, const char *msg) {
+input_value promptUserSelection(input_type type, const char *msg) {
 	char usInput[MAX_LENGTH_INPUT];
 	input_value value = INPUT_VALUE_INVALID;
     
@@ -168,8 +158,8 @@ void* readSingleField(input_type type, char **line) {
 }
 
 /*
- *  retrieveFileName
- *  _retrieveFileName gets file name from user's stdio
+ *  promptFileName
+ *  prompts file name from user's stdio
  *
  *  PRE:    msg (prompt message at the time of retreiving user file name)
  *
@@ -179,7 +169,7 @@ void* readSingleField(input_type type, char **line) {
  *  RETURN: sInput (validated user-entered filename)
  *
  */
-char* retrieveFileName(const char *msg) {
+char* promptFileName(const char *msg) {
     char usInput[MAX_LENGTH_INPUT];                 // unsafe user input string
     input_value valueKey = INPUT_VALUE_INVALID;     // input value key
     const input_type type = INPUT_TYPE_FILENAME;    // input type

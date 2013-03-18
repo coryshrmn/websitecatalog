@@ -25,7 +25,6 @@
 #define BACKUP_FILENAME_EXTENSION               ".bac"
 
 // project.main.FileManager.PRIVATE_FUNCTION_DECLARATIONS
-static FILE* _reopenLastSessionFileStream(const char* usFileName);
 static FILE* _openLastSessionFileStream(char* usFileName);
 static char* _addFileExtension(char *name, const char *extension);
 static FILE* _promptDiscardLastSession (FILE* fPtr);

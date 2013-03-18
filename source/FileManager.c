@@ -32,7 +32,7 @@ FILE* initFileStream(char **sFileName, int *nLines) {
     // open filestream either from backup file or original
 	do {
 		// open: last session
-		usFileName = _retrieveFileName(MSG_PROMPT_FILENAME);
+		usFileName = promptFileName(MSG_PROMPT_FILENAME);
 		fPtr = _openLastSessionFileStream(usFileName);
         
 		if (!fPtr) { /* error in opening backup file */
@@ -59,7 +59,7 @@ FILE* initFileStream(char **sFileName, int *nLines) {
 }
 
 /*
- *  _reopenCurrentFileStream
+ *  reopenCurrentFileStream
  *  handles file I/O for current session.
  *
  *  PRE:        name (file name)
@@ -71,20 +71,18 @@ FILE* initFileStream(char **sFileName, int *nLines) {
  *                  || NULL if couldn't open the file)
  *
  */
-static FILE* _reopenCurrentFileStream(char* usFileName, const char* mode,
-                                      FILE* fPtr) {
+FILE* reopenCurrentFileStream(char* usFileName, const char* mode,
+                              FILE* fPtr) {
     if (!fPtr) { /* reopens file with different mode */
         
         freopen(usFileName, mode, fPtr);
         if (!fPtr) { /* if reopened successfully */
-            printf(VERB_FILE_REOPEN(usFileName, mode));
+            // printf(VERB_FILE_REOPEN(usFileName, mode));
         } else {
             printf(ERR_COULD_NOT_REOPEN_FILE(usFileName));
             exit(EXIT_FILE_NOT_OPENED);
         }
-        
     } else {
-        
         do {
             fPtr = fopen(usFileName, mode);
             if (!fPtr) {
@@ -140,7 +138,7 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
     input_value valueKey = INPUT_VALUE_INVALID;
     
     // prompt: do you wish to discard?
-    valueKey = getUserSelection(INPUT_TYPE_FILENAME, MSG_PROMPT_FILENAME);
+    valueKey = promptUserSelection(INPUT_TYPE_FILENAME, MSG_PROMPT_FILENAME);
     
     switch (valueKey) {
         case INPUT_VALUE_QUIT:

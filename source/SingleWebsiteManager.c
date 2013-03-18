@@ -38,7 +38,7 @@ Website* getSingleWebsite(FILE* fPtr) {
 	char *usLine = NULL;
 	char *sLine = NULL;              // safe single line read
     
-	usLine = _readOneLine(fPtr);
+	usLine = readOneLine(fPtr);
     
 	if (NULL == usLine) { /* reached: EOF of input file */
 		return NULL;

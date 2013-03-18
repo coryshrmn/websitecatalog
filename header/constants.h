@@ -30,6 +30,8 @@ typedef enum {
 	INPUT_TYPE_EXIT_ON_INVALID_FIELD,   /* 3002 */
 	INPUT_TYPE_RECONFIRM,               /* 3003 */
     INPUT_TYPE_DISCARD,                 /* 3004 */
+    INPUT_TYPE_SAVE,                    /* 3005 */
+    INPUT_TYPE_SAVE_AS,                 /* 3006 */
     
     INPUT_TYPE_MENU = 4001              /* 4001 */
 } input_type;
@@ -42,14 +44,16 @@ typedef enum {
     MENU_TYPE_PRINT_HASH,               /* 4 */
     MENU_TYPE_PRINT_SORTED_SEQUENCE,    /* 5 */
     MENU_TYPE_PRINT_INDENTED_TREE,      /* 6 */
-    MENU_TYPE_SAVE,                     /* 7 */
-    MENU_TYPE_PRINT_EFFICIENCY,         /* 8 */
-    MENU_TYPE_SAVE_AND_QUIT             /* 9 */
+    MENU_TYPE_PRINT_EFFICIENCY,         /* 7 */
+    MENU_TYPE_SAVE,                     /* 8 */
+    MENU_TYPE_SAVE_AS,                  /* 9 */
+    MENU_TYPE_SAVE_AND_QUIT             /*10 */
 } menu_type;
 
 // project.main.CONSTANT_DEFINED
 #define FILEMODE_READONLY                       "r"
 #define FILEMODE_WRITE                          "w"
+#define FILEMODE_OVERWRITE                      "w+"
 #define HR  "================================================\n"
 #define BR                                      "\n"
 #define MSG_EXIT_SELECTION                      "Enter \"I\" to ignore once, \
@@ -64,15 +68,14 @@ typedef enum {
 #define EXIT_NOT_ENOUGH_MEMORY                  101
 #define EXIT_FILE_NOT_OPENED                    102
 #define EXIT_FILE_NOT_CLOSED                    103
-#define EXIT_ON_USER_REQUEST                    104
+#define EXIT_FILE_NOT_WRITTEN                   104
+#define EXIT_ON_USER_REQUEST                    105
+
 
 #define ERR_NOT_ENOUGH_MEMORY                   ">>>ERROR : Not enough memory.\n"
-
 #define ERR_INVALID_INPUT                       ">>>ERROR : Invalid input. \
                                                 Please try again.\n"
 #define WARN_ID_NOT_FOUND(type)                 ">>WARNING: %s is not found.\n", type
-
-
 
 #define MSG_PROMPT_RECONFIRM                    "Are you sure?\n"
 

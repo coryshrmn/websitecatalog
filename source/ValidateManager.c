@@ -52,24 +52,43 @@ input_value validateInput(input_type type, char* usInput) {
             validate = _valUrl;
             break;
             
+        
+        
+        
         case INPUT_TYPE_COMPANY:
             isLengthValid = (INPUT_LENGTH_COMPANY >= len);
             validate = _valCompany;
             break;
             
+        
+        
+        
         case INPUT_TYPE_DAILY_PAGE_VIEW:
             isLengthValid = (INPUT_LENGTH_DAILY_PAGE_VIEW >= len);
+            validate = _valLongLongInt;
+            break;
         case INPUT_TYPE_RANK_TRAFFIC:
             isLengthValid = (INPUT_LENGTH_RANK_TRAFFIC >= len);
+            validate = _valLongLongInt;
+            break;
         case INPUT_TYPE_BACK_LINK:
             isLengthValid = (INPUT_LENGTH_BACK_LINK >= len);
+            validate = _valLongLongInt;
+            break;
         case INPUT_TYPE_WEBSITE_WORTH:
             isLengthValid = (INPUT_LENGTH_WEBSITE_WORTH >= len);
             validate = _valLongLongInt;
             break;
             
+        
+        
+        
         case INPUT_TYPE_FILENAME:
             isLengthValid = (INPUT_LENGTH_FILENAME >= len);
+            validate = _valFileName;
+            break;
+        case INPUT_TYPE_SAVE_AS:
+            isLengthValid = (INPUT_LENGTH_SAVE_AS >= len);
             validate = _valFileName;
             break;
             
@@ -78,11 +97,26 @@ input_value validateInput(input_type type, char* usInput) {
             validate = _valExitOnInvalidField;
             break;
             
+        
+        
+                
         case INPUT_TYPE_RECONFIRM:
             isLengthValid = (INPUT_LENGTH_RECONFIRM == len);
+            validate = _valYesOrNo;
+            break;
         case INPUT_TYPE_DISCARD:
             isLengthValid = (INPUT_LENGTH_DISCARD == len);
             validate = _valYesOrNo;
+            break;
+        case INPUT_TYPE_SAVE:
+            isLengthValid = (INPUT_LENGTH_SAVE == len);
+            validate = _valYesOrNo;
+            break;
+
+            
+            
+            
+            
         case INPUT_TYPE_MENU:
             isLengthValid = (INPUT_LENGTH_MENU == len);
             validate = _valMenuOption;

@@ -9,7 +9,8 @@
  */
 // project.main.MenuManager.CONSTANT_DEFINED
 #define MSG_PROMPT_MENU_SELECTION               "Choose menu (1-9): "
-#define MSG_PROMPT_MENU_SELECTION               "Choose menu (1-9): "
+#define MSG_PROMPT_TO_SAVE                      "Save current session to same file (Y/N)?: "
+#define MSG_PROMPT_TO_SAVE_AS                   "Enter file name to save current session: "
 
 #define MSG_PROMPT_URL                          "Enter Url: "
 #define MSG_PROMPT_COMPANY                      "Enter Company Name: "             
@@ -18,8 +19,15 @@
 #define MSG_PROMPT_MENU_BACK_LINK               "Enter Back Links: "
 #define MSG_PROMPT_MENU_WEBSITE_WORTH           "Enter Website Worth in USD: "
 
-#define ERR_INVALID_MENU                       ">>>ERROR : Invalid Menu. \
+
+
+#define VERB_QUIT_FROM_MENU                     ">VERBOSE:  Exiting Program...\n"
+
+
+#define ERR_INVALID_MENU                        ">>>ERROR : Invalid Menu.\
 Please try again.\n"
+#define ERR_NOT_SAVED                        ">>>ERROR : Unable to save current session.\n"
+#define ERR_UNABLE_TO_QUIT_FROM_MENU         ">>>ERROR : Unable to quit program from menu.\n"
 
 // project.main.MenuManager.CONSTANT_STRING
 const char* menu_msg[] = { /* captions for each menu option */
@@ -30,9 +38,10 @@ const char* menu_msg[] = { /* captions for each menu option */
     /* 4 */"Print: List of Websites in hash table sequence",
     /* 5 */"Print: List of Websites in key sequence (sorted)",
     /* 6 */"Print: List of Websites in indented tree",
-    /* 7 */"Save: Modified Website info to a file",
-    /* 8 */"Print: Efficiency statistics",
-    /* 9 */"Save and Quit Program"
+    /* 7 */"Print: Efficiency statistics",
+    /* 8 */"Save",
+    /* 8 */"Save As...",
+    /* 9 */"Quit"
 };
 
 // project.main.MenuManager.PRIVATE_FUNCTION_DELCARATIONS
@@ -55,10 +64,11 @@ static menu_type _getMenuSelection(void);
 static bool _addDataFromMenu(ListHead *head);
 static bool _deleteDataFromMenu(ListHead *head);
 static bool _findKeyFromMenu(ListHead *head);
-static bool _printHashFromMenu(ListHead *head);
-static bool _printSortedSequenceFromMenu(ListHead *head);
-static bool _printIndentedTreeFromMenu(ListHead *head);
-static bool _saveSessionFromMenu(ListHead *head, FILE *fPtr);
-static bool _printEfficiencyFromMenu(ListHead *head);
-static bool _saveAndQuitFromMenu(FILE *fPtr);
+static void _printHashFromMenu(ListHead *head);
+static void _printSortedSequenceFromMenu(ListHead *head);
+static void _printIndentedTreeFromMenu(ListHead *head);
+static void _printEfficiencyFromMenu(ListHead *head);
+static FILE* _saveFromMenu(ListHead *head, FILE *fPtr, char* sFileName);
+static FILE *_saveAsFromMenu(ListHead *head);
+static bool _quitFromMenu(ListHead *head);
 
