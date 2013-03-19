@@ -38,35 +38,61 @@ Website* getSingleWebsite(FILE* fPtr) {
 	char *usLine = NULL;
 	char *sLine = NULL;              // safe single line read
     char *sInput = NULL;
+    char *sField = NULL;
     
 	usLine = readOneLine(fPtr);
     
 	if (NULL == usLine) { /* reached: EOF of input file */
 		return NULL;
 	} else {
-		sLine = usLine;
+		sLine = usLine; // save sLine pointer
 	}
     
+    
+    
+    
+    
+    
+    
+
+    
+    
 	// set: fields in `curWebsite`
-	sUrl = readSingleField(INPUT_TYPE_URL, &usLine);
-	sCompany = readSingleField(INPUT_TYPE_URL, &usLine);
-	
-    sInput = readSingleField(INPUT_TYPE_URL, &usLine);
-    sDailyPageView = atoi(sInput);
-	free(sInput);
-  
-	sInput = readSingleField(INPUT_TYPE_URL, &usLine);
-    sDailyPageView = atoi(sInput);
-	free(sInput);
+	sUrl = readFirstField(INPUT_TYPE_URL, &usLine);
+    D("_%s_: sUrl\n", sUrl);
+
     
-    sInput = readSingleField(INPUT_TYPE_URL, &usLine);
+    sCompany = readSingleField(INPUT_TYPE_COMPANY);
+    D("_%s_: sCompany\n", sCompany);
+    
+
+    sInput = readSingleField(INPUT_TYPE_DAILY_PAGE_VIEW);
+    sDailyPageView = atoi(sInput);
+	D("_%d_: sDailyPageView\n", sDailyPageView);
+
+
+	sInput = readSingleField(INPUT_TYPE_RANK_TRAFFIC);
+    sRankTraffic = atoi(sInput);
+	D("_%d_: sRankTraffic\n", sRankTraffic);
+
+
+    sInput = readSingleField(INPUT_TYPE_BACK_LINK);
 	sBackLink = atoi(sInput);
-	free(sInput);
-	
-    sInput = readSingleField(INPUT_TYPE_URL, &usLine);
+   	D("_%d_: sBackLink\n", sBackLink);
+
+
+    sInput = readSingleField(INPUT_TYPE_WEBSITE_WORTH);
     sWebsiteWorth = atoi(sInput);
-	free(sInput);
+   	D("_%d_: sWebsiteWorth\n", sWebsiteWorth);
+
+    DD("_%s_: sUrl\n", sUrl);
+    DD("_%s_: sCompany\n", sCompany);
+	DD("_%d_: sDailyPageView\n", sDailyPageView);
+	DD("_%d_: sRankTraffic\n", sRankTraffic);
+   	DD("_%d_: sBackLink\n", sBackLink);
+   	DD("_%d_: sWebsiteWorth\n", sWebsiteWorth);
     
+    printf(BR);
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
     
     //	while (bContinue && NULL != sUrl && NULL != sCompany

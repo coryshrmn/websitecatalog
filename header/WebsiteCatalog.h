@@ -440,6 +440,8 @@ FILE* openFile(char* name, const char* mode);
 
 char* promptSingleField(input_type type, const char *msg);
 char* readOneLine(FILE* fPtr);
-char* readSingleField(input_type type, char **line);
+char* readFirstField(input_type type, char **line);
+char* readSingleField(input_type type);
+char* readFirstField(input_type type, char **line);
 char* promptFileName(const char *msg);
 void MenuManager(ListHead *head, FILE* fPtr, char* sFileName, bool *isDataModfieid);

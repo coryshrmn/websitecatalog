@@ -141,32 +141,50 @@ char* readOneLine(FILE* fPtr) {
  *  RETURN: usField (string type of parsed & validated field)
  *
  */
-char* readSingleField(input_type type, char **line) {
-    char *usField;          // unsafe field string (processed from `line`)
-    char *loc;              // location of the delimiter
-    int i;                  // iterating variable
-    
-    MALLOC(usField);
-    // locate: delimiter
-    loc = strchr(*line, DELIMITER_SEMICOLON);
-    
-    // update the location of the stirng pointer
-    for(i = 0; i < loc - *line; i++) {
-        usField[i] = (*line)[i];
-    }
-    
-    *line = loc + 1;
+char* readSingleField(input_type type) {
+    char *sField = NULL;
+
+    sField = strtok(NULL, ";");
     
     // validate: single field from the line
-    if (INPUT_VALUE_VALID == validateInput(type, usField)) {
-        return usField;
+    if (INPUT_VALUE_VALID == validateInput(type, sField)) {
+        return sField;
     } else {
         // free: invalid field read
-        free(usField);
+//        free(sField);
         return NULL;
     }
 }
-
+/*
+ *  readFirstField
+ *  reads first field from the line per given input type. Then,
+ *  returns the validated field
+ *
+ *  PRE:    type (input type)
+ *          line (buffer input line)
+ *
+ *  POST:   locate one delimiter;
+ *          parses one field from the buffer line
+ *          calls ValidateManager for validation purposes
+ *
+ *  RETURN: usField (string type of parsed & validated field)
+ *
+ */
+char* readFirstField(input_type type, char **line) {
+    char usLine[MAX_LENGTH_INPUT];          // unsafe field string (processed from `line`)
+    char *sField = NULL;
+    
+    sField = strtok(*line, ";");
+    
+    // validate: single field from the line
+    if (INPUT_VALUE_VALID == validateInput(type, sField)) {
+        return sField;
+    } else {
+        // free: invalid field read
+//        free(sField);
+        return NULL;
+    }
+}
 /*
  *  promptFileName
  *  prompts file name from user's stdio

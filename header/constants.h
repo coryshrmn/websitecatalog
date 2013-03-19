@@ -94,3 +94,6 @@ printf(ERR_NOT_ENOUGH_MEMORY);\
 exit(EXIT_NOT_ENOUGH_MEMORY);\
 }
 
+
+#define D(str, val) if (false) printf(str, val)
+#define DD(str, val) if (true) printf(str, val)
