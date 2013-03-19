@@ -54,7 +54,7 @@ FILE* initFileStream(char **sFileName, int *nLines) {
 	*sFileName = usFileName; /* file name is now safe */
     
 	*nLines = _getNumberOfLines(fPtr);
-    
+    rewind(fPtr);
 	return fPtr;
 }
 
