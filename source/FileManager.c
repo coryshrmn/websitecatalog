@@ -209,7 +209,6 @@ static char* _addFileExtension(char *name, const char *extension) {
 static int _getNumberOfLines(FILE* fPtr) {
 	int i = 0;
     
-<<<<<<< Updated upstream
 	printf(VERB_GET_NUMBER_OF_LINES);
     
 	while (EOF != fgetc(fPtr)) {
@@ -220,12 +219,3 @@ static int _getNumberOfLines(FILE* fPtr) {
     
 	return i;
 }
-=======
-    return sInput;
-}
-
-bool saveQueue(const char *fname, QUEUE *que) { 
-
-}
-
->>>>>>> Stashed changes
