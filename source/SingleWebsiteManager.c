@@ -47,6 +47,9 @@ Website* getSingleWebsite(FILE* fPtr) {
 	}
     
 	// set: fields in `curWebsite`
+    //TODO -read the fields correctly
+    //     -do not create memory leaks
+    //     -pass ints into websiteCreate for the int fields.
 	sUrl = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
 	sCompany = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
 	sDailyPageView = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
