@@ -50,7 +50,7 @@ bool listInsert(ListHead *pList, Website *pWebsite)
 bool listRemove(ListHead *pList, const char *url)
 {
     Website *pWebsite;
-    pWebsite = hashSearch(pList, url);
+    pWebsite = hashRemove(pList, url);
     if(pWebsite)
     {
         bstRemove(pList, url);
