@@ -27,7 +27,8 @@ FILE* initFileStream(char **sFileName, int *nLines) {
 	char *usFileName = NULL;    // unsafe file name
     
 	*sFileName = NULL;
-	sFileName = NULL;
+    //if you do this, you can no longer dereference sFileName
+	//sFileName = NULL;
     
 	// open filestream either from backup file or original
 	do {
@@ -183,10 +184,11 @@ static FILE* _promptDiscardLastSession(FILE* fPtr) {
 static char* _addFileExtension(char *name, const char *extension) {
 	char *sName;        // safe name
     
-	MALLOC(sName);
+    sName = malloc(strlen(name) + strlen(extension) + 1);
 	// get: backup filename
 	strcpy(sName, name);
-	free(name); // free safe input file name
+    //don't free, it is used later.
+	//free(name); // free safe input file name
 	strcat(sName, BACKUP_FILENAME_EXTENSION);
     
 	return sName;

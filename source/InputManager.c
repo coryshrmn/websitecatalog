@@ -16,18 +16,23 @@ input_value promptUserSelection(input_type type, const char *msg) {
     
 	do {
 		printf("%s", msg);
+        fflush(stdout);
 		fgets(usInput, MAX_LENGTH_INPUT, stdin);
         
 		// trim: '\n'
 		usInput[strlen(usInput) - 1] = '\0';
         
 		// validate: user input
+        //value becomes true or false... the original input is lost.
+        //TODO figure out what you meant to do here.
 		value = validateInput(type, usInput);
 		if (INPUT_VALUE_QUIT == value) {
 			exit(EXIT_ON_USER_REQUEST);
 		}
 	} while (INPUT_VALUE_INVALID == value);
     
+    //always returns INPUT_VALUE_VALID
+    //not useful!
 	return value;
 }
 
@@ -52,6 +57,7 @@ void* promptSingleField(input_type type, const char *msg) {
     MALLOC(usField);
     do {
         printf("%s", msg);
+        fflush(stdout);
         fgets(usField, MAX_LENGTH_INPUT, stdin);
         
 		// trim: '\n'
@@ -182,6 +188,7 @@ char* promptFileName(const char *msg) {
     MALLOC(sInput);
     do {
         printf("%s", msg); // prompt message
+        fflush(stdout);
         fgets(usInput, MAX_LENGTH_INPUT, stdin);
         
         // trim: '\n'
@@ -190,6 +197,7 @@ char* promptFileName(const char *msg) {
         // validate: user input
         valueKey = validateInput(type, usInput);
         if (INPUT_VALUE_VALID == valueKey) {
+            sInput = malloc(strlen(usInput) + 1);
             strcpy(sInput, usInput);
             return sInput;
         } else if (INPUT_VALUE_QUIT == valueKey) {
