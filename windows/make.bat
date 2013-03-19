@@ -1,6 +1,6 @@
 @echo off
 
-set SOURCE=..\source\WebsiteCatalog.c ..\source\BstManager.c ..\source\HashManager.c ..\source\InsertManager.c ..\source\queueADT.c ..\source\Utility.c ..\source\WebsiteManager.c
+set SOURCE=..\source\BstManager.c ..\source\FileManager.c ..\source\HashManager.c ..\source\InsertManager.c ..\source\MenuManager.c ..\source\Utility.c ..\source\WebsiteCatalog.c ..\source\WebsiteManager.c ..\source\queueADT.c
 
 set VCBIN=%VS110COMNTOOLS%..\..\VC\bin
 
