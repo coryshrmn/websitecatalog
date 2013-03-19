@@ -48,7 +48,6 @@ Website* getSingleWebsite(FILE* fPtr) {
 	}
     
 	// set: fields in `curWebsite`
-<<<<<<< HEAD
 	sUrl = readSingleField(INPUT_TYPE_URL, &usLine);
 	sCompany = readSingleField(INPUT_TYPE_URL, &usLine);
 	
@@ -68,18 +67,6 @@ Website* getSingleWebsite(FILE* fPtr) {
     sWebsiteWorth = atoi(sInput);
 	free(sInput);
     
-=======
-    //TODO -read the fields correctly
-    //     -do not create memory leaks
-    //     -pass ints into websiteCreate for the int fields.
-	sUrl = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sCompany = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sDailyPageView = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sRankTraffic = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sBackLink = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sWebsiteWorth = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-
->>>>>>> bec9cffd7bdd2d9480d36ef2def067325a7dc40c
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
     
     //	while (bContinue && NULL != sUrl && NULL != sCompany

@@ -426,21 +426,11 @@ void exitOnUserRequest (const int exitCode);
 
 
 // main drivers
-<<<<<<< HEAD
 void InitDriver (ListHead *head, FILE** fPtr, char **fname);
 void BuildDriver (ListHead *head, FILE* fPtr, const char *fname);
 void PrintDriver (ListHead head);
 void MenuDriver (ListHead *head, FILE** fPtr, char **fname);
 void DestroyDriver (ListHead *head);
-=======
-void InitDriver (ListHead *pHead, FILE** fPtr, char **fname);
-void BuildDriver (ListHead *pHead, FILE* fPtr, const char *fname);
-void PrintDriver (ListHead *pHead);
-void MenuDriver (ListHead *pHead, FILE** fPtr, char **fname);
-void DestroyDriver (ListHead *pHead);
-
->>>>>>> bec9cffd7bdd2d9480d36ef2def067325a7dc40c
-
 
 FILE* reopenCurrentFileStream(char* sFileName, const char* mode,
                               FILE* fPtr);
