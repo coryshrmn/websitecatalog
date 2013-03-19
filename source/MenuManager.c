@@ -10,7 +10,8 @@
 #include <stdio.h>
 
 
-const char *MENU_MESSAGE = "1 - Insert a Website\n"
+const char *MENU_MESSAGE = "\n"
+                           "1 - Insert a Website\n"
                            "2 - Delete a Website by URL\n"
                            "3 - Search for a Website by URL\n"
                            "4 - Print hash buckets\n"
@@ -18,7 +19,8 @@ const char *MENU_MESSAGE = "1 - Insert a Website\n"
                            "6 - Print BST indented\n"
                            "7 - Print hash efficiency\n"
                            "8 - Save as...\n"
-                           "9 - Quit\n";
+                           "9 - Quit\n"
+                           ">";
 
 
 /*******************************************************************************
