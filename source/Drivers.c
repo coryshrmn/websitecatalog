@@ -7,47 +7,47 @@
  */
 #include "../header/WebsiteCatalog.h"
 
-void InitDriver (ListHead **head, FILE** fPtr, char **fname) {
+void InitDriver (ListHead *pHead, FILE** fPtr, char **fname) {
     int nLines = 0;
 
     *fPtr = initFileStream(fname, &nLines);
     if (*fPtr) {
-        hashCreate(*head, nLines);
-        bstCreate(*head);
+        hashCreate(pHead, nLines);
+        bstCreate(pHead);
     }
 }
 
-void BuildDriver (ListHead **head, FILE* fPtr, const char *fname) {
+void BuildDriver (ListHead *pHead, FILE* fPtr, const char *fname) {
     Website *curWebsite = NULL;
     bool success = false;
     
     do {
         curWebsite = getSingleWebsite(fPtr);
-        success = listInsert(*head, curWebsite);
-    } while (success);
+        success = listInsert(pHead, curWebsite);
+    } while (!success);
 }
 
-void PrintDriver (ListHead *head) {
+void PrintDriver (ListHead *pHead) {
     printf("hashPrintList(&head)\n");
-    hashPrintList(head);
+    hashPrintList(pHead);
 
     printf("\n\nbstPrintIndented(&head)\n");
-    bstPrintIndented(head);
+    bstPrintIndented(pHead);
 
     printf("\n\nbstPrintInorder(&head)\n");
-    bstPrintInorder(head);
+    bstPrintInorder(pHead);
 }
 
-void MenuDriver (ListHead **head, FILE** fPtr, char **fname) {
+void MenuDriver (ListHead *pHead, FILE** fPtr, char **fname) {
     bool isDataModified = false;
     
-    MenuManager(*head, *fPtr, *fname, &isDataModified);
+    MenuManager(pHead, *fPtr, *fname, &isDataModified);
 }
 
 
-void DestroyDriver (ListHead **head) {
-    hashFree(*head);
-    bstFreeAll(*head);
+void DestroyDriver (ListHead *pHead) {
+    hashFree(pHead);
+    bstFreeAll(pHead);
 }
 
 
