@@ -157,18 +157,20 @@ static Website *_readWebsite(char *line)
  *         QUEUE is the queue of Websites
  *
  *   Post: The file has been written with every Website in the QUEUE's order.
+ *         The QUEUE is destroyed.
  *
  * Return: true if the file was written, false if it could not be written
  ******************************************************************************/
 bool writeFile(const char *fname, QUEUE *pQueue)
 {
+    Website *pWebsite;
     FILE *fout = fopen(fname, "w");
     if(!fout)
     {
+        destroyQueue(pQueue);
         return false;
     }
 
-    Website *pWebsite;
     while(dequeue(pQueue, (void**)&pWebsite))
     {
        printf("%s;%s;%d;%d;%d;%d;\n", pWebsite->url,
@@ -179,6 +181,7 @@ bool writeFile(const char *fname, QUEUE *pQueue)
                                        pWebsite->websiteWorthThousands);
     }
     fclose(fout);
+    destroyQueue(pQueue);
     return true;
 }
 
