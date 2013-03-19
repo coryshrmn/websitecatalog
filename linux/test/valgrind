@@ -3,5 +3,5 @@ name='websitecatalog'
 rel=`dirname $0`
 mkdir -p $rel/../out
 cd $rel/../bin/debug
-valgrind --leak-check=yes ./$name 2>&1 | tee $rel/../out/valgrind.txt
+valgrind --leak-check=full --show-reachable=yes ./$name 2>&1 | tee $rel/../out/valgrind.txt
 

@@ -10,25 +10,48 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 /*******************************************************************************
- * Validates the system is not out of memory.
- * If alloc is NULL, exit(102) is called.
+ * Trims the end of a c-string by padding it with '\0'.
  *
- *    Pre: alloc is the memory for which allocation was attempted.
+ *    Pre: string is a valid c-string
  *
- *   Post: alloc is not NULL, or exit(102) is called.
+ *   Post: all non graphical characters at the end of the string are replaced
+ *         with '\0'
  *
  * Return: --
  ******************************************************************************/
-void *validate(void *alloc)
+void trimEnd(char *string)
 {
-    if(!alloc)
+    char *c;
+    for(c = string + strlen(string); c != string; --c)
     {
-        printf("Out of memory! Quitting...");
+        if(isgraph(*c))
+            return;
+        else
+            *c = '\0';
+    }
+}
+
+/*******************************************************************************
+ * Validates the pointer is not NULL.
+ * If pointer is NULL, exit(EXIT_FAILURE) is called.
+ *
+ *    Pre: pointer is the pointer to test
+ *
+ *   Post: pointer is not NULL, or exit(EXIT_FAILURE) is called.
+ *
+ * Return: pointer
+ ******************************************************************************/
+void *validate(void *pointer)
+{
+    if(!pointer)
+    {
+        printf("Fatal error! Quitting...");
         exit(EXIT_FAILURE);
     }
-    return alloc;
+    return pointer;
 }
 
 /*******************************************************************************

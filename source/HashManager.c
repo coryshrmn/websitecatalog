@@ -9,6 +9,7 @@
 #include "WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 static const int DEFAULT_BUCKET_SIZE = 3;
 

@@ -6,12 +6,7 @@
   * Gon Kim
   * Chris Huang
   */
-#include <stdio.h>
-#include <limits.h>
-#include <strings.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include "constants.h"
+
 #include "queueADT.h"
 
 typedef struct
@@ -54,16 +49,28 @@ typedef enum {false, true} bool;
  ******************************************************************************/
 
 /*******************************************************************************
- * Validates the system is not out of memory.
- * If alloc is NULL, exit(102) is called.
+ * Trims the end of a c-string by padding it with '\0'.
  *
- *    Pre: alloc is the memory for which allocation was attempted.
+ *    Pre: string is a valid c-string
  *
- *   Post: alloc is not NULL, or exit(102) is called.
+ *   Post: all non graphical characters at the end of the string are replaced
+ *         with '\0'
  *
- * Return: alloc
+ * Return: --
  ******************************************************************************/
-void *validate(void *alloc);
+void trimEnd(char *string);
+
+/*******************************************************************************
+ * Validates the pointer is not NULL.
+ * If pointer is NULL, exit(EXIT_FAILURE) is called.
+ *
+ *    Pre: pointer is the pointer to test
+ *
+ *   Post: pointer is not NULL, or exit(EXIT_FAILURE) is called.
+ *
+ * Return: pointer
+ ******************************************************************************/
+void *validate(void *pointer);
 
 /*******************************************************************************
  * Prints an integer with commas every 3 digits. Not padded.
@@ -319,7 +326,12 @@ void bstPrintInorder(ListHead *pList);
  *
  * Return: A pointer to the new Website.
  ******************************************************************************/
-Website *websiteCreate(char *url, char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands);
+Website *websiteCreate(const char *url,
+                       const char *company,
+                       int dailyPageViewThousands,
+                       int rankTraffic,
+                       int backLinkThousands,
+                       int worthThousands);
 
 /*******************************************************************************
  * Frees a Website, including its dynamically allocated url and company name.
@@ -354,94 +366,87 @@ void websitePrint(Website *pSite);
  ******************************************************************************/
 void websitePrintFull(Website *pSite);
 
-void strcpyToLower(char *dest, const char *source);
-
-
-
-/*
- *  initFileStream
- *  intializes file stream to get ready for the program.
- *
- *  PRE:        none
- *
- *  POST:       none
- *              sFileName (safe file name)
- *              nLines (number of lines from input file)
- *
- *  RETURN:     fPtr (updated file pointer)
- *
- */
-FILE* initFileStream(char **sFileName, int *nLines);
-
-/*
- * validateInput
- * validates input (either file input or user input)
- *
- *  PRE:    type (input type)
- *          usInput (unsafe user-input to be validated
- *                   && doesn't contain newline character)
- *
- *  POST:   validate user input with given input type
- *
- *  RETURN:  INPUT_VALUE_INVALID (if user input is invalid)
- *          INPUT_VALUE_VALID (if user input is valid)
- *
- */
-
-input_value validateInput(input_type type, char* usInput);
-/*
- * getSingleWebsite
- * parses information from the file pointer:
- *
- *  PRE:    fPtr (file pointer; readonly; from input file stream)
- *
- *  POST:   All fields are completedly parsed from the input file stream
- *
- *  RETURN:  Website (fields are completedly parsed)
- *
- */
-Website* getSingleWebsite(FILE* fPtr);
-/*******************************************************************************
- * Copies a string as lower case.
- *
- *    Pre: source is the original string
- *         dest is long enough to hold the original string
- *
- *   Post: dest is the lowercase version of source, with '\0' terminator.
- *
- * Return: --
- ******************************************************************************/
-input_value promptUserSelection(input_type type, const char *msg);
 
 /*******************************************************************************
- * Exits program with the given user request.
- *
- *    Pre: exitCode is the exit code returned with program exit
- *
- *   Post: exits program
- *
- * Return: --
+ * MenuManager  prototypes
  ******************************************************************************/
-void exitOnUserRequest (const int exitCode);
+
+typedef enum
+{
+    MENU_INSERT = 1,
+    MENU_DELETE,
+    MENU_SEARCH,
+    MENU_PRINT_HASH,
+    MENU_PRINT_INORDER,
+    MENU_PRINT_INDENTED,
+    MENU_PRINT_EFFICIENCY,
+    MENU_SAVE_AS,
+    MENU_QUIT
+} MENU_OPTION;
 
 
-// main drivers
-void InitDriver (ListHead *pHead, FILE** fPtr, char **fname);
-void BuildDriver (ListHead *pHead, FILE* fPtr, const char *fname);
-void PrintDriver (ListHead *pHead);
-void MenuDriver (ListHead *pHead, FILE** fPtr, char **fname);
-void DestroyDriver (ListHead *pHead);
+/*******************************************************************************
+ * Prints the menu to the user, and loops until they enter a valid choice.
+ *
+ *    Pre: --
+ *
+ *   Post: The user has chosen a valid option
+ *
+ * Return: The user's selected option
+ ******************************************************************************/
+MENU_OPTION promptMenu(void);
 
 
+/*******************************************************************************
+ * FileManager  prototypes
+ ******************************************************************************/
 
-FILE* reopenCurrentFileStream(char* sFileName, const char* mode,
-                              FILE* fPtr);
+/*******************************************************************************
+ * Appends ".MOD" to a string.
+ *
+ *    Pre: fname is a null terminated c-string.
+ *
+ *   Post: A new c-string has been allocated and returned
+ *
+ * Return: The newly allocated string with fname + ".MOD"
+ ******************************************************************************/
+char *appendBackupExtension(const char *fname);
 
-bool closeFile(FILE* fPtr, char *name);
-FILE* openFile(char* name, const char* mode);
+/*******************************************************************************
+ * Counts the number of lines in a file
+ *
+ *    Pre: fname is the name of a file
+ *
+ *   Post: The file has been read and the lines counted.
+ *
+ * Return: The number of lines in the file, or -1 if the file could not be read.
+ ******************************************************************************/
+int countLines(const char *fname);
 
-void* promptSingleField(input_type type, const char *msg);
-char* readOneLine(FILE* fPtr);
-void* readSingleField(input_type type, char **line);
-char* promptFileName(const char *msg);
-void MenuManager(ListHead *head, FILE* fPtr, char* sFileName, bool *isDataModfieid);
+
+/*******************************************************************************
+ * Reads a file and attempts to insert every valid Website into pHead.
+ *
+ *    Pre: fname is the name of a file
+ *         pHead is a ListHead with a valid BST and Hash
+ *
+ *   Post: The file has been read and any valid Websites added
+ *         An error is printed for every invalid website
+ *
+ * Return: true if the file was read, false if it could not be read
+ ******************************************************************************/
+bool readFile(const char *fname, ListHead *pHead);
+
+
+/*******************************************************************************
+ * Writes every Website in a QUEUE of Websites to a file
+ *
+ *    Pre: fname is the name of a file
+ *         QUEUE is the queue of Websites
+ *
+ *   Post: The file has been written with every Website in the QUEUE's order.
+ *
+ * Return: true if the file was written, false if it could not be written
+ ******************************************************************************/
+bool writeFile(const char *fname, QUEUE *pQueue);
+

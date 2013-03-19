@@ -1,46 +1,16 @@
 websitecatalog
 ==============
-<<<<<<< HEAD
 
-Update List (please do not delete the list. build the list):
-* (10)init: structure chart uploaded to ./resource/
-* (9) init: menu driver functions from main
-* (8) update: WebsiteCatalog.c
-* (7) $sudo touch WebisteCatalog.c
-* (6) $sudo mv WebsiteCatalog.c deprecated_WebsiteCatalog.c # previous WebsiteCatalog.c commented out
-* (5) menu driver functions // menu
-* (4) quit option
-* (3) save as option
-* (2) save option
-* (1) bool isDataModified; // checks if data had been modified after open
+This branch is a branch with a less robust menu, file, and validation system.
+However, all the code works and has no memory leaks. Also, all the functions are documented.
 
-TODO (high priority):
-=====================
-(1) write data to file (breadth-first traversal)
+The code is not amazingly clean, there are several places where code is duplicated,
+when it should be its own function.
 
+This is a backup plan in case we cannot get Gon's code to work by Wednesday.
 
-FIXME (high Priority):
-======================
 FIXME (High Priority)
 ======================
-* (1) invalid output for Url
-* (2) bad_access problem -- (partially?) fixed
-* (3) MenuManager.c::_getMenuSelection() always returns MENU_TYPE_DELETE_DATA
-      This is because InputManager.c::promptUserSelection() always returns INPUT_VALUE_VALID,
-       but it is being called as if it returned the user's selection.
-    See MenuManager.c::_promptMenu()
-* (4) SingleWebsiteManager.c::getSingleWebsite() does not parse fields properly.
-      Memory Leaks.
-      Passes char* to websiteCreate() where it should be passing ints
-      
+* (1) HashManager is severely buggy, causes memory leaks, invalid result, and program crash.
 
 
-TODO (low priority):
-======================
-(1) doc for gonkim's Managers
-(2) memory leaks of unexpectedly exit // through exit();
-
-FIXME (Low Priority)
-======================
-* (1) memory leaks of unexpectedly exit // through exit();
->>>>>>> d097ab79baf88d3c71d49d90676269487a3a690c

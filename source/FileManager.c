@@ -3,219 +3,182 @@
  * contains necesary information with
  * current and last session management
  *
- * Developer:           Gon Kim (imgonkim@gmail.com)
- * Initial Commit:      03162013_221816
- * Last Major Update:   03172013_071800
- *
+ * Gon Kim
+ * Cory Sherman
  */
-#include "../header/WebsiteCatalog.h"
-#include "../header/FileManager.h"
-/*
- *  initFileStream
- *  intializes file stream to get ready for the program.
+
+#include "WebsiteCatalog.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
+/*******************************************************************************
+ * FileManager private prototypes
  *
- *  PRE:        none
+ * static Website *_readWebsite(char *line);
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Reads a single Website from a line of text
  *
- *  POST:       sFileName (safe file name)
- *              nLines (number of lines from input file)
+ *    Pre: line is a c-string
  *
- *  RETURN:     fPtr (updated file pointer)
+ *   Post: line is modified.
+ *         A Website is created and returned,
+ *         Or NULL is returned if the line was invalid.
  *
- */
-FILE* initFileStream(char **sFileName, int *nLines) {
-	FILE *fPtr = NULL; // file pointer
-	char *usFileName = NULL;    // unsafe file name
-    
-	*sFileName = NULL;
-    //if you do this, you can no longer dereference sFileName
-	//sFileName = NULL;
-    
-	// open filestream either from backup file or original
-	do {
-		// open: last session
-		usFileName = promptFileName(MSG_PROMPT_FILENAME);
-		fPtr = _openLastSessionFileStream(usFileName);
-        
-		if (!fPtr) { /* error in opening backup file */
-			fPtr = fopen(usFileName, FILEMODE_READONLY);
-			if (!fPtr) { /* error in opening file */
-				printf(ERR_COULD_NOT_OPEN_FILE(usFileName));
-			} else { /* current session successfully opened */
-				printf(VERB_FILEOPEN(usFileName, FILEMODE_READONLY));
-			}
-		} else { /* backup file exists */
-			fPtr = _promptDiscardLastSession(fPtr);
-			if (!fPtr) { // backup file discarded
-				printf(VERB_LAST_SESSION_DISCARDED);
-			}
-		}
-	} while (!fPtr);
-    
-	*sFileName = usFileName; /* file name is now safe */
-    
-	*nLines = _getNumberOfLines(fPtr);
-    rewind(fPtr);
-	return fPtr;
+ * Return: The new Website, or NULL
+ ******************************************************************************/
+static Website *_readWebsite(char *line);
+
+
+/*******************************************************************************
+ * FileManager function definitions
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Appends ".MOD" to a string.
+ *
+ *    Pre: fname is a null terminated c-string.
+ *
+ *   Post: A new c-string has been allocated and returned
+ *
+ * Return: The newly allocated string with fname + ".MOD"
+ ******************************************************************************/
+char *appendBackupExtension(const char *fname)
+{
+    char *output;
+    int len;
+    len = strlen(fname);
+    output = malloc(len + 5);
+    strncpy(output, fname, len);
+    strcpy(output + len, ".BAK");
+    return output;
 }
 
-// TODO:
-void writeToFile(ListHead *head, FILE* fPtr) {
-    
+/*******************************************************************************
+ * Counts the number of lines in a file
+ *
+ *    Pre: fname is the name of a file
+ *
+ *   Post: The file has been read and the lines counted.
+ *
+ * Return: The number of lines in the file, or -1 if the file could not be read.
+ ******************************************************************************/
+int countLines(const char *fname)
+{
+    FILE *fin;
+    int totalLines;
+    char buff[1024];
+    fin = fopen(fname, "r");
+    if(!fin)
+        return -1;
+
+    for(totalLines = 0; fgets(buff, 1024, fin); ++totalLines);
+
+    fclose(fin);
+
+    return totalLines;
 }
 
-bool closeFile(FILE* fPtr, char *name) {
-    if ((fclose(fPtr))) { // close failed
+
+/*******************************************************************************
+ * Reads a file and attempts to insert every valid Website into pHead.
+ *
+ *    Pre: fname is the name of a file
+ *         pHead is a ListHead with a valid BST and Hash
+ *
+ *   Post: The file has been read and any valid Websites added
+ *         An error is printed for every invalid website
+ *
+ * Return: true if the file was read, false if it could not be read
+ ******************************************************************************/
+bool readFile(const char *fname, ListHead *pHead)
+{
+    FILE *fin;
+    char buff[1024];
+    fin = fopen(fname, "r");
+    if(!fin)
         return false;
-    };
-    if (name) {
-        free(name);
+    while(fgets(buff, 1024, fin))
+    {
+        Website *pWebsite = _readWebsite(buff);
+        if(pWebsite)
+            listInsert(pHead, pWebsite);
+        else
+            printf("Invalid line: %s", buff);
     }
-
+    fclose(fin);
     return true;
 }
-/*
- *  reopenCurrentFileStream
- *  handles file I/O for current session.
- *
- *  PRE:        sFileName (file name)
- *              mode (file mode)
- *
- *  POST:
- *
- *  RETURN:     fPtr (open given file name with given mode)
- *                  || NULL if couldn't open the file)
- *
- */
-FILE* reopenCurrentFileStream(char* sFileName, const char* mode, FILE* fPtr) {
-	if (fPtr) { // close file if previous session opened opened?
-		
-	}
-    
-	// open file with given filemode
-	fPtr = fopen(sFileName, mode);
-	if (!fPtr) {
-		printf(ERR_COULD_NOT_REOPEN_FILE(sFileName, mode));
-	}
-    
-	return fPtr;
-}
 
-/*
- *  _openLastSessionFileStream
- *  LastSessionManager discovers backup file if exits
- *  and prompts user if he/she wishes to keep
- *
- *  PRE:        none
- *
- *  POST:       retrieves desired user name from user
- *              && prompts user whether he/she wishes to discard or not
- *
- *  RETURN:     fPtr (backup file pointer if backup file exists and user wishes to keep
- *                  || NULL if couldn't open the backup file)
- *
- */
-static FILE* _openLastSessionFileStream(char* usFileName) {
-	FILE* fPtr;             // file pointer for input stream
-	char *usBacFileName;    // unsafe backup filename
-    
-	usBacFileName = _addFileExtension(usFileName, BACKUP_FILENAME_EXTENSION);
-	fPtr = fopen(usBacFileName, FILEMODE_READONLY);
-	if (NULL != fPtr) { /* if backup file opened */
-		printf(VERB_LAST_SESSION_FOUND);
-		fPtr = _promptDiscardLastSession(fPtr);
-	}
-	return fPtr;
-}
 
-/*
- *  _promptDiscardLastSession
- *  _promptDiscardLastSession asks user if he/she wants to discard
- *  saved backup file from which given file name.
+/*******************************************************************************
+ * Reads a single Website from a line of text
  *
- *  PRE:        none
+ *    Pre: line is a c-string
  *
- *  POST:       prompts user if he/she wants to discard backup file
+ *   Post: line is modified.
+ *         A Website is created and returned,
+ *         Or NULL is returned if the line was invalid.
  *
- *  RETURN:     fPtr (NULL if user discarded the last session
- *                  || backup file pointer; readonly; )
- *
- */
-static FILE* _promptDiscardLastSession(FILE* fPtr) {
-	input_value valueKey = INPUT_VALUE_INVALID;
-    
-	// prompt: do you wish to discard?
-	valueKey = promptUserSelection(INPUT_TYPE_FILENAME, MSG_PROMPT_FILENAME);
-    
-	switch (valueKey) {
-        case INPUT_VALUE_QUIT:
-            exitOnUserRequest(EXIT_ON_USER_REQUEST);
-            break;
-        case INPUT_VALUE_NO:  // do not discard: last session
-            return fPtr;
-            break;
-        case INPUT_VALUE_YES: // discard: last session
-            fclose(fPtr);
-            /* re-assignation of file pointer in case problem occurs
-             * in case `fclose(fPtr)` returns error
-             */
-            fPtr = NULL;
-            break;
-        default:
+ * Return: The new Website, or NULL
+ ******************************************************************************/
+static Website *_readWebsite(char *line)
+{
+    char *fields[6];
+
+    char *nextSemi;
+    int i;
+    nextSemi = line - 1;
+    for(i = 0; i != 6; ++i)
+    {
+        fields[i] = nextSemi + 1;
+        nextSemi = strchr(nextSemi + 1, ';');
+        if(!nextSemi)
             return NULL;
-            break;
-	}
-    
-	return fPtr;
+        *nextSemi = '\0';
+    }
+
+    return websiteCreate(fields[0],         //url
+                         fields[1],         //company name
+                         atoi(fields[2]),   //daily page views 
+                         atoi(fields[3]),   //traffic rank
+                         atoi(fields[4]),   //back links
+                         atoi(fields[5]));  //worth
 }
 
-/*
- *  _addFileExtension
- *  _addFileExtension adds file extension
- *  immediately after the originally given file name from user
+
+/*******************************************************************************
+ * Writes every Website in a QUEUE of Websites to a file
  *
- *  PRE:        name (user-entered file name)
- *              extension (extension to be added after the file name)
+ *    Pre: fname is the name of a file
+ *         QUEUE is the queue of Websites
  *
- *  POST:       adds file extension to the original file name
+ *   Post: The file has been written with every Website in the QUEUE's order.
  *
- *  RETURN:     sName (validted modified file name with extension)
- *
- */
-static char* _addFileExtension(char *name, const char *extension) {
-	char *sName;        // safe name
-    
-    sName = malloc(strlen(name) + strlen(extension) + 1);
-	// get: backup filename
-	strcpy(sName, name);
-    //don't free, it is used later.
-	//free(name); // free safe input file name
-	strcat(sName, BACKUP_FILENAME_EXTENSION);
-    
-	return sName;
+ * Return: true if the file was written, false if it could not be written
+ ******************************************************************************/
+bool writeFile(const char *fname, QUEUE *pQueue)
+{
+    FILE *fout = fopen(fname, "w");
+    if(!fout)
+    {
+        return false;
+    }
+
+    Website *pWebsite;
+    while(dequeue(pQueue, (void**)&pWebsite))
+    {
+       printf("%s;%s;%d;%d;%d;%d;\n", pWebsite->url,
+                                       pWebsite->company,
+                                       pWebsite->dailyPageViewThousands,
+                                       pWebsite->rankTraffic,
+                                       pWebsite->backLinkThousands,
+                                       pWebsite->websiteWorthThousands);
+    }
+    fclose(fout);
+    return true;
 }
 
-/*
- *  _getNumberOfLines
- *  counts number of lines from the input file
- *
- *  PRE:    fPtr (input file pointer)
- *
- *  POST:   counts number of lines from the input file
- *
- *  RETURN: i (number of lines)
- *
- */
-
-static int _getNumberOfLines(FILE* fPtr) {
-	int i = 0;
-    
-	printf(VERB_GET_NUMBER_OF_LINES);
-    
-	while (EOF != fgetc(fPtr)) {
-		while (fgetc(fPtr) != '\n')
-			;
-		i++;
-	}
-    
-	return i;
-}

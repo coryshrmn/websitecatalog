@@ -8,6 +8,7 @@
 #include "WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /*******************************************************************************
  * BstManager Private Prototypes
