@@ -12,5 +12,7 @@ This is a backup plan in case we cannot get Gon's code to work by Wednesday.
 FIXME (High Priority)
 ======================
 * (1) HashManager is severely buggy, causes memory leaks, invalid result, and program crash.
+* * hashRemove has infinte loop (while statement ending with semicolon)
+* * search marks synonyms as the same key
 
 
