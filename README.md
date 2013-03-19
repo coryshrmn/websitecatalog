@@ -26,9 +26,13 @@ FIXME (High Priority)
 * (1) invalid output for Url
 * (2) bad_access problem -- (partially?) fixed
 * (3) MenuManager.c::_getMenuSelection() always returns MENU_TYPE_DELETE_DATA
-    This is because InputManager.c::promptUserSelection() always returns INPUT_VALUE_VALID,
-    but it is being called as if it returned the user's selection.
+      This is because InputManager.c::promptUserSelection() always returns INPUT_VALUE_VALID,
+       but it is being called as if it returned the user's selection.
     See MenuManager.c::_promptMenu()
+* (4) SingleWebsiteManager.c::getSingleWebsite() does not parse fields properly.
+      Memory Leaks.
+      Passes char* to websiteCreate() where it should be passing ints
+      
 
 
 TODO (low priority):
