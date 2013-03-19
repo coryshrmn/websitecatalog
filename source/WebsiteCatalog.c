@@ -26,29 +26,8 @@ int main(int argc, const char * argv[]) {
     
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>LOOP
     fPtr = initFileStream(&fname, &nLines);    
-    curWebsite = getSingleWebsite(fPtr);
-    
-    
-    
-    
 
-    
-    
-    //TODO: delete after debugging
-    // print `curWebsite`
-	printf(HR);
-	printf("`curWebsite` fields:\n");
-	printf("%s\n%s\n%d\n%d\n%d\n%d\n", curWebsite->url, curWebsite->company,
-           curWebsite->dailyPageViewThousands, curWebsite->rankTraffic,
-           curWebsite->backLinkThousands, curWebsite->websiteWorthThousands);
-	printf(HR);
-    //ENDTODO
-    
-    
-    
-    
     MenuManager(head);
-    
     
     
     //FIXME: websitePrintFull doesn't return the correct result

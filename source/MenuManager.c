@@ -30,6 +30,9 @@ void MenuManager(ListHead *head, FILE* fPtr, char* sFileName,
 	menu_type menu = MENU_TYPE_INVALID; // init: menu type
     
 	menu = _getMenuSelection();
+    //DEBUG
+    printf("menu = %d\n", menu);
+    fflush(stdout);
 	switch (menu) {
         case MENU_TYPE_INVALID:
             printf(ERR_INVALID_MENU);
