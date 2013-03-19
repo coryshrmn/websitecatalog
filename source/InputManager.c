@@ -50,7 +50,7 @@ input_value promptUserSelection(input_type type, const char *msg) {
  *  RETURN: usField (string type of parsed & validated field)
  *
  */
-void* promptSingleField(input_type type, const char *msg) {
+char* promptSingleField(input_type type, const char *msg) {
     char *usField;          // unsafe field string (processed from `line`)
     input_value key;    // input value validity
     
@@ -141,7 +141,7 @@ char* readOneLine(FILE* fPtr) {
  *  RETURN: usField (string type of parsed & validated field)
  *
  */
-void* readSingleField(input_type type, char **line) {
+char* readSingleField(input_type type, char **line) {
     char *usField;          // unsafe field string (processed from `line`)
     char *loc;              // location of the delimiter
     int i;                  // iterating variable

@@ -26,10 +26,10 @@ Website* getSingleWebsite(FILE* fPtr) {
     Website* curWebsite = NULL; // current `struct Website`
     char *sUrl = NULL;              // safe url
 	char *sCompany = NULL;          // safe company name
-    char *sDailyPageView = NULL;    // safe daily page view
-	char *sRankTraffic = NULL;      // safe traffic rank
-	char *sBackLink = NULL;         // safe backlink
-	char *sWebsiteWorth = NULL;     // safe website worth
+    int sDailyPageView = 0;    // safe daily page view
+	int sRankTraffic = 0;      // safe traffic rank
+	int sBackLink = 0;         // safe backlink
+	int sWebsiteWorth = 0;     // safe website worth
 	/*
 	 * `char *usLine;`
 	 * unsafe single line read
@@ -37,6 +37,7 @@ Website* getSingleWebsite(FILE* fPtr) {
 	 */
 	char *usLine = NULL;
 	char *sLine = NULL;              // safe single line read
+    char *sInput = NULL;
     
 	usLine = readOneLine(fPtr);
     
@@ -47,13 +48,25 @@ Website* getSingleWebsite(FILE* fPtr) {
 	}
     
 	// set: fields in `curWebsite`
-	sUrl = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sCompany = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sDailyPageView = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sRankTraffic = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sBackLink = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-	sWebsiteWorth = (char*) readSingleField(INPUT_TYPE_URL, &usLine);
-
+	sUrl = readSingleField(INPUT_TYPE_URL, &usLine);
+	sCompany = readSingleField(INPUT_TYPE_URL, &usLine);
+	
+    sInput = readSingleField(INPUT_TYPE_URL, &usLine);
+    sDailyPageView = atoi(sInput);
+	free(sInput);
+  
+	sInput = readSingleField(INPUT_TYPE_URL, &usLine);
+    sDailyPageView = atoi(sInput);
+	free(sInput);
+    
+    sInput = readSingleField(INPUT_TYPE_URL, &usLine);
+	sBackLink = atoi(sInput);
+	free(sInput);
+	
+    sInput = readSingleField(INPUT_TYPE_URL, &usLine);
+    sWebsiteWorth = atoi(sInput);
+	free(sInput);
+    
     curWebsite = websiteCreate(sUrl, sCompany, sDailyPageView, sRankTraffic, sBackLink, sWebsiteWorth);
     
     //	while (bContinue && NULL != sUrl && NULL != sCompany

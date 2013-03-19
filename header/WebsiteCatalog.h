@@ -426,12 +426,11 @@ void exitOnUserRequest (const int exitCode);
 
 
 // main drivers
-void InitDriver (ListHead **head, FILE** fPtr, char **fname);
-void BuildDriver (ListHead **head, FILE* fPtr, const char *fname);
-void PrintDriver (ListHead *head);
-void MenuDriver (ListHead **head, FILE** fPtr, char **fname);
-void DestroyDriver (ListHead **head);
-
+void InitDriver (ListHead *head, FILE** fPtr, char **fname);
+void BuildDriver (ListHead *head, FILE* fPtr, const char *fname);
+void PrintDriver (ListHead head);
+void MenuDriver (ListHead *head, FILE** fPtr, char **fname);
+void DestroyDriver (ListHead *head);
 
 
 FILE* reopenCurrentFileStream(char* sFileName, const char* mode,
@@ -440,8 +439,8 @@ FILE* reopenCurrentFileStream(char* sFileName, const char* mode,
 bool closeFile(FILE* fPtr, char *name);
 FILE* openFile(char* name, const char* mode);
 
-void* promptSingleField(input_type type, const char *msg);
+char* promptSingleField(input_type type, const char *msg);
 char* readOneLine(FILE* fPtr);
-void* readSingleField(input_type type, char **line);
+char* readSingleField(input_type type, char **line);
 char* promptFileName(const char *msg);
 void MenuManager(ListHead *head, FILE* fPtr, char* sFileName, bool *isDataModfieid);

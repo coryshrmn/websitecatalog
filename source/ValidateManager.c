@@ -164,7 +164,7 @@ static input_value _valUrl(char *usInput, const int len) {
 static input_value _valCompany(char *usInput, const int len) {
 	int i = 0;
     
-	while ((isdigit(usInput[i]) || ispunct(usInput[i])) && len > i) {
+	while ((isalnum(usInput[i]) || isdigit(usInput[i]) || ispunct(usInput[i])) && len > i) {
 		i++;
 	}
     
