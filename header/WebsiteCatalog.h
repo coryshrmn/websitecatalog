@@ -445,6 +445,7 @@ bool readFile(const char *fname, ListHead *pHead);
  *         QUEUE is the queue of Websites
  *
  *   Post: The file has been written with every Website in the QUEUE's order.
+ *         The QUEUE is destroyed.
  *
  * Return: true if the file was written, false if it could not be written
  ******************************************************************************/

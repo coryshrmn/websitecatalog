@@ -143,8 +143,10 @@ int main (void)
         case MENU_QUIT:
         {
             char *modName = appendBackupExtension(fname);
-            if(!writeFile(buff, bstTraverseBreadth(&head)))
+            if(!writeFile(modName, bstTraverseBreadth(&head)))
                 printf("Autosave file could not be written!\n");
+            else
+                printf("Autosaved to: %s\n", modName);
             free(modName);
         }
             break;

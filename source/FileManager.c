@@ -173,7 +173,7 @@ bool writeFile(const char *fname, QUEUE *pQueue)
 
     while(dequeue(pQueue, (void**)&pWebsite))
     {
-       printf("%s;%s;%d;%d;%d;%d;\n", pWebsite->url,
+       fprintf(fout, "%s;%s;%d;%d;%d;%d;\n", pWebsite->url,
                                        pWebsite->company,
                                        pWebsite->dailyPageViewThousands,
                                        pWebsite->rankTraffic,
