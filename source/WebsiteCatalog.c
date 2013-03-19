@@ -47,8 +47,6 @@ int main(int argc, const char * argv[]) {
     
     
     
-    MenuManager(head);
-    
     
     
     //FIXME: websitePrintFull doesn't return the correct result
