@@ -113,7 +113,7 @@ bool hashInsert(ListHead *pList, Website *pWebsite)
         
         for(i = 0; i < pList->bucketSize; i++)
         {
-            if(!pList->pHash[index].key)
+            if(!pList->pHash[index+i].key)
             {
                 pList->pHash[index+i].key = pWebsite->url;
                 pList->pHash[index+i].site = pWebsite;
@@ -136,17 +136,21 @@ bool hashInsert(ListHead *pList, Website *pWebsite)
  *   Post: Nothing is modified, the hashtable has been searched.
  *
  * Return: The website found, or NULL if one was not found.
- ******************************************************************************/
+ * ******************************************************************************/
 Website *hashSearch(ListHead *pList, const char *url)
 {
     int i;
     int index;
+
     index = ((unsigned int)_hashString(url) % (unsigned int)pList->arySize) * pList->bucketSize;
-    for(i = 0; i < pList->bucketSize; i++)
-    {
-        if(pList->pHash[index + i].key && strcmp(pList->pHash[index + i].key, url))
-            return pList->pHash[index + i].site;
-    }
+	if(pList->pHash[index].key)
+	{
+		for(i = 0; i < pList->bucketSize; i++)
+		{
+			if(!strcmp(pList->pHash[index + i].key, url))
+				return pList->pHash[index + i].site;
+		}
+	}
 
     return NULL;
 }
@@ -177,7 +181,7 @@ Website *hashRemove(ListHead *pList, const char *url)
 			i++;
 		pList->pHash[index+i].key = NULL;
 		pList->pHash[index+i].site = NULL;
-		if(i != j)
+		if(pList->pHash[index+i+1].key)  //next node of the one that was removed
 		{
 			while(!pList->pHash[index+j].key)
 				j--;
