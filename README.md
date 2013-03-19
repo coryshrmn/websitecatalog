@@ -1,8 +1,9 @@
 websitecatalog
 ==============
-<<<<<<< HEAD
 
 Update List (please do not delete the list. build the list):
+* (12)result: (partially) correct data for the first few
+* (11)split: readSingleField into two: readSingleField and readFirstField
 * (10)init: structure chart uploaded to ./resource/
 * (9) init: menu driver functions from main
 * (8) update: WebsiteCatalog.c
@@ -21,8 +22,7 @@ TODO (high priority):
 
 FIXME (high Priority):
 ======================
-FIXME (High Priority)
-======================
+* (1) fix: getSingleWebsite bad_access problem
 * (1) invalid output for Url
 * (2) bad_access problem -- (partially?) fixed
 * (3) MenuManager.c::_getMenuSelection() always returns MENU_TYPE_DELETE_DATA
@@ -43,4 +43,4 @@ TODO (low priority):
 FIXME (Low Priority)
 ======================
 * (1) memory leaks of unexpectedly exit // through exit();
->>>>>>> d097ab79baf88d3c71d49d90676269487a3a690c
+* (2) memory leaks from SingleWebsiteManager.c:: 
