@@ -1,16 +1,21 @@
 websitecatalog
 ==============
-(partially) completed MenuManager;
 <<<<<<< HEAD
-ADDED:
-(1) bool isDataModified; // checks if data had been modified after open
-(2) save option
-(3) save as option
+Update List (please do not delete the list. build the list):
+(10)init: structure chart uploaded to ./resource/
+(9) init: menu driver functions from main
+(8) update: WebsiteCatalog.c
+(7) $sudo touch WebisteCatalog.c
+(6) $sudo mv WebsiteCatalog.c deprecated_WebsiteCatalog.c # previous WebsiteCatalog.c commented out
+(5) menu driver functions // menu
 (4) quit option
-
+(3) save as option
+(2) save option
+(1) bool isDataModified; // checks if data had been modified after open
 
 TODO (high priority):
 (1) write data to file (breadth-first traversal)
+(2) 
 
 
 FIXME (high Priority):
