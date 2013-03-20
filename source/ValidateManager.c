@@ -15,7 +15,6 @@
 #include "WebsiteCatalog.h"
 
 // debug
-#define D(str, name) printf("%s", name);
 
 // project.main.ValidateManager.CONSTANT_DEFINED.delimiter
 #define DELIMITER_URL "./"
