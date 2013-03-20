@@ -451,3 +451,28 @@ bool readFile(const char *fname, ListHead *pHead);
  ******************************************************************************/
 bool writeFile(const char *fname, QUEUE *pQueue);
 
+/*******************************************************************************
+ * Trims the new line character of a c-string by padding it with '\0'.
+ *
+ *    Pre: string is a valid c-string
+ *
+ *   Post: all non graphical characters at the end of the string are replaced
+ *         with '\0'
+ *
+ * Return: --
+ ******************************************************************************/
+void trimNewLine(char *usInput);
+
+/*******************************************************************************
+ * Validates input (either file input or user input)
+ *
+ *    PR   type (input type)
+ *         usInput (unsafe user-input to be validated
+ *         && doesn't contain newline character)
+ *
+ *	 Post: validate user input with given input type
+ *
+ * Return: false (if user input is invalid)
+ *         true (if user input is valid)
+ ******************************************************************************/
+bool validateInput(input_type type, char* usInput);

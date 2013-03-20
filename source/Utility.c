@@ -4,6 +4,7 @@
  *
  * Cory Sherman
  * Chris Huang
+ * Gon Kim
  */
 
 #include "WebsiteCatalog.h"
@@ -32,6 +33,25 @@ void trimEnd(char *string)
         else
             *c = '\0';
     }
+}
+
+/*******************************************************************************
+ * Trims the new line character of a c-string by padding it with '\0'.
+ *
+ *    Pre: string is a valid c-string
+ *
+ *   Post: all non graphical characters at the end of the string are replaced
+ *         with '\0'
+ *
+ * Return: --
+ ******************************************************************************/
+void trimNewLine(char *usInput) {
+	size_t len = 0;
+
+	len = strlen(usInput);
+	if (usInput[len - 1] == '\n') {
+		usInput[len - 1] = '\0';
+	}
 }
 
 /*******************************************************************************
