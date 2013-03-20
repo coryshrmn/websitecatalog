@@ -16,6 +16,7 @@ static const int DEFAULT_BUCKET_SIZE = 3;
 /*******************************************************************************
  * HashManager Private Prototypes
  ******************************************************************************/
+static int _hashIndex(ListHead *pList, const char *url);
 static int _primeAtLeast(int val);
 static bool _isPrime(int val);
 static int _hashString(const char *val);
@@ -139,6 +140,12 @@ bool hashInsert(ListHead *pList, Website *pWebsite)
  * ******************************************************************************/
 Website *hashSearch(ListHead *pList, const char *url)
 {
+    int bucket = _hashIndex(pList, url);
+    return bucket == -1 ? NULL : pList->pHash[bucket].site;
+}
+
+static int _hashIndex(ListHead *pList, const char *url)
+{
     int i;
     int index;
 
@@ -150,13 +157,15 @@ Website *hashSearch(ListHead *pList, const char *url)
 			if(pList->pHash[index + i].key)
 			{
 				if(!strcmp(pList->pHash[index + i].key, url))
-					return pList->pHash[index + i].site;
+					return index + i;
 			}
 		}
 	}
 
-    return NULL;
+    return -1;
 }
+
+
 
 /*******************************************************************************
  * Searches a hashtable for the specified url, and removes the found website
@@ -171,31 +180,30 @@ Website *hashSearch(ListHead *pList, const char *url)
  ******************************************************************************/
 Website *hashRemove(ListHead *pList, const char *url)
 {
-	Website *target;
-	int index;
-	int i = 0;
-	int j = pList->bucketSize-1;
+    int bucketIndex = _hashIndex(pList, url);
+    int bucketWhole;
+    int bucketPart;
+    Website *output;
+    if(bucketIndex == -1)
+        return NULL;
 
-    target = hashSearch(pList, url);
-	if(target)
-	{
-		index = ((unsigned int)_hashString(url) % (unsigned int)pList->arySize) * pList->bucketSize;
-		while(strcmp(pList->pHash[index+i].key, url));
-			i++;
-		pList->pHash[index+i].key = NULL;
-		pList->pHash[index+i].site = NULL;
-		if(pList->pHash[index+i+1].key)  //next node of the one that was removed
-		{
-			while(!pList->pHash[index+j].key)
-				j--;
-			pList->pHash[index+i].key = pList->pHash[index+j].key;
-			pList->pHash[index+i].site = pList->pHash[index+j].site;
-		}
+    output = pList->pHash[bucketIndex].site;
+    
+    bucketPart = bucketIndex % pList->bucketSize;
+    bucketWhole = bucketIndex - bucketPart;
 
-		return target;
-	}
+    for(; bucketPart + 1 < pList->bucketSize; ++bucketPart)
+    {
+        int bucket = bucketWhole + bucketPart;
 
-    return NULL;
+        pList->pHash[bucket].key = pList->pHash[bucket + 1].key;
+        pList->pHash[bucket].site = pList->pHash[bucket + 1].site;
+    }
+
+    pList->pHash[bucketWhole + bucketPart].key = NULL;
+    pList->pHash[bucketWhole + bucketPart].site = NULL;
+
+    return output;
 }
 
 /*******************************************************************************
