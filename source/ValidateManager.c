@@ -54,40 +54,40 @@ bool validateInput(input_type type, char* usInput) {
 	// validate: length of the input
 	// && set: validating function per type
 	switch (type) {
-        /*
-         * The following case(s) return true
-         * only if the input is one of the following:
-         * 
-         * alphanumeric characters
-         * period(".") 
-         * 
-         */
+            /*
+             * The following case(s) return true
+             * only if the input is one of the following:
+             *
+             * alphanumeric characters
+             * period(".")
+             *
+             */
         case INPUT_TYPE_URL:
             isLengthValid = (INPUT_LENGTH_URL >= len);
             validate = _valUrl;
             break;
             
-        /*
-         * The following case(s) return true
-         * only if the input is one of the following:
-         * 
-         * alphanumeric characters
-         * space
-         * punctuation
-         * 
-         */
+            /*
+             * The following case(s) return true
+             * only if the input is one of the following:
+             *
+             * alphanumeric characters
+             * space
+             * punctuation
+             *
+             */
         case INPUT_TYPE_COMPANY:
             isLengthValid = (INPUT_LENGTH_COMPANY >= len);
             validate = _valCompany;
             break;
-
-        /*
-         * The following case(s) return true
-         * only if the input is one of the following:
-         * 
-         *  positive integer less than one trillion
-         *
-         */
+            
+            /*
+             * The following case(s) return true
+             * only if the input is one of the following:
+             *
+             *  positive integer less than one trillion
+             *
+             */
         case INPUT_TYPE_DAILY_PAGE_VIEW:
             isLengthValid = (INPUT_LENGTH_DAILY_PAGE_VIEW >= len);
             validate = _valLongLongInt;
@@ -104,7 +104,7 @@ bool validateInput(input_type type, char* usInput) {
             isLengthValid = (INPUT_LENGTH_WEBSITE_WORTH >= len);
             validate = _valLongLongInt;
             break;
-        
+            
         case INPUT_TYPE_FILENAME:
             isLengthValid = (INPUT_LENGTH_FILENAME >= len);
             validate = _valFileName;
@@ -117,11 +117,11 @@ bool validateInput(input_type type, char* usInput) {
             isLengthValid = (INPUT_LENGTH_EXIT_ON_INVALID_FIELD == len);
             validate = _valExitOnInvalidField;
             break;
-        /*
-         * The following case(s) return true
-         * only if the input is one of the following:
-         * 'Y', 'y', 'N', 'n'
-         */
+            /*
+             * The following case(s) return true
+             * only if the input is one of the following:
+             * 'Y', 'y', 'N', 'n'
+             */
         case INPUT_TYPE_RECONFIRM:
             isLengthValid = (INPUT_LENGTH_RECONFIRM == len);
             validate = _valYesOrNo;
@@ -138,11 +138,11 @@ bool validateInput(input_type type, char* usInput) {
             isLengthValid = (INPUT_LENGTH_QUIT == len);
             validate = _valYesOrNo;
             break;
-        /*
-         * The following case(s) return true
-         * only if the input is one of the following:
-         * 1, 2, 3, 4, 5, 6, 7, 8, 9
-         */
+            /*
+             * The following case(s) return true
+             * only if the input is one of the following:
+             * 1, 2, 3, 4, 5, 6, 7, 8, 9
+             */
         case INPUT_TYPE_MENU:
             isLengthValid = (INPUT_LENGTH_MENU == len);
             validate = _valMenuOption;
@@ -169,43 +169,41 @@ bool validateInput(input_type type, char* usInput) {
  *
  */
 static bool _valUrl(char *usInput, size_t len) {
-    int i = 0;
-    bool isValid = false;
+	int i = 0;
+	bool isValid = false;
     
-    /* (valid if true)      Does Url start with http://www. */
-    if (0 == strncmp("http://www.", usInput, 11)) {
-        i = 11;
-            }
-
-    /* (valid if true)      Does Url start with http://     */
-    if (0 == strncmp("http://", usInput, 7)) {
-        i = 7;
-    }
-
-    // (valid if true)      Does Url start with www.
-    if (0 == strncmp("www.", usInput, 4)) {
-        i = 4;
-    }
-    
-    // (invalid if true)    Does Url start start with .
-    if(usInput[0] == DELIMITER_DOT) {
-        return false;
-    }
-
-    // (invalid if true)    Does Url ends with .
-    if(usInput[len - 1] == DELIMITER_DOT) {
-        return false;
-    }
-    
-    // (invalid if true) Does the Url have at least one dot?
-	while ((isalnum(usInput[i]) || DELIMITER_DOT == usInput[i])) {
-        if(DELIMITER_DOT == usInput[i]) {
-            isValid = true;
-        }
-		i++;
+	/* (valid if true)      Does Url start with http://www. */
+	if (0 == strncmp("http://www.", usInput, 11)) {
+		i = 11;
 	}
     
+	/* (valid if true)      Does Url start with http://     */
+	if (0 == strncmp("http://", usInput, 7)) {
+		i = 7;
+	}
     
+	// (valid if true)      Does Url start with www.
+	if (0 == strncmp("www.", usInput, 4)) {
+		i = 4;
+	}
+    
+	// (invalid if true)    Does Url start start with .
+	if (usInput[0] == DELIMITER_DOT) {
+		return false;
+	}
+    
+	// (invalid if true)    Does Url ends with .
+	if (usInput[len - 1] == DELIMITER_DOT) {
+		return false;
+	}
+    
+	// (invalid if true) Does the Url have at least one dot?
+	while ((isalnum(usInput[i]) || DELIMITER_DOT == usInput[i])) {
+		if (DELIMITER_DOT == usInput[i]) {
+			isValid = true;
+		}
+		i++;
+	}
     
 	return isValid && len == i ? true : false;
 }
@@ -224,8 +222,8 @@ static bool _valUrl(char *usInput, size_t len) {
 static bool _valCompany(char *usInput, size_t len) {
 	int i = 0;
     
-	while ((isalnum(usInput[i]) || ispunct(usInput[i])
-			|| isspace(usInput[i])) && len > i) {
+	while ((isalnum(usInput[i]) || ispunct(usInput[i]) || isspace(usInput[i]))
+           && len > i) {
 		i++;
 	}
     
