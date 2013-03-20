@@ -3,8 +3,6 @@
  * constants.h contains enum and defined constants
  *
  * Developer:           Gon Kim (imgonkim@gmail.com)
- * Initial Commit:      03162013_190139
- * Last Major Update:   03172013_015442
  *
  */
 // project.main.CONSTANT_ENUM

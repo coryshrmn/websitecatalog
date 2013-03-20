@@ -34,19 +34,24 @@ const char *MENU_MESSAGE = "\n"
  ******************************************************************************/
 MENU_OPTION promptMenu(void)
 {
-    bool valid;
+    bool valid = false;
     int choice;
+    
     do
     {
         char line[256];
         printf("%s", MENU_MESSAGE);
         fflush(stdout);
         validate(fgets(line, 256, stdin));
-        choice = atoi(line);
-        if(!(valid = choice >= 1 && choice <= 9))
-        {
-            printf("Invalid option.\n");
+        trimNewLine(line);
+        if (validateInput(INPUT_TYPE_MENU, line)) {
+            choice = atoi(line);
+            valid = true;
         }
+//        if(!(valid = choice >= 1 && choice <= 9))
+//        {
+//            printf("Invalid option.\n");
+//        }
     } while(!valid);
 
     return choice;
