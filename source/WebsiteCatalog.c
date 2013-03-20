@@ -21,6 +21,7 @@ int main(void) {
 	int numLines;
 	FILE *fPtr;
 	MENU_OPTION menuChoice;
+  Website tempWebsite;
     
 	//prompt input file name
 	valid = false;
@@ -34,7 +35,6 @@ int main(void) {
 			numLines = -1;
 		} else {
 			numLines = countLines(buff);
-			printf("numLines of file %d", numLines);
 			if (numLines == 1)
 				printf("File not found \"%s\"!\n", buff);
 		}
@@ -72,16 +72,18 @@ int main(void) {
                     validate(fgets(buff, 1024, stdin));
                     //          trimEnd(buff);
                     trimNewLine(buff);
+                    strcpyToLower(buff, buff);
                     if (validateInput(INPUT_TYPE_URL, buff)) {
                         valid = true;
                     }
                 } while (!valid);
-                
-                strcpyToLower(buff, buff);
-                if (hashSearch(&head, buff)) {
-                    printf("Already in catalog!\n");
+                // added
+
+                tempWebsite.url = buff;
+                if (!hashInsert(&head, &tempWebsite)) {
                     break;
                 }
+                hashRemove(&head, buff);
                 
                 pCreate = malloc(sizeof(Website));
                 pCreate->url = malloc(strlen(buff) + 1);
@@ -167,6 +169,7 @@ int main(void) {
                     validate(fgets(buff, 1024, stdin));
                     //          trimEnd(buff);
                     trimNewLine(buff);
+                    strcpyToLower(buff, buff);
                     if (validateInput(INPUT_TYPE_URL, buff)) {
                         valid = true;
                     }
@@ -187,6 +190,7 @@ int main(void) {
                     validate(fgets(buff, 1024, stdin));
                     //          trimEnd(buff);
                     trimNewLine(buff);
+                    strcpyToLower(buff, buff);
                     if (validateInput(INPUT_TYPE_URL, buff)) {
                         valid = true;
                     }
