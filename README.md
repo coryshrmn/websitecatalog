@@ -1,18 +1,9 @@
 websitecatalog
 ==============
 
-This branch is a branch with a less robust menu, file, and validation system.
-However, all the code works and has no memory leaks. Also, all the functions are documented.
+Everything needed is done!
 
-The code is not amazingly clean, there are several places where code is duplicated,
-when it should be its own function.
+There is no "Save" feature, only "Save As...", and the input may not be verified as much as it could be.
 
-This is a backup plan in case we cannot get Gon's code to work by Wednesday.
-
-FIXME (High Priority)
-======================
-* HashManager is severely buggy, causes memory leaks, invalid result, and program crash.
-    * hashRemove has infinte loop (while statement ending with semicolon)
-    * search marks synonyms as the same key
-
+One change I still plan to make is to shortcircuit the 1st menu option (Insert a Website) so it will tell you there is no room for a Website after you input the url, instead of having you input all fields for no reason.
 
