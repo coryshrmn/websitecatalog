@@ -18,11 +18,15 @@ TODO:
 ValidateManager
 ===============
 ValidateManager and its associated files (ValidateManager.h, ValidateManager.c, constants.h). ValidateManager has extensive validations: one of the best feature of this ValidateManager is that it  has extensive validations for Url, for example, it validates:
+Also, HashManager::printEfficiency() prints a max bucket size of 4, but it should never exceed 3. I'll look into this.
+
+Gon Kim
+
+Hey guys, I added ValidateManager and its associated files (ValidateManager.h, ValidateManager.c, constants.h).
+One of the best feature of this ValidateManager is that it  has extensive validations for Url, for example, it validates:
 * valid: http://www.deanza.edu
 * valid: http://deanza.edu
 * valid: www.deanza.edu
 * invalid: deanza.edu.
 * invalid: .deanza.edu
 * invalid: deanzaedu
-
-
