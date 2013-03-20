@@ -7,6 +7,8 @@
 #define DELIMITER_URL "./"
 #define DELIMITER_DOT '.'
 #define DELIMITER_ZERO '0'
+#define DELIMITER_UNDERSCORE '_'
+#define DELIMITER_DASH       '-'
 // project.main.ValidateManager.CONSTANT_DEFINED.inputLength
 #define INPUT_LENGTH_URL                    MAX_LENGTH_INPUT
 #define INPUT_LENGTH_COMPANY                MAX_LENGTH_INPUT

@@ -83,7 +83,8 @@ or \"Q\" to quit program\n"
 #define DELIMITER_SEMICOLON                     ';'
 #define DELIMITER_NEWLINE                       '\n'
 #define DELIMITER_SLASH                         '/'
-
+#define DELIIMTER_UNDERSCORE                    '_'
+#define DELIMITER_DASH                          '-'
 #define MALLOC(param)                 if (!(param = malloc(sizeof(*param)))) {\
 printf(ERR_NOT_ENOUGH_MEMORY);\
 exit(EXIT_NOT_ENOUGH_MEMORY);\

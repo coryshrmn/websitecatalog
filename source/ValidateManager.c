@@ -266,7 +266,10 @@ static bool _valLongLongInt(char *usInput, size_t len) {
 static bool _valFileName(char *usInput, size_t len) {
 	int i = 0;
     
-	while ((isalnum(usInput[i]) || DELIMITER_DOT == usInput[i]) && len > i) {
+	while ((isalnum(usInput[i]) 
+        || DELIMITER_DOT == usInput[i] 
+        || DELIMITER_UNDERSCORE == usInput[i]
+        || DELIMITER_DASH == usInput[i]) && len > i) {
 		i++;
 	}
     
