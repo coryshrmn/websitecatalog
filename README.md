@@ -17,8 +17,3 @@ FIXME (low priority)
 ====================
 * Calculating counting number of lines of input file returns incorrect result
   when there is only single line of input in the input file:
-  
-TODO
-====
-* Check if Url is insertable from #1 menu option (Insert a Website)
-
