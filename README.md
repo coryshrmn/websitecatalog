@@ -1,4 +1,4 @@
-WebsiteCatalog (Ver 1.1)
+WebsiteCatalog (Final Beta Version Release)
 ==============
 Everything needed is done!
 
@@ -6,6 +6,7 @@ One change I still plan to make is to shortcircuit the 1st menu option (Insert a
 
 ADDED
 =====
+* presentable structure chart
 * "Save" feature.
 * "Discard Last Session" feature
 * "isDataModified" variable to check if there are any unsaved changes. i
