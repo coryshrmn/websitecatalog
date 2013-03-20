@@ -147,8 +147,11 @@ Website *hashSearch(ListHead *pList, const char *url)
 	{
 		for(i = 0; i < pList->bucketSize; i++)
 		{
-			if(!strcmp(pList->pHash[index + i].key, url))
-				return pList->pHash[index + i].site;
+			if(pList->pHash[index + i].key)
+			{
+				if(!strcmp(pList->pHash[index + i].key, url))
+					return pList->pHash[index + i].site;
+			}
 		}
 	}
 
