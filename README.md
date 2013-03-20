@@ -2,7 +2,7 @@ WebsiteCatalog (Final Beta Version Release)
 ==============
 Everything needed is done!
 
-One change I still plan to make is to shortcircuit the 1st menu option (Insert a Website) so it will tell you there is no room for a Website after you input the url, instead of having you input all fields for no reason.
+Validation has been merged with updates from Gold
 
 ADDED
 =====
