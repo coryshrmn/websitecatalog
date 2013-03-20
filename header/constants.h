@@ -44,8 +44,8 @@ typedef enum {
 	MENU_TYPE_PRINT_INDENTED_TREE, /* 6 */
 	MENU_TYPE_PRINT_EFFICIENCY, /* 7 */
 	MENU_TYPE_SAVE, /* 8 */
-	/*  MENU_TYPE_SAVE_AS, */
-	MENU_TYPE_QUIT /* 9 */
+	MENU_TYPE_SAVE_AS, /* 9 */
+	MENU_TYPE_QUIT /* 10 */
 } menu_type;
 
 // project.main.CONSTANT_DEFINED

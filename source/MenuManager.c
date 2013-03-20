@@ -18,8 +18,9 @@ const char *MENU_MESSAGE = "\n"
                            "5 - Print BST in order\n"
                            "6 - Print BST indented\n"
                            "7 - Print hash efficiency\n"
-                           "8 - Save as...\n"
-                           "9 - Quit\n"
+                           "8 - Save\n"
+                           "9 - Save as...\n"
+                           "10 - Quit\n"
                            ">";
 
 

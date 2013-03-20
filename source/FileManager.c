@@ -221,15 +221,12 @@ bool doesLastSessionExist(char** fDest, char* fSrc) {
     
 	*fDest = _addFileExtension(fSrc, BACKUP_FILENAME_EXTENSION);
 	fPtr = fopen(*fDest, FILEMODE_READONLY);
-    if(!fPtr) {
-        free(*fDest);
-    } else {
+    if(fPtr) {
     	printf(VERB_LAST_SESSION_FOUND);
-		if (!_discardLastSessionOrNot()) {
+        if (!_discardLastSessionOrNot()) {
             session = true;
         }
         fclose(fPtr);
-        free(*fDest);
     }
    
     return session;

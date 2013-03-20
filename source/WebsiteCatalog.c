@@ -202,6 +202,11 @@ int main(void) {
             case MENU_PRINT_EFFICIENCY:
                 printEfficiency(&head);
                 break;
+            case MENU_SAVE:
+                printf(
+                       writeFile(fname, bstTraverseBreadth(&head)) ?
+                       "File written\n" : "File could not be written!\n");
+                break;
             case MENU_SAVE_AS:
                 valid = false;
                 do {
