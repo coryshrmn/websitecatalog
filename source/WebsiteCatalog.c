@@ -13,12 +13,15 @@
 int main(void) {
 	ListHead head; // head of the list
 	char buff[1024];
-	char *fname;
+	char *fBacName;
+    char *fname;
+    char *tmp;
 	bool valid;
-    
 	int numLines;
-    
+    FILE *fPtr;
 	MENU_OPTION menuChoice;
+    
+    
     
 	//prompt input file name
 	valid = false;
@@ -37,17 +40,24 @@ int main(void) {
 		}
         
 	} while (numLines == -1);
-    
+
 	fname = malloc(strlen(buff) + 1);
 	strcpy(fname, buff);
+       
+    //TODO optional: prompt user to discard or load modified file
+    if(doesLastSessionExist(&fBacName, fname)) {
+        tmp = fname;
+        fname = fBacName;
+        free(fBacName);
+        tmp = NULL;
+    }    
     
-	//TODO optional: prompt user to discard or load modified file
-    
-	//create data structures
+    //create data structures
 	hashCreate(&head, numLines);
 	bstCreate(&head);
     
-	readFile(fname, &head);
+
+    readFile(fname, &head);
     
 	//loop menu
 	valid = false;

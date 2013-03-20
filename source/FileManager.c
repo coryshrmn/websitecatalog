@@ -12,12 +12,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define BACKUP_FILENAME_EXTENSION ".BAK"
 
+
+#define MSG_PROMPT_DISCARD_LAST_SESSION         "Discard last session (Y/N)? "
+#define VERB_FILEOPEN(name, mode)               ">VERBOSE:  File \"%s\" is opened for %s mode.\n", name, mode
+#define VERB_FILE_REOPEN(name, mode)            ">VERBOSE:  File \"%s\" is re-opening for mode \"%s\"", name, mode
+#define VERB_LAST_SESSION_FOUND                 ">VERBOSE:  Last session was not saved.\n"
+#define VERB_LAST_SESSION_DISCARDED             ">VERBOSE:  Last session was discarded.\n"
 /*******************************************************************************
  * FileManager private prototypes
  *
  * static Website *_readWebsite(char *line);
- ******************************************************************************/
+******************************************************************************/
+static char* _addFileExtension(const char *fSource, const char *fExt);
+static bool _discardLastSessionOrNot();
 
 /*******************************************************************************
  * Reads a single Website from a line of text
@@ -185,3 +194,99 @@ bool writeFile(const char *fname, QUEUE *pQueue)
     return true;
 }
 
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+bool doesLastSessionExist(char** fDest, char* fSrc) {
+	FILE* fPtr;             // file pointer for input stream
+    bool session = false;
+    
+	*fDest = _addFileExtension(fSrc, BACKUP_FILENAME_EXTENSION);
+	fPtr = fopen(*fDest, FILEMODE_READONLY);
+    if(!fPtr) {
+        free(*fDest);
+    } else {
+    	printf(VERB_LAST_SESSION_FOUND);
+		if (!_discardLastSessionOrNot()) {
+            session = true;
+        }
+        fclose(fPtr);
+        free(*fDest);
+    }
+   
+    return session;
+}
+
+/*
+ * Appends file extension.
+ * malloc 
+ */
+static char* _addFileExtension(const char *fSrc, const char *fExt) {
+	char *fDest;        // safe name
+    
+    fDest = malloc(strlen(fSrc) + strlen(fExt) + 1);
+	// get: backup filename
+	strcpy(fDest, fSrc);
+	strcat(fDest, BACKUP_FILENAME_EXTENSION);
+    
+	return fDest;
+}
+
+
+
+static bool _discardLastSessionOrNot() {
+    bool isValid = false;
+    bool isDiscarded = false;
+    char buff[1024];
+    
+	// prompt: do you wish to discard?
+    do {
+		printf(MSG_PROMPT_DISCARD_LAST_SESSION);
+		fflush(stdout);
+		validate(fgets(buff, 1024, stdin));
+        //        trimEnd(buff);
+		trimNewLine(buff);
+		if (!validateInput(INPUT_TYPE_DISCARD, buff)) {
+            printf(ERR_INVALID_INPUT);
+		} else {
+            isValid = true;
+		}
+        
+	} while (!isValid);
+    
+	switch (buff[0]) {
+        case 'Q':
+        case 'q':
+            exitOnUserRequest(EXIT_ON_USER_REQUEST);
+            break;
+        case 'Y':
+        case 'y':
+            isDiscarded = true;
+            break;
+        case 'N':
+        case 'n':
+            isDiscarded = false;
+            break;
+	}
+    
+    return isDiscarded;
+    
+}

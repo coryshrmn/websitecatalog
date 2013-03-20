@@ -6,9 +6,11 @@
   * Gon Kim
   * Chris Huang
   */
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "queueADT.h"
 #include "constants.h"
+
 
 typedef struct
 {
@@ -452,6 +454,22 @@ bool readFile(const char *fname, ListHead *pHead);
  ******************************************************************************/
 bool writeFile(const char *fname, QUEUE *pQueue);
 
+
+
+
+
+
+
+void strcpyToLower(char *dest, const char *source);
+
+
+
+
+
+
+
+
+
 /*******************************************************************************
  * Trims the new line character of a c-string by padding it with '\0'.
  *
@@ -477,3 +495,11 @@ void trimNewLine(char *usInput);
  *         true (if user input is valid)
  ******************************************************************************/
 bool validateInput(input_type type, char* usInput);
+
+
+
+
+
+bool doesLastSessionExist(char** fDest, char* fSrc);
+
+void exitOnUserRequest(int code);
