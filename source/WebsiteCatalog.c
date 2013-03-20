@@ -51,6 +51,7 @@ int main (void)
         {
         case MENU_INSERT:
         {
+            Website tempWebsite;
             Website *pCreate;
 
             printf("Enter URL to add:\n>");
@@ -58,11 +59,14 @@ int main (void)
             validate(fgets(buff, 1024, stdin));
             trimEnd(buff);
             strcpyToLower(buff, buff);
-            if(hashSearch(&head, buff))
+
+            tempWebsite.url = buff;
+
+            if(!hashInsert(&head, &tempWebsite))
             {
-                printf("Already in catalog!\n");
                 break;
             }
+            hashRemove(&head, buff);
 
             pCreate = malloc(sizeof(Website));
             pCreate->url = malloc(strlen(buff) + 1);
@@ -104,6 +108,7 @@ int main (void)
             fflush(stdout);
             validate(fgets(buff, 1024, stdin));
             trimEnd(buff);
+            strcpyToLower(buff, buff);
             printf(listRemove(&head, buff) ? "Removed.\n" : "Not found!\n");
             break;
         case MENU_SEARCH:
@@ -113,6 +118,7 @@ int main (void)
             fflush(stdout);
             validate(fgets(buff, 1024, stdin));
             trimEnd(buff);
+            strcpyToLower(buff, buff);
             pFound = hashSearch(&head, buff);
             if(pFound)
                 websitePrintFull(pFound);
