@@ -244,7 +244,8 @@ void printEfficiency(ListHead *pList)
 	int i;
 	int j;
 	int collision = 0;
-	int longestBucket = 0;
+    //longestBucket will be 1 even if the hash table is empty
+	int longestBucket = 1;
 
 	for(i = 0; i < (pList->arySize * pList->bucketSize); i+=pList->bucketSize)
 	{
@@ -265,7 +266,7 @@ void printEfficiency(ListHead *pList)
 	loadFactor = (nodesFilled / arySize) * 100;
 	printf("The load factor is %.2f%%\n", loadFactor);
 	printf("Number of collisions: %d\n", collision);
-	printf("Longest Bucket: %d\n", longestBucket);
+	printf("Longest Bucket: %d\n", longestBucket - 1);
 
 	return;
 }
