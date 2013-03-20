@@ -14,6 +14,9 @@
 #include <limits.h>
 #include "WebsiteCatalog.h"
 
+// debug
+#define D(str, name) printf("%s", name);
+
 // project.main.ValidateManager.CONSTANT_DEFINED.delimiter
 #define DELIMITER_URL "./"
 #define DELIMITER_DOT '.'
@@ -216,6 +219,9 @@ bool validateInput(input_type type, char* usInput) {
 static bool _valUrl(char *usInput, size_t len) {
 	int i = 0;
 	bool isValid = false;
+  
+  
+  D("%s is the url for usInput", usInput);
     
 	/* (valid if true)      Does Url start with http://www. */
 	if (0 == strncmp("http://www.", usInput, 11)) {
