@@ -215,7 +215,7 @@ bool writeFile(const char *fname, QUEUE *pQueue)
  *
  *
  */
-bool doesLastSessionExist(char** fDest, char* fSrc) {
+bool checkLastSession(char** fDest, char* fSrc) {
 	FILE* fPtr;             // file pointer for input stream
     bool session = false;
     
@@ -223,10 +223,15 @@ bool doesLastSessionExist(char** fDest, char* fSrc) {
 	fPtr = fopen(*fDest, FILEMODE_READONLY);
     if(fPtr) {
     	printf(VERB_LAST_SESSION_FOUND);
+        fclose(fPtr);
         if (!_discardLastSessionOrNot()) {
             session = true;
+        } else {
+            if(remove(*fDest)) {
+            fprintf(stderr, ">>>>ERR: Unable to delete the file %s.\n", *fDest);
+            }
         }
-        fclose(fPtr);
+
     }
    
     return session;

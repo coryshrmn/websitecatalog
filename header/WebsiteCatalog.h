@@ -501,6 +501,6 @@ bool validateInput(input_type type, char* usInput);
 
 
 
-bool doesLastSessionExist(char** fDest, char* fSrc);
+bool checkLastSession(char** fDest, char* fSrc);
 
 void exitOnUserRequest(int code);

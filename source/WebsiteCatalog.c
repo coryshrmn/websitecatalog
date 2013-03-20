@@ -14,14 +14,13 @@ int main(void) {
 	ListHead head; // head of the list
 	char buff[1024];
 	char *fBacName;
-    char *fname;
-    char *tmp;
+	char *fname;
+	char *tmp;
 	bool valid;
+	bool isDataModified = false;
 	int numLines;
-    FILE *fPtr;
+	FILE *fPtr;
 	MENU_OPTION menuChoice;
-    
-    
     
 	//prompt input file name
 	valid = false;
@@ -29,35 +28,37 @@ int main(void) {
 		printf("Input file name:\n>");
 		fflush(stdout);
 		validate(fgets(buff, 1024, stdin));
-        //        trimEnd(buff);
+		//        trimEnd(buff);
 		trimNewLine(buff);
 		if (!validateInput(INPUT_TYPE_FILENAME, buff)) {
 			numLines = -1;
 		} else {
 			numLines = countLines(buff);
+			printf("numLines of file %d", numLines);
 			if (numLines == 1)
 				printf("File not found \"%s\"!\n", buff);
 		}
         
 	} while (numLines == -1);
-
+    
 	fname = malloc(strlen(buff) + 1);
 	strcpy(fname, buff);
-       
-    //TODO optional: prompt user to discard or load modified file
-    if(doesLastSessionExist(&fBacName, fname)) {
-        tmp = fname;
-        fname = fBacName;
-        free(fBacName);
-        tmp = NULL;
-    }    
     
-    //create data structures
+	//TODO optional: prompt user to discard or load modified file
+	if (checkLastSession(&fBacName, fname)) {
+		if (!strcmp(fBacName, fname)) {
+			isDataModified = true;
+		}
+		tmp = fname;
+		fname = fBacName;
+		tmp = NULL;
+	}
+    
+	//create data structures
 	hashCreate(&head, numLines);
 	bstCreate(&head);
     
-
-    readFile(fname, &head);
+	readFile(fname, &head);
     
 	//loop menu
 	valid = false;
@@ -152,7 +153,9 @@ int main(void) {
                 } while (!valid);
                 pCreate->websiteWorthThousands = atoi(buff);
                 
-                listInsert(&head, pCreate);
+                if (listInsert(&head, pCreate)) {
+                    isDataModified = true;
+                }
             }
                 
                 break;
@@ -168,7 +171,12 @@ int main(void) {
                         valid = true;
                     }
                 } while (!valid);
-                printf(listRemove(&head, buff) ? "Removed.\n" : "Not found!\n");
+                if (listRemove(&head, buff)) {
+                    printf("Removed.\n");
+                    isDataModified = true;
+                } else {
+                    printf("Not found!\n");
+                }
                 break;
             case MENU_SEARCH: {
                 Website *pFound;
@@ -203,9 +211,12 @@ int main(void) {
                 printEfficiency(&head);
                 break;
             case MENU_SAVE:
-                printf(
-                       writeFile(fname, bstTraverseBreadth(&head)) ?
-                       "File written\n" : "File could not be written!\n");
+                if (writeFile(fname, bstTraverseBreadth(&head))) {
+                    isDataModified = false;
+                    printf("File written\n");
+                } else {
+                    printf("File could not be written!\n");
+                }
                 break;
             case MENU_SAVE_AS:
                 valid = false;
@@ -219,17 +230,27 @@ int main(void) {
                         valid = true;
                     }
                 } while (!valid);
-                printf(
-                       writeFile(buff, bstTraverseBreadth(&head)) ?
-                       "File written\n" : "File could not be written!\n");
+                if (writeFile(buff, bstTraverseBreadth(&head))) {
+                    printf("File written\n");
+                    fname = buff;
+                    isDataModified = false;
+                } else {
+                    printf("File could not be written!\n");
+                }
+                
                 break;
             case MENU_QUIT: {
-                char *modName = appendBackupExtension(fname);
-                if (!writeFile(modName, bstTraverseBreadth(&head)))
-                    printf("Autosave file could not be written!\n");
-                else
-                    printf("Autosaved to: %s\n", modName);
-                free(modName);
+                //                char *modName = appendBackupExtension(fname);
+                //                if (!writeFile(modName, bstTraverseBreadth(&head)))
+                //                    printf("Autosave file could not be written!\n");
+                if (isDataModified) {
+                    if (!writeFile(fname, bstTraverseBreadth(&head))) {
+                        printf("Autosave file could not be written!\n");
+                    }
+                    
+                    printf("Autosaved to: %s\n", fname);
+                }
+                free(fBacName);
             }
                 break;
 		}
@@ -238,6 +259,7 @@ int main(void) {
 	hashFree(&head);
 	bstFreeAll(&head);
     
+    if (!fname) 
 	free(fname);
     
 	return EXIT_SUCCESS;
