@@ -263,8 +263,5 @@ int main(void) {
 	hashFree(&head);
 	bstFreeAll(&head);
     
-    if (fname) 
-	free(fname);
-    
 	return EXIT_SUCCESS;
 }
