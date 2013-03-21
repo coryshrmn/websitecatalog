@@ -41,6 +41,7 @@ int main(void) {
         
 	} while (numLines == -1);
     
+    //TODO make sure you free this
 	fname = malloc(strlen(buff) + 1);
 	strcpy(fname, buff);
     
