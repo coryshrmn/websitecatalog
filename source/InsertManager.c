@@ -1,9 +1,11 @@
-/* InsertManager.c
- * Group 6
+/*******************************************************************************
+ * InsertManager.c
  * Insert Manager
+ * 
+ * Developer(s):
+ * 		Cory Sherman	(coryshrmn@gmail.com)
  *
- * Cory Sherman
- */
+ ******************************************************************************/
 
 #include "WebsiteCatalog.h"
 
@@ -21,18 +23,14 @@
  *
  * Return: true iff the Website was successfully inserted.
  ******************************************************************************/
-bool listInsert(ListHead *pList, Website *pWebsite)
-{
-    if(hashInsert(pList, pWebsite))
-    {
-        bstInsert(pList, pWebsite);
-        return true;
-    }
-    else
-    {
-        websiteFree(pWebsite);
-        return false;
-    }
+bool listInsert(ListHead *pList, Website *pWebsite) {
+	if (hashInsert(pList, pWebsite)) {
+		bstInsert(pList, pWebsite);
+		return true;
+	} else {
+		websiteFree(pWebsite);
+		return false;
+	}
 }
 
 /*******************************************************************************
@@ -47,19 +45,15 @@ bool listInsert(ListHead *pList, Website *pWebsite)
  * Return: true if the Website was successfully removed,
  *         false if it was not found.
  ******************************************************************************/
-bool listRemove(ListHead *pList, const char *url)
-{
-    Website *pWebsite;
-    pWebsite = hashRemove(pList, url);
-    if(pWebsite)
-    {
-        bstRemove(pList, url);
-        websiteFree(pWebsite);
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+bool listRemove(ListHead *pList, const char *url) {
+	Website *pWebsite;
+	pWebsite = hashRemove(pList, url);
+	if (pWebsite) {
+		bstRemove(pList, url);
+		websiteFree(pWebsite);
+		return true;
+	} else {
+		return false;
+	}
 }
 

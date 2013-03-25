@@ -1,11 +1,11 @@
-/* HashManager.c
- * Group 6
- * Hash Manager
+/*******************************************************************************
+ * HashManager.c
  *
- * Chris Huang
- * Cory Sherman
- */
-
+ * Developer(s):
+ *		Chris Huang		(christopher.e.huang@gmail.com)
+ * 		Cory Sherman	(coryshrmn@gmail.com)
+ *
+ ******************************************************************************/
 #include "WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
@@ -21,7 +21,6 @@ static int _primeAtLeast(int val);
 static bool _isPrime(int val);
 static int _hashString(const char *val);
 
-
 /*******************************************************************************
  * Creates a hashtable for the specified ListHead
  *
@@ -35,57 +34,52 @@ static int _hashString(const char *val);
  *
  * Return: --
  ******************************************************************************/
-void hashCreate(ListHead *pList, int numLines)
-{
-    pList->arySize = _primeAtLeast(numLines * 2);
-    pList->bucketSize = DEFAULT_BUCKET_SIZE;
-    pList->pHash = validate(calloc(pList->arySize * pList->bucketSize, sizeof(HashNode)));
+void hashCreate(ListHead *pList, int numLines) {
+	pList->arySize = _primeAtLeast(numLines * 2);
+	pList->bucketSize = DEFAULT_BUCKET_SIZE;
+	pList->pHash = validate(
+			calloc(pList->arySize * pList->bucketSize, sizeof(HashNode)));
 }
 
+static int _primeAtLeast(int val) {
+	if (val < 0)
+		val = -val;
 
-static int _primeAtLeast(int val)
-{
-    if(val < 0)
-        val = -val;
-    
-    if(val <= 2)
-        return 2;
-    
-    //if val is even
-    if((val & 1) == 0)
-        val++;
-    
-    while(!_isPrime(val))
-    {
-        val += 2;
-    }
-    return val;
+	if (val <= 2)
+		return 2;
+
+	//if val is even
+	if ((val & 1) == 0)
+		val++;
+
+	while (!_isPrime(val)) {
+		val += 2;
+	}
+	return val;
 }
 
-static bool _isPrime(int val)
-{
-    int i;
-    int endi;
-    if(val < 0)
-        val = -val;
-    if(val < 2)
-        return false;
-    
-    if(val == 2)
-        return true;
-    
-    //if val is even
-    if((val & 1) == 0)
-        return false;
-    
-    //could be optimized to endi = sqrt(val)
-    endi = val / 2;
-    for(i = 3; i < endi; i += 2)
-    {
-        if(val % i == 0)
-            return false;
-    }
-    return true;
+static bool _isPrime(int val) {
+	int i;
+	int endi;
+	if (val < 0)
+		val = -val;
+	if (val < 2)
+		return false;
+
+	if (val == 2)
+		return true;
+
+	//if val is even
+	if ((val & 1) == 0)
+		return false;
+
+	//could be optimized to endi = sqrt(val)
+	endi = val / 2;
+	for (i = 3; i < endi; i += 2) {
+		if (val % i == 0)
+			return false;
+	}
+	return true;
 }
 
 /*******************************************************************************
@@ -102,30 +96,26 @@ static bool _isPrime(int val)
  *         false if the hashtable already contained an entry for the url,
  *               or if the bucket was full.
  ******************************************************************************/
-bool hashInsert(ListHead *pList, Website *pWebsite)
-{
-    int i;
-    int index;
+bool hashInsert(ListHead *pList, Website *pWebsite) {
+	int i;
+	int index;
 
+	if (!hashSearch(pList, pWebsite->url)) {
+		index = ((unsigned int) _hashString(pWebsite->url)
+				% (unsigned int) pList->arySize) * pList->bucketSize;
 
-    if(!hashSearch(pList, pWebsite->url))
-    {
-        index = ((unsigned int)_hashString(pWebsite->url) % (unsigned int)pList->arySize) * pList->bucketSize;
-        
-        for(i = 0; i < pList->bucketSize; i++)
-        {
-            if(!pList->pHash[index+i].key)
-            {
-                pList->pHash[index+i].key = pWebsite->url;
-                pList->pHash[index+i].site = pWebsite;
-                return true;
-            }
-        }
-        printf("Bucket full, unable to insert!\n");
-        return false;
-    }
-    printf("Website \"%s\" already exsits\n", pWebsite->url);
-    return false;
+		for (i = 0; i < pList->bucketSize; i++) {
+			if (!pList->pHash[index + i].key) {
+				pList->pHash[index + i].key = pWebsite->url;
+				pList->pHash[index + i].site = pWebsite;
+				return true;
+			}
+		}
+		printf("Bucket full, unable to insert!\n");
+		return false;
+	}
+	printf("Website \"%s\" already exsits\n", pWebsite->url);
+	return false;
 }
 
 /*******************************************************************************
@@ -138,34 +128,28 @@ bool hashInsert(ListHead *pList, Website *pWebsite)
  *
  * Return: The website found, or NULL if one was not found.
  * ******************************************************************************/
-Website *hashSearch(ListHead *pList, const char *url)
-{
-    int bucket = _hashIndex(pList, url);
-    return bucket == -1 ? NULL : pList->pHash[bucket].site;
+Website *hashSearch(ListHead *pList, const char *url) {
+	int bucket = _hashIndex(pList, url);
+	return bucket == -1 ? NULL : pList->pHash[bucket].site;
 }
 
-static int _hashIndex(ListHead *pList, const char *url)
-{
-    int i;
-    int index;
+static int _hashIndex(ListHead *pList, const char *url) {
+	int i;
+	int index;
 
-    index = ((unsigned int)_hashString(url) % (unsigned int)pList->arySize) * pList->bucketSize;
-	if(pList->pHash[index].key)
-	{
-		for(i = 0; i < pList->bucketSize; i++)
-		{
-			if(pList->pHash[index + i].key)
-			{
-				if(!strcmp(pList->pHash[index + i].key, url))
+	index = ((unsigned int) _hashString(url) % (unsigned int) pList->arySize)
+			* pList->bucketSize;
+	if (pList->pHash[index].key) {
+		for (i = 0; i < pList->bucketSize; i++) {
+			if (pList->pHash[index + i].key) {
+				if (!strcmp(pList->pHash[index + i].key, url))
 					return index + i;
 			}
 		}
 	}
 
-    return -1;
+	return -1;
 }
-
-
 
 /*******************************************************************************
  * Searches a hashtable for the specified url, and removes the found website
@@ -178,32 +162,30 @@ static int _hashIndex(ListHead *pList, const char *url)
  *
  * Return: The website removed, or NULL if one was not found.
  ******************************************************************************/
-Website *hashRemove(ListHead *pList, const char *url)
-{
-    int bucketIndex = _hashIndex(pList, url);
-    int bucketWhole;
-    int bucketPart;
-    Website *output;
-    if(bucketIndex == -1)
-        return NULL;
+Website *hashRemove(ListHead *pList, const char *url) {
+	int bucketIndex = _hashIndex(pList, url);
+	int bucketWhole;
+	int bucketPart;
+	Website *output;
+	if (bucketIndex == -1)
+		return NULL ;
 
-    output = pList->pHash[bucketIndex].site;
-    
-    bucketPart = bucketIndex % pList->bucketSize;
-    bucketWhole = bucketIndex - bucketPart;
+	output = pList->pHash[bucketIndex].site;
 
-    for(; bucketPart + 1 < pList->bucketSize; ++bucketPart)
-    {
-        int bucket = bucketWhole + bucketPart;
+	bucketPart = bucketIndex % pList->bucketSize;
+	bucketWhole = bucketIndex - bucketPart;
 
-        pList->pHash[bucket].key = pList->pHash[bucket + 1].key;
-        pList->pHash[bucket].site = pList->pHash[bucket + 1].site;
-    }
+	for (; bucketPart + 1 < pList->bucketSize; ++bucketPart) {
+		int bucket = bucketWhole + bucketPart;
 
-    pList->pHash[bucketWhole + bucketPart].key = NULL;
-    pList->pHash[bucketWhole + bucketPart].site = NULL;
+		pList->pHash[bucket].key = pList->pHash[bucket + 1].key;
+		pList->pHash[bucket].site = pList->pHash[bucket + 1].site;
+	}
 
-    return output;
+	pList->pHash[bucketWhole + bucketPart].key = NULL;
+	pList->pHash[bucketWhole + bucketPart].site = NULL;
+
+	return output;
 }
 
 /*******************************************************************************
@@ -217,12 +199,10 @@ Website *hashRemove(ListHead *pList, const char *url)
  *
  * Return: --
  ******************************************************************************/
-void hashFree(ListHead *pList)
-{
+void hashFree(ListHead *pList) {
 	free(pList->pHash);
 	pList->arySize = 0;
 	pList->pHash = NULL;
-
 
 	return;
 }
@@ -236,28 +216,25 @@ void hashFree(ListHead *pList)
  *
  * Return: --
  ******************************************************************************/
-void printEfficiency(ListHead *pList)
-{
+void printEfficiency(ListHead *pList) {
 	double nodesFilled = 0;
 	double loadFactor;
 	double arySize;
 	int i;
 	int j;
 	int collision = 0;
-    //longestBucket will be 1 even if the hash table is empty
+	//longestBucket will be 1 even if the hash table is empty
 	int longestBucket = 1;
 
-	for(i = 0; i < (pList->arySize * pList->bucketSize); i+=pList->bucketSize)
-	{
-		if(pList->pHash[i].key)
-		{
+	for (i = 0; i < (pList->arySize * pList->bucketSize); i +=
+			pList->bucketSize) {
+		if (pList->pHash[i].key) {
 			nodesFilled++;
-			for(j = 1; j < pList->bucketSize; j++)
-			{
-				if(pList->pHash[i+j].key)
+			for (j = 1; j < pList->bucketSize; j++) {
+				if (pList->pHash[i + j].key)
 					collision++;
 			}
-			if(longestBucket < j)
+			if (longestBucket < j)
 				longestBucket = j;
 		}
 	}
@@ -280,35 +257,29 @@ void printEfficiency(ListHead *pList)
  *
  * Return: --
  ******************************************************************************/
-void hashPrintList(ListHead *pList)
-{
-    int bucket;
-    int elem;
-    for(bucket = 0; bucket < pList->arySize; ++bucket)
-    {
-        HashNode *bucketOffset = &pList->pHash[bucket * pList->bucketSize];
-        printf("bucket (%d)\n", bucket);
-        for(elem = 0; elem < pList->bucketSize; ++elem)
-        {
-            if(bucketOffset[elem].site)
-            {
-                printf("    ");
-                websitePrint(bucketOffset[elem].site);
-            }
-        }
-    }
+void hashPrintList(ListHead *pList) {
+	int bucket;
+	int elem;
+	for (bucket = 0; bucket < pList->arySize; ++bucket) {
+		HashNode *bucketOffset = &pList->pHash[bucket * pList->bucketSize];
+		printf("bucket (%d)\n", bucket);
+		for (elem = 0; elem < pList->bucketSize; ++elem) {
+			if (bucketOffset[elem].site) {
+				printf("    ");
+				websitePrint(bucketOffset[elem].site);
+			}
+		}
+	}
 }
 
-static int _hashString(const char *key)
-{
-    int h = 0;
-    const char *w;
+static int _hashString(const char *key) {
+	int h = 0;
+	const char *w;
 
-    for(w = key; *w != '\0'; w++)
-    {
-        h = 31*h + *w;
-    }
+	for (w = key; *w != '\0'; w++) {
+		h = 31 * h + *w;
+	}
 
-    return h;
+	return h;
 }
 

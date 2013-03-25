@@ -1,19 +1,13 @@
-WebsiteCatalog (Final Beta Version Release)
+WebsiteCatalog (Final Beta Version 2.0 Release)
 ==============
-Everything needed is done!
 
-Validation has been merged with updates from Gold
-
-ADDED
-=====
-* presentable structure chart
-* "Save" feature.
-* "Discard Last Session" feature
-* "isDataModified" variable to check if there are any unsaved changes. i
-* From menu #10: Quit, save files only if `there exist any unsaved changes to current session.
-* #rm file.BAK # when user wishes to discard the backup file
-
-FIXME (low priority)
-====================
-* Calculating counting number of lines of input file returns incorrect result
-  when there is only single line of input in the input file:
+UPDATE: 
+===============
+Gon Kim writes: Fixed && Updated && Polished && Tested && Documented.
+* Fixed memory leaks
+* #8(Save) is updated.
+* #9(Save as) is updated.
+* #10(Quit) is updated.
+* Completed documentation headers for each functions
+* Long main is broken into functions. Repeated codes are deleted.
+* MenuManager.c && WebsiteCatalog.c have been updated. Please check.

@@ -1,10 +1,10 @@
-/* BstManager.c
- * Group 6
- * BST Manager
+/*******************************************************************************
+ * BstManager.c
  *
- * Cory Sherman
- */
-
+ * Developer(s):
+ * 		Cory Sherman	(coryshrmn@gmail.com)
+ *
+ ******************************************************************************/
 #include "WebsiteCatalog.h"
 #include <string.h>
 #include <stdio.h>
@@ -30,11 +30,9 @@ static void _printInorder(BstNode *node);
  *
  * Return: --
  ******************************************************************************/
-void bstCreate(ListHead *pList)
-{
-    pList->pTree = NULL;
+void bstCreate(ListHead *pList) {
+	pList->pTree = NULL;
 }
-
 
 /*******************************************************************************
  * Attempts to insert Website into a BST.
@@ -48,54 +46,44 @@ void bstCreate(ListHead *pList)
  * Return: true if the website was successfully inserted.
  *         false if the BST already contained an entry for the url.
  ******************************************************************************/
-bool bstInsert(ListHead *pList, Website *pWebsite)
-{
-    return _bstInsert(&pList->pTree, pWebsite);
+bool bstInsert(ListHead *pList, Website *pWebsite) {
+	return _bstInsert(&pList->pTree, pWebsite);
 }
 
-static bool _bstInsert(BstNode **node, Website *pWebsite)
-{
-    int cmp;
-    if(!*node)
-    {
-        *node = _createNode(pWebsite);
-        return true;
-    }
-    cmp = strcmp(pWebsite->url, (*node)->key);
-    if(cmp == 0)
-    {
-        return false;
-    }
-    else
-    {
-        if(cmp > 0)
-            node = &(*node)->right;
-        else
-            node = &(*node)->left;
+static bool _bstInsert(BstNode **node, Website *pWebsite) {
+	int cmp;
+	if (!*node) {
+		*node = _createNode(pWebsite);
+		return true;
+	}
+	cmp = strcmp(pWebsite->url, (*node)->key);
+	if (cmp == 0) {
+		return false;
+	} else {
+		if (cmp > 0)
+			node = &(*node)->right;
+		else
+			node = &(*node)->left;
 
-        return _bstInsert(node, pWebsite);
-    }
+		return _bstInsert(node, pWebsite);
+	}
 }
 
-static BstNode *_createNode(Website *pWebsite)
-{
-    BstNode *output = validate(malloc(sizeof(BstNode)));
-    output->left = NULL;
-    output->right = NULL;
-    output->key = pWebsite->url;
-    output->site = pWebsite;
-    return output;
+static BstNode *_createNode(Website *pWebsite) {
+	BstNode *output = validate(malloc(sizeof(BstNode)));
+	output->left = NULL;
+	output->right = NULL;
+	output->key = pWebsite->url;
+	output->site = pWebsite;
+	return output;
 }
 
-static BstNode *_freeNode(BstNode *node)
-{
-    if(node)
-    {
-        free(node);
-    }
-    return NULL;
+static BstNode *_freeNode(BstNode *node) {
+	if (node) {
+		free(node);
+	}
+	return NULL ;
 }
-
 
 /*******************************************************************************
  * Searches a BST for the specified url.
@@ -107,27 +95,24 @@ static BstNode *_freeNode(BstNode *node)
  *
  * Return: The website found, or NULL if one was not found.
  ******************************************************************************/
-Website *bstSearch(ListHead *pList, const char *url)
-{
-    BstNode *foundNode = *_search(&pList->pTree, url);
-    return foundNode ? foundNode->site : NULL;
+Website *bstSearch(ListHead *pList, const char *url) {
+	BstNode *foundNode = *_search(&pList->pTree, url);
+	return foundNode ? foundNode->site : NULL ;
 }
 
-static BstNode **_search(BstNode **node, const char *url)
-{
-    int cmp;
-    if(!(*node))
-        return node;
-    cmp = strcmp(url, (*node)->key);
-    if(cmp == 0)
-        return node;
+static BstNode **_search(BstNode **node, const char *url) {
+	int cmp;
+	if (!(*node))
+		return node;
+	cmp = strcmp(url, (*node)->key);
+	if (cmp == 0)
+		return node;
 
-    if(cmp > 0)
-        return _search(&(*node)->right, url);
-    else
-        return _search(&(*node)->left, url);
+	if (cmp > 0)
+		return _search(&(*node)->right, url);
+	else
+		return _search(&(*node)->left, url);
 }
-
 
 /*******************************************************************************
  * Searches a BST for the specified url, and removes the found website
@@ -140,50 +125,48 @@ static BstNode **_search(BstNode **node, const char *url)
  *
  * Return: The website removed, or NULL if one was not found.
  ******************************************************************************/
-Website *bstRemove(ListHead *pList, const char *url)
-{
-    bool hasLeft;
-    bool hasRight;
-    Website *output;
-    BstNode **pFoundNode = _search(&pList->pTree, url);
-    if(!*pFoundNode)
-        return NULL;
-    
-    output = (*pFoundNode)->site;
-    hasLeft = (*pFoundNode)->left != NULL;
-    hasRight = (*pFoundNode)->right != NULL;
+Website *bstRemove(ListHead *pList, const char *url) {
+	bool hasLeft;
+	bool hasRight;
+	Website *output;
+	BstNode **pFoundNode = _search(&pList->pTree, url);
+	if (!*pFoundNode)
+		return NULL ;
 
-    //leaf node
-    if(!hasLeft && !hasRight)
-    {
-        _freeNode(*pFoundNode);
-        *pFoundNode = NULL;
-    }
-    //leaf-like node
-    else if(hasLeft != hasRight)
-    {
-        BstNode *replacement = hasLeft ? (*pFoundNode)->left : (*pFoundNode)->right;
-        _freeNode(*pFoundNode);
-        *pFoundNode = replacement;
-    }
-    //two-children node
-    else
-    {
-        //find highest on left subtree
-        BstNode **highest;
-        BstNode *oldHighest;
-        for(highest = &(*pFoundNode)->left; (*highest)->right != NULL; highest = &(*highest)->right);
-        oldHighest = *highest;
-        (*pFoundNode)->key = oldHighest->key;
-        (*pFoundNode)->site = oldHighest->site;
+	output = (*pFoundNode)->site;
+	hasLeft = (*pFoundNode)->left != NULL;
+	hasRight = (*pFoundNode)->right != NULL;
 
-        *highest = oldHighest->left;
-        free(oldHighest);
-    }
+	//leaf node
+	if (!hasLeft && !hasRight) {
+		_freeNode(*pFoundNode);
+		*pFoundNode = NULL;
+	}
+	//leaf-like node
+	else if (hasLeft != hasRight) {
+		BstNode *replacement =
+				hasLeft ? (*pFoundNode)->left : (*pFoundNode)->right;
+		_freeNode(*pFoundNode);
+		*pFoundNode = replacement;
+	}
+	//two-children node
+	else {
+		//find highest on left subtree
+		BstNode **highest;
+		BstNode *oldHighest;
+		for (highest = &(*pFoundNode)->left; (*highest)->right != NULL ;
+				highest = &(*highest)->right)
+			;
+		oldHighest = *highest;
+		(*pFoundNode)->key = oldHighest->key;
+		(*pFoundNode)->site = oldHighest->site;
 
-    return output;
+		*highest = oldHighest->left;
+		free(oldHighest);
+	}
+
+	return output;
 }
-
 
 /*******************************************************************************
  * Frees all of the elements and nodes from the BST from the specified ListHead.
@@ -196,19 +179,17 @@ Website *bstRemove(ListHead *pList, const char *url)
  *
  * Return: --
  ******************************************************************************/
-void bstFreeAll(ListHead *pList)
-{
-    _bstFreeAll(pList->pTree);
+void bstFreeAll(ListHead *pList) {
+	_bstFreeAll(pList->pTree);
 }
 
-static void _bstFreeAll(BstNode *node)
-{
-    if(!node)
-        return;
-    _bstFreeAll(node->left);
-    _bstFreeAll(node->right);
-    websiteFree(node->site);
-    _freeNode(node);
+static void _bstFreeAll(BstNode *node) {
+	if (!node)
+		return;
+	_bstFreeAll(node->left);
+	_bstFreeAll(node->right);
+	websiteFree(node->site);
+	_freeNode(node);
 }
 
 /*******************************************************************************
@@ -220,31 +201,29 @@ static void _bstFreeAll(BstNode *node)
  *
  * Return: A QUEUE containing every Website* in breadth first order.
  ******************************************************************************/
-QUEUE *bstTraverseBreadth(ListHead *pList)
-{
-    QUEUE *output, *tempQueue;
-    BstNode *node;
+QUEUE *bstTraverseBreadth(ListHead *pList) {
+	QUEUE *output, *tempQueue;
+	BstNode *node;
 
-    output = createQueue();
-    tempQueue = createQueue();
-    node = pList->pTree;
+	output = createQueue();
+	tempQueue = createQueue();
+	node = pList->pTree;
 
-    while(node)
-    {
-        enqueue(output, node->site);
-        if(node->left)
-            enqueue(tempQueue, node->left);
-        if(node->right)
-            enqueue(tempQueue, node->right);
+	while (node) {
+		enqueue(output, node->site);
+		if (node->left)
+			enqueue(tempQueue, node->left);
+		if (node->right)
+			enqueue(tempQueue, node->right);
 
-        if(emptyQueue(tempQueue))
-            node = NULL;
-        else
-            dequeue(tempQueue, (void**)&node);
-    }
+		if (emptyQueue(tempQueue))
+			node = NULL;
+		else
+			dequeue(tempQueue, (void**) &node);
+	}
 
-    destroyQueue(tempQueue);
-    return output;
+	destroyQueue(tempQueue);
+	return output;
 }
 
 /*******************************************************************************
@@ -256,22 +235,20 @@ QUEUE *bstTraverseBreadth(ListHead *pList)
  *
  * Return: --
  ******************************************************************************/
-void bstPrintIndented(ListHead *pList)
-{
-    _printIndented(pList->pTree, 0);
+void bstPrintIndented(ListHead *pList) {
+	_printIndented(pList->pTree, 0);
 }
 
-static void _printIndented(BstNode *node, int spaces)
-{
-    int i;
-    if(!node)
-        return;
-    
-    _printIndented(node->right, spaces + 4);
-    for(i = 0; i != spaces; ++i)
-        printf(" ");
-    websitePrint(node->site);
-    _printIndented(node->left, spaces + 4);
+static void _printIndented(BstNode *node, int spaces) {
+	int i;
+	if (!node)
+		return;
+
+	_printIndented(node->right, spaces + 4);
+	for (i = 0; i != spaces; ++i)
+		printf(" ");
+	websitePrint(node->site);
+	_printIndented(node->left, spaces + 4);
 }
 
 /*******************************************************************************
@@ -283,16 +260,14 @@ static void _printIndented(BstNode *node, int spaces)
  *
  * Return: --
  ******************************************************************************/
-void bstPrintInorder(ListHead *pList)
-{
-    _printInorder(pList->pTree);
+void bstPrintInorder(ListHead *pList) {
+	_printInorder(pList->pTree);
 }
 
-static void _printInorder(BstNode *node)
-{
-    if(!node)
-        return;
-    _printInorder(node->left);
-    websitePrint(node->site);
-    _printInorder(node->right);
+static void _printInorder(BstNode *node) {
+	if (!node)
+		return;
+	_printInorder(node->left);
+	websitePrint(node->site);
+	_printInorder(node->right);
 }

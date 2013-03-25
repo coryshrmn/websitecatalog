@@ -1,9 +1,11 @@
-/* WebsiteManager.c
- * Group 6
- * Website Manager
+/*******************************************************************************
+ * WebsiteManager.c
+ * contains functions dealing with create, free, and print Websites.
  *
- * Cory Sherman
- */
+ * Developer(s):
+ * 		Cory Sherman	(coryshrmn@gmail.com)
+ *
+ ******************************************************************************/
 
 #include "WebsiteCatalog.h"
 #include <string.h>
@@ -13,8 +15,6 @@
 /*******************************************************************************
  * WebsiteManager Private Prototypes
  ******************************************************************************/
-//none
-
 
 /*******************************************************************************
  * Allocates a new Website. Copies url and company into newly allocated strings.
@@ -27,18 +27,19 @@
  *
  * Return: A pointer to the new Website.
  ******************************************************************************/
-Website *websiteCreate(const char *url, const char *company, int dailyPageViewThousands, int rankTraffic, int backLinkThousands, int worthThousands)
-{
-    Website *output = validate(malloc(sizeof(Website)));
-    output->url = validate(malloc(strlen(url) + 1));
-    output->company = validate(malloc(strlen(company) + 1));
-    strcpyToLower(output->url, url);
-    strcpy(output->company, company);
-    output->dailyPageViewThousands = dailyPageViewThousands;
-    output->rankTraffic = rankTraffic;
-    output->backLinkThousands = backLinkThousands;
-    output->websiteWorthThousands = worthThousands;
-    return output;
+Website *websiteCreate(const char *url, const char *company,
+		int dailyPageViewThousands, int rankTraffic, int backLinkThousands,
+		int worthThousands) {
+	Website *output = validate(malloc(sizeof(Website)));
+	output->url = validate(malloc(strlen(url) + 1));
+	output->company = validate(malloc(strlen(company) + 1));
+	strcpyToLower(output->url, url);
+	strcpy(output->company, company);
+	output->dailyPageViewThousands = dailyPageViewThousands;
+	output->rankTraffic = rankTraffic;
+	output->backLinkThousands = backLinkThousands;
+	output->websiteWorthThousands = worthThousands;
+	return output;
 }
 
 /*******************************************************************************
@@ -50,16 +51,15 @@ Website *websiteCreate(const char *url, const char *company, int dailyPageViewTh
  *
  * Return: NULL
  ******************************************************************************/
-Website *websiteFree(Website *pSite)
-{
-    if(!pSite)
-        return NULL;
-    if(pSite->url)
-        free(pSite->url);
-    if(pSite->company)
-        free(pSite->company);
-    free(pSite);
-    return NULL;
+Website *websiteFree(Website *pSite) {
+	if (!pSite)
+		return NULL ;
+	if (pSite->url)
+		free(pSite->url);
+	if (pSite->company)
+		free(pSite->company);
+	free(pSite);
+	return NULL ;
 }
 
 /*******************************************************************************
@@ -71,9 +71,8 @@ Website *websiteFree(Website *pSite)
  *
  * Return: --
  ******************************************************************************/
-void websitePrint(Website *pSite)
-{
-    printf("%s\n", pSite && pSite->url ? pSite->url : "NULL");
+void websitePrint(Website *pSite) {
+	printf("%s\n", pSite && pSite->url ? pSite->url : "NULL");
 }
 
 /*******************************************************************************
@@ -85,31 +84,30 @@ void websitePrint(Website *pSite)
  *
  * Return: --
  ******************************************************************************/
-void websitePrintFull(Website *pSite)
-{
-    if(!pSite)
-    {
-        printf("NULL\n");
-        return;
-    }
+void websitePrintFull(Website *pSite) {
+	if (!pSite) {
+		printf("NULL\n");
+		return;
+	}
 
-    printf("%s\n", pSite->url ? pSite->url : "NULL");
+	printf("%s\n", pSite->url ? pSite->url : "NULL");
 
-    printf("    Company:         \"%s\"\n", pSite->company ? pSite->company : "NULL");
-    
-    printf("    Daily Pageviews: ");
-    printIntCommas(pSite->dailyPageViewThousands);
-    printf(",000\n");
-    
-    printf("    Traffic Rank:    ");
-    printIntCommas(pSite->rankTraffic);
-    printf("\n");
-    
-    printf("    Backlinks:       ");
-    printIntCommas(pSite->backLinkThousands);
-    printf(",000\n");
-    
-    printf("    Worth:           $");
-    printIntCommas(pSite->websiteWorthThousands);
-    printf(",000\n");
+	printf("    Company:         \"%s\"\n",
+			pSite->company ? pSite->company : "NULL");
+
+	printf("    Daily Pageviews: ");
+	printIntCommas(pSite->dailyPageViewThousands);
+	printf(",000\n");
+
+	printf("    Traffic Rank:    ");
+	printIntCommas(pSite->rankTraffic);
+	printf("\n");
+
+	printf("    Backlinks:       ");
+	printIntCommas(pSite->backLinkThousands);
+	printf(",000\n");
+
+	printf("    Worth:           $");
+	printIntCommas(pSite->websiteWorthThousands);
+	printf(",000\n");
 }

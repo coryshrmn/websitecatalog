@@ -1,16 +1,89 @@
- /* WebsiteCatalog.h
-  * Group 6
-  * Header File
-  *
-  * Cory Sherman
-  * Gon Kim
-  * Chris Huang
-  */
+/*******************************************************************************
+ * WebsiteCatalog.h
+ *
+ * Developer(s):
+ * 		Cory Sherman	(coryshrmn@gmail.com)
+ * 		Gon Kim			(imgonkim@gmail.com)
+ *		Chris Huang		(christopher.e.huang@gmail.com)
+ *
+ ******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include "queueADT.h"
-#include "constants.h"
 
+// project.main.CONSTANT_DEFINED.formatting
+#define HR  "================================================\n"
+#define BR                                      "\n"
+
+// project.main.CONSTANT_DEFINED.exitcode
+#define EXIT_NOT_ENOUGH_MEMORY                  101
+#define EXIT_FILE_NOT_OPENED                    102
+#define EXIT_FILE_NOT_CLOSED                    103
+#define EXIT_FILE_NOT_WRITTEN                   104
+#define EXIT_ON_USER_REQUEST                    105
+// project.main.CONSTANT_DEFINED.delimiter
+#define DELIMITER_SPACE                         ' '
+#define DELIMITER_SEMICOLON                     ';'
+#define DELIMITER_NEWLINE                       '\n'
+#define DELIMITER_SLASH                         '/'
+#define DELIMITER_DOT                           '.'
+#define DELIMITER_ZERO                          '0'
+#define DELIMITER_UNDERSCORE                    '_'
+#define DELIMITER_DASH                          '-'
+// project.main.CONSTANT_DEFINED.fileio
+#define FILEMODE_READONLY                       "r"
+#define FILEMODE_WRITE                          "w"
+#define FILEMODE_OVERWRITE                      "w+"
+#define MAX_LENGTH_INPUT                        255
+#define MAX_LENGTH_FILENAME                     MAX_LENGTH_INPUT
+#define FLUSH while (getchar() != '\n');
+#define USERINPUT_QUIT                          "QUIT"
+// project.main.CONSTANT_DEFINED.error
+#define ERR_COULD_NOT_CLOSE_FILE(name)          ">>>ERROR : Could not close file \"%s\".\n", name
+#define ERR_COULD_NOT_OPEN_FILE(name)           ">>>ERROR : Could not open file, \"%s\".\n", name
+#define ERR_COULD_NOT_REOPEN_FILE(name, mode)   ">>>ERROR : Could not re-open file \"%s\" with \"%s\" mode.\n", name, mode
+#define ERR_NOT_ENOUGH_MEMORY                   ">>>ERROR : Not enough memory.\n"
+#define ERR_INVALID_INPUT                       ">>>ERROR : Invalid input. Please try again.\n"
+#define ERR_FILE_NOT_WRITTEN(name)              ">>>ERROR: Data could not be written to \"%s\".\n", name
+// project.main.CONSTANT_DEFINED.verbose
+#define VERB_EXIT_ON_USER_REQUEST               ">VERBOSE : Exiting program on user request"
+// project.main.CONSTANT_DEFINED.message
+#define MSG_PROMPT_RECONFIRM                    "Are you sure?\n"
+#define MSG_PROMPT_FILENAME                     "Please enter the filename: "
+#define MSG_EXIT_SELECTION                      "Enter \"I\" to ignore once, \
+\"A\" to ignore all,         \
+or \"Q\" to quit program\n"
+
+
+typedef enum {
+	INPUT_VALUE_INVALID = -1, /* -1 */
+	INPUT_VALUE_NO, /*  0 */
+	INPUT_VALUE_YES, /*  1 */
+	INPUT_VALUE_VALID, /*  2 */
+	INPUT_VALUE_IGNORE, /*  3 */
+	INPUT_VALUE_IGNORE_ALL, /*  4 */
+	INPUT_VALUE_QUIT /*  5 */
+} input_value;
+
+
+typedef enum {
+	INPUT_TYPE_URL = 2001, /* 2001 */
+	INPUT_TYPE_COMPANY, /* 2002 */
+	INPUT_TYPE_DAILY_PAGE_VIEW, /* 2003 */
+	INPUT_TYPE_RANK_TRAFFIC, /* 2004 */
+	INPUT_TYPE_BACK_LINK, /* 2005 */
+	INPUT_TYPE_WEBSITE_WORTH, /* 2006 */
+    
+	INPUT_TYPE_FILENAME = 3001, /* 3001 */
+	INPUT_TYPE_EXIT_ON_INVALID_FIELD, /* 3002 */
+	INPUT_TYPE_RECONFIRM, /* 3003 */
+	INPUT_TYPE_DISCARD, /* 3004 */
+	INPUT_TYPE_SAVE, /* 3005 */
+	INPUT_TYPE_SAVE_AS, /* 3006 */
+	INPUT_TYPE_QUIT, /* 3007 */
+    
+	INPUT_TYPE_MENU = 4001 /* 4001 */
+} input_type;
 
 typedef struct
 {
@@ -389,6 +462,7 @@ typedef enum
 } MENU_OPTION;
 
 
+
 /*******************************************************************************
  * Prints the menu to the user, and loops until they enter a valid choice.
  *
@@ -398,7 +472,7 @@ typedef enum
  *
  * Return: The user's selected option
  ******************************************************************************/
-MENU_OPTION promptMenu(void);
+MENU_OPTION _promptMenu(void);
 
 
 /*******************************************************************************
@@ -456,19 +530,17 @@ bool readFile(const char *fname, ListHead *pHead);
 bool writeFile(const char *fname, QUEUE *pQueue);
 
 
-
-
-
-
-
+/*******************************************************************************
+ * Copies the exact string to all lower cases.
+ *
+ *    Pre: dest is the destination string
+ *         source is the source string
+ *
+ *   Post: Copies the exact string to all lower cases.
+ *
+ * Return: --
+ ******************************************************************************/
 void strcpyToLower(char *dest, const char *source);
-
-
-
-
-
-
-
 
 
 /*******************************************************************************
@@ -482,6 +554,7 @@ void strcpyToLower(char *dest, const char *source);
  * Return: --
  ******************************************************************************/
 void trimNewLine(char *usInput);
+
 
 /*******************************************************************************
  * Validates input (either file input or user input)
@@ -498,9 +571,83 @@ void trimNewLine(char *usInput);
 bool validateInput(input_type type, char* usInput);
 
 
+/*******************************************************************************
+* Drives menu.
+*
+*    Pre: head is the header of the list
+*		  sfName is the safe fiel name
+*
+*   Post: Prompts menu option and processes menu
+*
+* Return: none
+******************************************************************************/
+void MenuDriver(ListHead *head, char* sfName);
 
 
+/*******************************************************************************
+ * Initializes the program.
+ *
+ *    Pre: head is the header of the list
+ *		   sfCur is the current safe file name
+ *
+ *   Post: Get input file name.
+ *         Create data structures.
+ *
+ * Return: none
+ ******************************************************************************/
+void InitDriver(ListHead *head, char **sfCur);
 
-bool checkLastSession(char** fDest, char* fSrc);
 
+/*******************************************************************************
+ * Destroys hash and bst.
+ *
+ *    Pre: head is the header of the list
+ *
+ *   Post: Frees dynamically allocated memory of BST and HASH struct
+ *
+ * Return: none
+ ******************************************************************************/
+void DestroyDriver(ListHead *head);
+
+
+/*******************************************************************************
+ * Prompts user to enter input.
+ *
+ *    Pre: type is the input type
+ *         msg is the message to be displayed for prompt
+ *
+ *   Post: Prompts user to enter the input.
+ *         The input's new line character is trimmed.
+ *         Validates the user input for its input type.
+ *
+ * Return: sInputBuffer is the validated input.
+ ******************************************************************************/
+char *promptInput(const input_type type, const char *msg);
+
+
+/*******************************************************************************
+ * Exits program with the given user request.
+ *
+ *    Pre: exitCode is the exit code returned with program exit
+ *
+ *   Post: exits program
+ *
+ * Return: --
+ ******************************************************************************/
 void exitOnUserRequest(int code);
+
+
+/*******************************************************************************
+ * Attempts to open backup file. If exists, prompt to discard backup file.
+ *
+ *    Pre: fBackup is the name of the backup file
+ *         fSrc is the original file name entered by the user 
+ *
+ *   Post: Appends the backup file name to the original file name entered by user.
+ *         Prompts to discard the backup file if exists
+ *         Counts the number of lines in the backupfile.
+ *
+ * Return: -1 if backupfile was either discarded or not opened. Or,
+ *         the number of lines read from the input file.
+ ******************************************************************************/
+int isBackupFileOpened(char** fBackup, char* fSrc);
