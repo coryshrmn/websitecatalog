@@ -10,6 +10,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queueADT.h"
+#ifdef _MSC_VER
+#include <crtdbg.h>
+#endif
 
 // project.main.CONSTANT_DEFINED.formatting
 #define HR  "================================================\n"
@@ -47,6 +50,7 @@
 #define ERR_FILE_NOT_WRITTEN(name)              ">>>ERROR: Data could not be written to \"%s\".\n", name
 // project.main.CONSTANT_DEFINED.verbose
 #define VERB_EXIT_ON_USER_REQUEST               ">VERBOSE : Exiting program on user request"
+#define VERB_EXIT_NORMALLY                      ">VERBOSE : Exiting program normally."
 // project.main.CONSTANT_DEFINED.message
 #define MSG_PROMPT_RECONFIRM                    "Are you sure?\n"
 #define MSG_PROMPT_FILENAME                     "Please enter the filename: "

@@ -82,6 +82,10 @@ void InitDriver(ListHead *head, char **sfCur) {
 void DestroyDriver(ListHead *head) {
 	hashFree(head);
 	bstFreeAll(head);
+    #ifdef _MSC_VER
+    _CrtDumpMemoryLeaks();
+    #endif
+    printf(VERB_EXIT_NORMALLY);
 
 }
 

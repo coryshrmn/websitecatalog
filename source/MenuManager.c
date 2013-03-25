@@ -104,7 +104,6 @@ void MenuDriver(ListHead *head, char* sfName) {
 			break;
 		case MENU_QUIT:
 			_quitFromMenu(head, sfName, isDataModified);
-			printf(VERB_EXIT_ON_USER_REQUEST);
 			break;
 		default:
 			printf(ERR_INVALID_MENU);
@@ -172,6 +171,11 @@ static void _insertFromMenu(ListHead *head, bool *isDataModified) {
 	pCreate->dailyPageViewThousands = atoi(buff);
 	free(buff);
 
+	// insert: daily page view
+	buff = promptInput(INPUT_TYPE_RANK_TRAFFIC, MSG_PROMPT_RANK_TRAFFIC);
+	pCreate->rankTraffic = atoi(buff);
+	free(buff);
+    
 	// insert: back link
 	buff = promptInput(INPUT_TYPE_BACK_LINK, MSG_PROMPT_BACK_LINK);
 	pCreate->backLinkThousands = atoi(buff);
