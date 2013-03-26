@@ -88,10 +88,10 @@ static BstNode *_freeNode(BstNode *node) {
 /*******************************************************************************
  * Searches a BST for the specified url.
  *
- *    Pre: pList points to a list which is initialized and has a valid hashtable.
+ *    Pre: pList points to a list which is initialized and has a valid BST table.
  *         url is the url of the website
  *
- *   Post: Nothing is modified, the hashtable has been searched.
+ *   Post: Nothing is modified, the BST  has been searched.
  *
  * Return: The website found, or NULL if one was not found.
  ******************************************************************************/
