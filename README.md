@@ -1,5 +1,6 @@
 WebsiteCatalog
 ==============
+This repository can be found at https://github.com/coryshrmn/websitecatalog/
 
 Authors
 -------
@@ -29,4 +30,5 @@ Located in the *sample* directory.
 
 Presentation
 ------------
-The presentation, in ODP and PDF format, is in *presentation.zip*, along with the presentation outline.
+The presentation, in ODP and PDF format, is in the *presentation* directory, along with the presentation outline.
+In the Catalyst submission, these files are found in *presentation.zip*
