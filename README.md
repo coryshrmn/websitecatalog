@@ -30,5 +30,5 @@ Located in the *sample* directory.
 
 Presentation
 ------------
-The presentation, in ODP and PDF format, is in the *presentation* directory, along with the presentation outline.
-In the Catalyst submission, these files are found in *presentation.zip*
+The slide-show presentation, in ODP and PDF formats, is in the *presentation* directory, along with the presentation outline.
+In the Catalyst submission, these files are in *presentation.zip*
