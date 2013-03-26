@@ -13,6 +13,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef _MSC_VER
+#include <crtdebug.h>
+#endif
+
 int main(void) {
 	ListHead head; // head of the list
 	char *sfName = NULL; // safe filename
@@ -20,7 +24,7 @@ int main(void) {
 	InitDriver(&head, &sfName);
 	readFile(sfName, &head);
 	MenuDriver(&head, sfName);
-  free(sfName);
+    free(sfName);
 	DestroyDriver(&head);
 
 	return EXIT_SUCCESS;
@@ -82,14 +86,13 @@ void InitDriver(ListHead *head, char **sfCur) {
  *
  * Return: none
  ******************************************************************************/
-void DestroyDriver(ListHead *head) {
+void DestroyDriver(ListHead *head)
+{
 	hashFree(head);
 	bstFreeAll(head);
     #ifdef _MSC_VER
-    _CrtDumpMemoryLeaks();
+    printf(_CrtDumpMemoryLeaks() ? "Memory leaks!\n" : "No memory leaks.\n");
     #endif
-    printf(VERB_EXIT_NORMALLY);
-
 }
 
 /*******************************************************************************

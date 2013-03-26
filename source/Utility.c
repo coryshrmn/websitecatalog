@@ -126,7 +126,6 @@ void strcpyToLower(char *dest, const char *source) {
  * Return: --
  ******************************************************************************/
 void exitOnUserRequest(const int exitCode) {
-	printf(VERB_EXIT_ON_USER_REQUEST);
 	exit(exitCode);
 }
 

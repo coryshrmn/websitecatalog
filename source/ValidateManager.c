@@ -43,6 +43,16 @@
 #define INPUT_VALUE_YES_RAW                 'y'
 #define INPUT_VALUE_NO_RAW                  'n'
 
+// project.main.validateManager.CONSTANT_DEFINED.delimiter
+#define DELIMITER_SPACE                         ' '
+#define DELIMITER_SEMICOLON                     ';'
+#define DELIMITER_NEWLINE                       '\n'
+#define DELIMITER_SLASH                         '/'
+#define DELIMITER_DOT                           '.'
+#define DELIMITER_ZERO                          '0'
+#define DELIMITER_UNDERSCORE                    '_'
+#define DELIMITER_DASH                          '-'
+
 // project.main.ValidateManager.CONSTANT_DEFINED.error
 #define ERR_INVALID_INPUT_TYPE ">>>ERROR: Invalid input type.\n"
 

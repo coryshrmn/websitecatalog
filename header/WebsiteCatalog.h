@@ -7,12 +7,7 @@
  *		Chris Huang		(christopher.e.huang@gmail.com)
  *
  ******************************************************************************/
-#include <stdio.h>
-#include <stdlib.h>
 #include "queueADT.h"
-#ifdef _MSC_VER
-#include <crtdbg.h>
-#endif
 
 // project.main.CONSTANT_DEFINED.formatting
 #define HR  "================================================\n"
@@ -24,22 +19,13 @@
 #define EXIT_FILE_NOT_CLOSED                    103
 #define EXIT_FILE_NOT_WRITTEN                   104
 #define EXIT_ON_USER_REQUEST                    105
-// project.main.CONSTANT_DEFINED.delimiter
-#define DELIMITER_SPACE                         ' '
-#define DELIMITER_SEMICOLON                     ';'
-#define DELIMITER_NEWLINE                       '\n'
-#define DELIMITER_SLASH                         '/'
-#define DELIMITER_DOT                           '.'
-#define DELIMITER_ZERO                          '0'
-#define DELIMITER_UNDERSCORE                    '_'
-#define DELIMITER_DASH                          '-'
 // project.main.CONSTANT_DEFINED.fileio
-#define FILEMODE_READONLY                       "r"
-#define FILEMODE_WRITE                          "w"
-#define FILEMODE_OVERWRITE                      "w+"
+//#define FILEMODE_READONLY                       "r"
+//#define FILEMODE_WRITE                          "w"
+//#define FILEMODE_OVERWRITE                      "w+"
 #define MAX_LENGTH_INPUT                        255
 #define MAX_LENGTH_FILENAME                     MAX_LENGTH_INPUT
-#define FLUSH while (getchar() != '\n');
+//#define FLUSH while (getchar() != '\n');
 #define USERINPUT_QUIT                          "QUIT"
 // project.main.CONSTANT_DEFINED.error
 #define ERR_COULD_NOT_CLOSE_FILE(name)          ">>>ERROR : Could not close file \"%s\".\n", name
@@ -49,14 +35,14 @@
 #define ERR_INVALID_INPUT                       ">>>ERROR : Invalid input. Please try again.\n"
 #define ERR_FILE_NOT_WRITTEN(name)              ">>>ERROR: Data could not be written to \"%s\".\n", name
 // project.main.CONSTANT_DEFINED.verbose
-#define VERB_EXIT_ON_USER_REQUEST               ">VERBOSE : Exiting program on user request"
-#define VERB_EXIT_NORMALLY                      ">VERBOSE : Exiting program normally."
+//#define VERB_EXIT_ON_USER_REQUEST               ">VERBOSE : Exiting program on user request"
+//#define VERB_EXIT_NORMALLY                      ">VERBOSE : Exiting program normally."
 // project.main.CONSTANT_DEFINED.message
 #define MSG_PROMPT_RECONFIRM                    "Are you sure?\n"
 #define MSG_PROMPT_FILENAME                     "Please enter the filename: "
-#define MSG_EXIT_SELECTION                      "Enter \"I\" to ignore once, \
-\"A\" to ignore all,         \
-or \"Q\" to quit program\n"
+#define MSG_EXIT_SELECTION                      "Enter \"I\" to ignore once, "\
+                                                "\"A\" to ignore all, "       \
+                                                "or \"Q\" to quit program\n"
 
 
 typedef enum {
