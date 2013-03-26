@@ -153,6 +153,7 @@ static void _insertFromMenu(ListHead *head, bool *isDataModified) {
 
 	// insert: url
 	sUrl = promptInput(INPUT_TYPE_URL, MSG_PROMPT_URL);
+	strcpyToLower(sUrl, sUrl);
 	tempWebsite.url = sUrl;
 	if (!hashInsert(head, &tempWebsite)) {
 		free(sUrl);
@@ -247,6 +248,7 @@ static void _searchFromMenu(ListHead *head) {
 	} else {
 		printf(WARN_ID_NOT_FOUND(sUrl));
 	}
+  free(sUrl);
 }
 /*******************************************************************************
  * Prints the hash bucket list.
@@ -386,6 +388,7 @@ static void _quitFromMenu(ListHead *head, char *sfName, bool isDataModified) {
 			exit(EXIT_FILE_NOT_WRITTEN);
 		}
 		printf(VERB_AUTOSAVE(sfName));
+    free(sfName);
 	}
 }
 
