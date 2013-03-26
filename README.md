@@ -1,13 +1,39 @@
-WebsiteCatalog (Final Beta Version 2.0 Release)
+WebsiteCatalog
 ==============
+This repository is hosted online at https://github.com/coryshrmn/websitecatalog/
 
-UPDATE: 
-===============
-Gon Kim writes: Fixed && Updated && Polished && Tested && Documented.
-* Fixed memory leaks
-* #8(Save) is updated.
-* #9(Save as) is updated.
-* #10(Quit) is updated.
-* Completed documentation headers for each functions
-* Long main is broken into functions. Repeated codes are deleted.
-* MenuManager.c && WebsiteCatalog.c have been updated. Please check.
+Authors
+-------
+* Cory Sherman
+* Gon Kim
+* Chris Huang
+
+Build
+-----
+Build files are in the directories: *linux*, *osx*, and *windows*,
+although the Windows build script is currently outdated.
+A new VS project needs to be made from the source and header files.
+
+Source
+------
+All source files, including the stock *queueADT.c* are in the *source* directory.
+
+Resource
+--------
+The resource files are the input files. They are in the *resource* directory.
+
+Header
+------
+The header file, *WebsiteCatalog.h* is in the *header* directory.
+
+Test Plan and Output
+--------------------
+Located in the *sample* directory.
+*testplan.md* is the test plan.
+*out_\*.txt* are the output files.
+The input files are located in the *resource* directory.
+
+Presentation
+------------
+The slide-show presentation, in ODP and PDF formats, is in the *presentation* directory, along with the presentation outline.
+In the Catalyst submission, these files are in *presentation.zip*
