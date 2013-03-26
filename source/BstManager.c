@@ -239,16 +239,19 @@ void bstPrintIndented(ListHead *pList) {
 	_printIndented(pList->pTree, 0);
 }
 
-static void _printIndented(BstNode *node, int spaces) {
+static void _printIndented(BstNode *node, int level) {
 	int i;
 	if (!node)
 		return;
 
-	_printIndented(node->right, spaces + 4);
-	for (i = 0; i != spaces; ++i)
-		printf(" ");
+	_printIndented(node->right, level + 1);
+	for (i = 0; i != level; ++i)
+    {
+        printf("--- ");
+    }
+    printf("%2d. ", level + 1);
 	websitePrint(node->site);
-	_printIndented(node->left, spaces + 4);
+	_printIndented(node->left, level + 1);
 }
 
 /*******************************************************************************
