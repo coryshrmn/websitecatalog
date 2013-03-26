@@ -1,6 +1,6 @@
 WebsiteCatalog
 ==============
-This repository can be found at https://github.com/coryshrmn/websitecatalog/
+This repository is hosted online at https://github.com/coryshrmn/websitecatalog/
 
 Authors
 -------
@@ -18,6 +18,10 @@ Source
 ------
 All source files, including the stock *queueADT.c* are in the *source* directory.
 
+Resource
+--------
+The resource files are the input files. They are in the *resource* directory.
+
 Header
 ------
 The header file, *WebsiteCatalog.h* is in the *header* directory.
@@ -27,6 +31,7 @@ Test Plan and Output
 Located in the *sample* directory.
 *testplan.md* is the test plan.
 *out_\*.txt* are the output files.
+The input files are located in the *resource* directory.
 
 Presentation
 ------------
