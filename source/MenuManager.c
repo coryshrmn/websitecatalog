@@ -364,7 +364,7 @@ static void _saveAsFromMenu(ListHead *head, char** sfName, bool *isDataModified)
 		}
 		printf(VERB_FILE_WRITTEN(sfNameNew));
 		*isDataModified = false;
-		free(*sfName);
+		free(sfNameNew);
 		*sfName = sfNameNew;
 	}
 }
