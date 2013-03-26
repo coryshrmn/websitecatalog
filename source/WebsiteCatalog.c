@@ -20,6 +20,7 @@ int main(void) {
 	InitDriver(&head, &sfName);
 	readFile(sfName, &head);
 	MenuDriver(&head, sfName);
+  free(sfName);
 	DestroyDriver(&head);
 
 	return EXIT_SUCCESS;
@@ -48,17 +49,19 @@ void InitDriver(ListHead *head, char **sfCur) {
 
 		// backup file or original file?)
 		numLines = isBackupFileOpened(&sfBackup, sfOrig);
-		if (numLines == -1) {
+        
+		if (numLines == -1) { // backup file not opened
 			*sfCur = sfOrig;
 			// count number of lines of the input file
 			numLines = countLines(*sfCur);
-			if (-1 == numLines) {
+			if (-1 == numLines) { // couldn't open backup file
 				printf(ERR_COULD_NOT_OPEN_FILE(*sfCur));
 				free(*sfCur);
 			} else {
 				isValid = true;
 			}
-		} else {
+        
+		} else { // backup file opened
 			*sfCur = sfBackup;
 			free(sfOrig);
 			isValid = true;

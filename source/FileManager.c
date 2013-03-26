@@ -206,9 +206,10 @@ int isBackupFileOpened(char** fBackup, char* fSrc) {
 	*fBackup = _appendFileExtension(fSrc, BACKUP_FILENAME_EXTENSION);
 	numLines = countLines(*fBackup);
 
-	if (numLines != -1) {
+    
+	if (numLines != -1) { // if backup file successfully opened
 		printf(VERB_LAST_SESSION_FOUND);
-		if (_discardBackupFileOrNot()) {
+		if (_discardBackupFileOrNot()) { // discard the backup!
 			if (remove(*fBackup)) {
 				fprintf(stderr, ERR_FILE_NOT_DELETED, *fBackup);
 			}
