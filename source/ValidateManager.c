@@ -8,6 +8,8 @@
  * 		Gon Kim			(imgonkim@gmail.com)
  * 		Cory Sherman	(coryshrmn@gmail.com)
  *
+ * Contains functions for validating user input.
+ *
  ******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>

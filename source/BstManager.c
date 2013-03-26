@@ -4,6 +4,8 @@
  * Developer(s):
  * 		Cory Sherman	(coryshrmn@gmail.com)
  *
+ * Contains functions for creating, using, and destroying the BST.
+ *
  ******************************************************************************/
 #include "WebsiteCatalog.h"
 #include <string.h>

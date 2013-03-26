@@ -6,6 +6,8 @@
  *		Chris Huang		(christopher.e.huang@gmail.com)
  * 		Gon Kim			(imgonkim@gmail.com)
  *
+ * Contains utility functions for string and memory manipulation, used all over.
+ *
  ******************************************************************************/
 
 #include "WebsiteCatalog.h"

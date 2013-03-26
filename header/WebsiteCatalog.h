@@ -6,6 +6,10 @@
  * 		Gon Kim			(imgonkim@gmail.com)
  *		Chris Huang		(christopher.e.huang@gmail.com)
  *
+ * This is the main header file for the application.
+ * It is included in every application source file,
+ * so it generally contains things multiple source files need.
+ *
  ******************************************************************************/
 #include "queueADT.h"
 
@@ -20,12 +24,8 @@
 #define EXIT_FILE_NOT_WRITTEN                   104
 #define EXIT_ON_USER_REQUEST                    105
 // project.main.CONSTANT_DEFINED.fileio
-//#define FILEMODE_READONLY                       "r"
-//#define FILEMODE_WRITE                          "w"
-//#define FILEMODE_OVERWRITE                      "w+"
 #define MAX_LENGTH_INPUT                        255
 #define MAX_LENGTH_FILENAME                     MAX_LENGTH_INPUT
-//#define FLUSH while (getchar() != '\n');
 #define USERINPUT_QUIT                          "QUIT"
 // project.main.CONSTANT_DEFINED.error
 #define ERR_COULD_NOT_CLOSE_FILE(name)          ">>>ERROR : Could not close file \"%s\".\n", name
@@ -34,9 +34,6 @@
 #define ERR_NOT_ENOUGH_MEMORY                   ">>>ERROR : Not enough memory.\n"
 #define ERR_INVALID_INPUT                       ">>>ERROR : Invalid input. Please try again.\n"
 #define ERR_FILE_NOT_WRITTEN(name)              ">>>ERROR: Data could not be written to \"%s\".\n", name
-// project.main.CONSTANT_DEFINED.verbose
-//#define VERB_EXIT_ON_USER_REQUEST               ">VERBOSE : Exiting program on user request"
-//#define VERB_EXIT_NORMALLY                      ">VERBOSE : Exiting program normally."
 // project.main.CONSTANT_DEFINED.message
 #define MSG_PROMPT_RECONFIRM                    "Are you sure?\n"
 #define MSG_PROMPT_FILENAME                     "Please enter the filename: "
@@ -44,7 +41,9 @@
                                                 "\"A\" to ignore all, "       \
                                                 "or \"Q\" to quit program\n"
 
-
+/*******************************************************************************
+ * I/O enumerations
+ ******************************************************************************/
 typedef enum {
 	INPUT_VALUE_INVALID = -1, /* -1 */
 	INPUT_VALUE_NO, /*  0 */
@@ -55,7 +54,9 @@ typedef enum {
 	INPUT_VALUE_QUIT /*  5 */
 } input_value;
 
-
+/*******************************************************************************
+ * Data Structure Definitions
+ ******************************************************************************/
 typedef enum {
 	INPUT_TYPE_URL = 2001, /* 2001 */
 	INPUT_TYPE_COMPANY, /* 2002 */
@@ -74,6 +75,7 @@ typedef enum {
     
 	INPUT_TYPE_MENU = 4001 /* 4001 */
 } input_type;
+
 
 typedef struct
 {
@@ -108,10 +110,14 @@ typedef struct
     BstNode *pTree;
 } ListHead;
 
+
+/*******************************************************************************
+ * bool enum
+ ******************************************************************************/
 typedef enum {false, true} bool;
 
 /*******************************************************************************
- * Utility prototypes
+ * Utility prototypes defined in Utility.c
  ******************************************************************************/
 
 /*******************************************************************************
@@ -151,7 +157,7 @@ void printIntCommas(int val);
 
 
 /*******************************************************************************
- * InsertManager prototypes
+ * InsertManager prototypes defined in InsertManager.c
  ******************************************************************************/
 
 /*******************************************************************************
@@ -181,7 +187,7 @@ bool listInsert(ListHead *pList, Website *pWebsite);
 bool listRemove(ListHead *pList, const char *url);
 
 /*******************************************************************************
- * HashManager prototypes
+ * HashManager prototypes defined in HashManager.c
  ******************************************************************************/
 
 /*******************************************************************************
@@ -277,7 +283,7 @@ void hashPrintList(ListHead *pList);
 
 
 /*******************************************************************************
- * BstManager prototypes
+ * BstManager prototypes defined in BstManager.c
  ******************************************************************************/
 
 /*******************************************************************************
@@ -378,7 +384,7 @@ void bstPrintInorder(ListHead *pList);
 
 
 /*******************************************************************************
- * WebsiteManager prototypes
+ * WebsiteManager prototypes defined in WebsiteManager.c
  ******************************************************************************/
 
 /*******************************************************************************
@@ -434,9 +440,8 @@ void websitePrintFull(Website *pSite);
 
 
 /*******************************************************************************
- * MenuManager  prototypes
+ * MenuManager prototypes defined in MenuManager.c
  ******************************************************************************/
-
 typedef enum
 {
     MENU_INSERT = 1,
@@ -451,22 +456,21 @@ typedef enum
     MENU_QUIT
 } MENU_OPTION;
 
-
-
 /*******************************************************************************
- * Prints the menu to the user, and loops until they enter a valid choice.
+ * Drives menu.
  *
- *    Pre: --
+ *    Pre: head is the header of the list
+ *		  sfName is the safe fiel name
  *
- *   Post: The user has chosen a valid option
+ *   Post: Prompts menu option and processes menu
  *
- * Return: The user's selected option
+ * Return: none
  ******************************************************************************/
-MENU_OPTION _promptMenu(void);
+void MenuDriver(ListHead *head, char* sfName);
 
 
 /*******************************************************************************
- * FileManager  prototypes
+ * FileManager prototypes defined in FileManager.c
  ******************************************************************************/
 
 /*******************************************************************************

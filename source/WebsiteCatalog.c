@@ -6,6 +6,8 @@
  * 		Gon Kim			(imgonkim@gmail.com)
  *		Chris Huang		(christopher.e.huang@gmail.com)
  *
+ * Contains the main entry point and drivers of the program.
+ *
  ******************************************************************************/
 
 #include "WebsiteCatalog.h"

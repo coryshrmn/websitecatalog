@@ -5,6 +5,8 @@
  * Developer(s):
  * 		Cory Sherman	(coryshrmn@gmail.com)
  *
+ * Contains functions for inserting and deleting from both data structures.
+ *
  ******************************************************************************/
 
 #include "WebsiteCatalog.h"

@@ -6,6 +6,8 @@
  * 		Gon Kim			(imgonkim@gmail.com)
  * 		Cory Sherman	(coryshrmn@gmail.com)
  *
+ * Contains functions for reading and writing files.
+ *
  ******************************************************************************/
 
 #include "WebsiteCatalog.h"

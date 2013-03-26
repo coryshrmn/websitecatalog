@@ -6,6 +6,8 @@
  * 		Gon Kim			(imgonkim@gmail.com)
  * 		Cory Sherman	(coryshrmn@gmail.com)
  *
+ * Contains functions for printing the menu and getting and processing the user's menu choice.
+ *
  ******************************************************************************/
 #include "WebsiteCatalog.h"
 #include <stdlib.h>

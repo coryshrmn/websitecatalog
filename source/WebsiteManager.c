@@ -5,6 +5,8 @@
  * Developer(s):
  * 		Cory Sherman	(coryshrmn@gmail.com)
  *
+ * Contains functions for creating and destroying dynamically allocated websites.
+ *
  ******************************************************************************/
 
 #include "WebsiteCatalog.h"

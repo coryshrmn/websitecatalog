@@ -5,6 +5,8 @@
  *		Chris Huang		(christopher.e.huang@gmail.com)
  * 		Cory Sherman	(coryshrmn@gmail.com)
  *
+ * Contains function for creating, using, and destroying the hash table.
+ *
  ******************************************************************************/
 #include "WebsiteCatalog.h"
 #include <string.h>
