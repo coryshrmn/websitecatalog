@@ -14,7 +14,7 @@
 #include <stdlib.h>
 
 #ifdef _MSC_VER
-#include <crtdebug.h>
+#include <crtdbg.h>
 #endif
 
 int main(void) {
