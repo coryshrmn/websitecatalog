@@ -1,0 +1,355 @@
+Please enter the filename: top_25.txt
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 1
+Enter Url: SquIDOO.Com
+Bucket full, unable to insert!
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 4
+bucket (0)
+bucket (1)
+bucket (2)
+bucket (3)
+bucket (4)
+bucket (5)
+    google.com
+bucket (6)
+    yahoo.co.jp
+bucket (7)
+bucket (8)
+bucket (9)
+bucket (10)
+bucket (11)
+bucket (12)
+    msn.com
+bucket (13)
+bucket (14)
+    blogspot.com
+bucket (15)
+bucket (16)
+bucket (17)
+bucket (18)
+    taobao.com
+bucket (19)
+    google.fr
+bucket (20)
+bucket (21)
+bucket (22)
+bucket (23)
+bucket (24)
+bucket (25)
+    googleusercontent.com
+bucket (26)
+    qq.com
+bucket (27)
+    microsoft.com
+bucket (28)
+bucket (29)
+    linkedin.com
+bucket (30)
+bucket (31)
+bucket (32)
+bucket (33)
+bucket (34)
+    baidu.com
+bucket (35)
+    live.com
+bucket (36)
+bucket (37)
+    youtube.com
+    yahoo.com
+    twitter.com
+bucket (38)
+    bing.com
+bucket (39)
+bucket (40)
+bucket (41)
+bucket (42)
+    wordpress.com
+bucket (43)
+bucket (44)
+bucket (45)
+    wikipedia.org
+    google.co.uk
+    tumblr.com
+bucket (46)
+    ebay.com
+bucket (47)
+    amazon.com
+    google.co.in
+bucket (48)
+bucket (49)
+    facebook.com
+bucket (50)
+    google.de
+bucket (51)
+bucket (52)
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 2
+Enter Url: >VERBOSE : TwiTTER.com
+"twitter.com" has been removed from the list.
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 4
+bucket (0)
+bucket (1)
+bucket (2)
+bucket (3)
+bucket (4)
+bucket (5)
+    google.com
+bucket (6)
+    yahoo.co.jp
+bucket (7)
+bucket (8)
+bucket (9)
+bucket (10)
+bucket (11)
+bucket (12)
+    msn.com
+bucket (13)
+bucket (14)
+    blogspot.com
+bucket (15)
+bucket (16)
+bucket (17)
+bucket (18)
+    taobao.com
+bucket (19)
+    google.fr
+bucket (20)
+bucket (21)
+bucket (22)
+bucket (23)
+bucket (24)
+bucket (25)
+    googleusercontent.com
+bucket (26)
+    qq.com
+bucket (27)
+    microsoft.com
+bucket (28)
+bucket (29)
+    linkedin.com
+bucket (30)
+bucket (31)
+bucket (32)
+bucket (33)
+bucket (34)
+    baidu.com
+bucket (35)
+    live.com
+bucket (36)
+bucket (37)
+    youtube.com
+    yahoo.com
+bucket (38)
+    bing.com
+bucket (39)
+bucket (40)
+bucket (41)
+bucket (42)
+    wordpress.com
+bucket (43)
+bucket (44)
+bucket (45)
+    wikipedia.org
+    google.co.uk
+    tumblr.com
+bucket (46)
+    ebay.com
+bucket (47)
+    amazon.com
+    google.co.in
+bucket (48)
+bucket (49)
+    facebook.com
+bucket (50)
+    google.de
+bucket (51)
+bucket (52)
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 1
+Enter Url: SquidOO.COm
+Enter Company Name: Squidoo
+Enter Daily Page View: 1234
+Enter Traffic Rank: 5678
+Enter Back Link: 1234
+Enter Website Worth: 5678
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 3
+Enter Url: squidoo.com
+    Company:         "Squidoo"
+    Daily Pageviews: 1,234,000
+    Traffic Rank:    5,678
+    Backlinks:       1,234,000
+    Worth:           $5,678,000
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 4
+bucket (0)
+bucket (1)
+bucket (2)
+bucket (3)
+bucket (4)
+bucket (5)
+    google.com
+bucket (6)
+    yahoo.co.jp
+bucket (7)
+bucket (8)
+bucket (9)
+bucket (10)
+bucket (11)
+bucket (12)
+    msn.com
+bucket (13)
+bucket (14)
+    blogspot.com
+bucket (15)
+bucket (16)
+bucket (17)
+bucket (18)
+    taobao.com
+bucket (19)
+    google.fr
+bucket (20)
+bucket (21)
+bucket (22)
+bucket (23)
+bucket (24)
+bucket (25)
+    googleusercontent.com
+bucket (26)
+    qq.com
+bucket (27)
+    microsoft.com
+bucket (28)
+bucket (29)
+    linkedin.com
+bucket (30)
+bucket (31)
+bucket (32)
+bucket (33)
+bucket (34)
+    baidu.com
+bucket (35)
+    live.com
+bucket (36)
+bucket (37)
+    youtube.com
+    yahoo.com
+    squidoo.com
+bucket (38)
+    bing.com
+bucket (39)
+bucket (40)
+bucket (41)
+bucket (42)
+    wordpress.com
+bucket (43)
+bucket (44)
+bucket (45)
+    wikipedia.org
+    google.co.uk
+    tumblr.com
+bucket (46)
+    ebay.com
+bucket (47)
+    amazon.com
+    google.co.in
+bucket (48)
+bucket (49)
+    facebook.com
+bucket (50)
+    google.de
+bucket (51)
+bucket (52)
+================================================
+1 - Insert a Website
+2 - Delete a Website by URL
+3 - Search for a Website by URL
+4 - Print hash buckets
+5 - Print BST in order
+6 - Print BST indented
+7 - Print hash efficiency
+8 - Save
+9 - Save as...
+10 - Quit
+================================================
+Enter your option (1-10): 10
+>VERBOSE : Autosaved to "top_25.txt.BAK"
