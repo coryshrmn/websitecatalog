@@ -223,19 +223,22 @@ void printEfficiency(ListHead *pList) {
 	int i;
 	int j;
 	int collision = 0;
-	//longestBucket will be 1 even if the hash table is empty
-	int longestBucket = 1;
+	int longestBucket = 0;
 
 	for (i = 0; i < (pList->arySize * pList->bucketSize); i +=
 			pList->bucketSize) {
 		if (pList->pHash[i].key) {
 			nodesFilled++;
+            if(longestBucket == 0)
+                longestBucket = 1;
 			for (j = 1; j < pList->bucketSize; j++) {
 				if (pList->pHash[i + j].key)
+                {
 					collision++;
+			        if (longestBucket < j)
+				        longestBucket = j;
+                }
 			}
-			if (longestBucket < j)
-				longestBucket = j;
 		}
 	}
 	longestBucket++;
